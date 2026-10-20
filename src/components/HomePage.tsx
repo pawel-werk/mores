@@ -1,13 +1,13 @@
 import React from 'react';
-import { Hero } from '../components/Hero';
-import { Offer } from '../components/Offer';
-import { Production } from '../components/Production';
-import { Audience } from '../components/Audience';
-import { GalleryTeaser } from '../components/GalleryTeaser';
-import { CatalogTeaser } from '../components/CatalogTeaser';
-import { Process } from '../components/Process';
-import { Faq } from '../components/Faq';
-import { Contact } from '../components/Contact';
+import { Hero } from './Hero';
+import { Offer } from './Offer';
+import { Production } from './Production';
+import { Audience } from './Audience';
+import { GalleryTeaser } from './GalleryTeaser';
+import { CatalogTeaser } from './CatalogTeaser';
+import { Process } from './Process';
+import { Faq } from './Faq';
+import { Contact } from './Contact';
 
 export const HomePage: React.FC = () => {
   React.useEffect(() => {
@@ -26,8 +26,8 @@ export const HomePage: React.FC = () => {
           "addressLocality": "Mirków k. Wrocławia",
           "addressCountry": "PL"
         },
-        "telephone": "+48000000000",
-        "email": "biuro@mores.pl",
+        "telephone": "+48 531 187 187",
+        "email": "info@mores.pl",
         "areaServed": "PL"
       },
       {
