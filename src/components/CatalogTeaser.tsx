@@ -4,7 +4,7 @@ import { DownloadIcon } from './Icons';
 
 export const CatalogTeaser: React.FC = () => {
   return (
-    <section id="katalog-teaser" className="py-16 bg-brand text-white" aria-labelledby="catalog-teaser-title">
+    <section id="katalog-teaser" className="py-20 md:py-32 bg-brand text-white" aria-labelledby="catalog-teaser-title">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
         <Reveal>
           <h2 id="catalog-teaser-title" className="text-3xl md:text-4xl font-bold mb-6">Katalog kolekcji frontów (PDF)</h2>
@@ -16,7 +16,7 @@ export const CatalogTeaser: React.FC = () => {
               Zobacz katalog online
             </a>
             <a href="/katalog/mores-katalog.pdf" download className="bg-transparent border border-white/30 px-6 py-3 rounded-lg font-medium hover:bg-white/10 transition-colors inline-flex items-center justify-center gap-2">
-              <DownloadIcon className="w-5 h-5" /> Pobierz PDF
+              <DownloadIcon className="w-5 h-5" aria-hidden="true" /> Pobierz PDF
             </a>
           </div>
         </Reveal>

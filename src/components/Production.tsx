@@ -1,7 +1,13 @@
 import React from 'react';
 import { Reveal } from './Reveal';
+import { LayersIcon, CutIcon, PaintIcon, TruckIcon } from './Icons';
 
-const steps = ["Półprodukty", "Wycinarnia", "Lakiernia", "Magazyn i logistyka"];
+const steps = [
+  { title: "Półprodukty", icon: LayersIcon },
+  { title: "Wycinarnia", icon: CutIcon },
+  { title: "Lakiernia", icon: PaintIcon },
+  { title: "Magazyn i logistyka", icon: TruckIcon }
+];
 
 export const Production: React.FC = () => {
   return (
@@ -20,21 +26,33 @@ export const Production: React.FC = () => {
             </Reveal>
           </div>
           
-          <div>
-            <div className="flex flex-col sm:flex-row gap-4">
-              {steps.map((step, i) => (
-                <Reveal key={step} delay={i * 150}>
-                  <div className="bg-white/10 border border-white/20 rounded-xl p-6 flex-1 relative flex items-center justify-center sm:flex-col text-center sm:min-h-[140px]">
-                    <div className="hidden sm:flex absolute -right-6 top-1/2 -translate-y-1/2 z-10 text-white/40">
-                      {i < steps.length - 1 && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M12 5l7 7-7 7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>}
+          <div className="relative pt-4 pb-4">
+            {/* Linia łącząca w tle (pionowa oś czasu) */}
+            <div className="absolute left-[23px] top-8 bottom-8 w-px bg-white/20 z-0 hidden sm:block"></div>
+            <div className="absolute left-1/2 top-8 bottom-8 w-px bg-white/20 z-0 sm:hidden -translate-x-1/2"></div>
+
+            <div className="space-y-6 relative z-10">
+              {steps.map((step, i) => {
+                const Icon = step.icon;
+                return (
+                  <Reveal key={step.title} delay={i * 150}>
+                    <div className="flex flex-col sm:flex-row items-center sm:items-stretch gap-4 sm:gap-6">
+                      {/* Ikona z numeracją */}
+                      <div className="relative flex-shrink-0 w-12 h-12 bg-brand-dark border-2 border-white/20 rounded-full flex items-center justify-center text-white/90 z-10">
+                        <span className="absolute -left-8 text-white/30 font-mono text-sm font-medium hidden sm:block">
+                          0{i + 1}
+                        </span>
+                        <Icon className="w-5 h-5" aria-hidden="true" />
+                      </div>
+                      
+                      {/* Karta etapu - równe szerokości, brak łamania na 3 linie */}
+                      <div className="bg-white/5 border border-white/10 rounded-xl p-5 flex-1 w-full text-center sm:text-left flex items-center justify-center sm:justify-start backdrop-blur-sm">
+                        <span className="font-medium text-lg tracking-wide">{step.title}</span>
+                      </div>
                     </div>
-                    <div className="sm:hidden absolute -bottom-6 left-1/2 -translate-x-1/2 z-10 text-white/40 rotate-90">
-                      {i < steps.length - 1 && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M12 5l7 7-7 7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>}
-                    </div>
-                    <span className="font-semibold text-lg">{step}</span>
-                  </div>
-                </Reveal>
-              ))}
+                  </Reveal>
+                );
+              })}
             </div>
           </div>
         </div>

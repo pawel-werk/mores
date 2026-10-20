@@ -18,33 +18,37 @@ export const Contact: React.FC = () => {
     <section id="kontakt" className="py-20 md:py-32 bg-stone" aria-labelledby="contact-title">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <Reveal>
-          <h2 id="contact-title" className="text-3xl md:text-4xl font-bold text-ink mb-12 text-center">Skontaktuj się z nami</h2>
+          <h2 id="contact-title" className="text-3xl md:text-4xl font-bold text-ink mb-16 text-center">Skontaktuj się z nami</h2>
         </Reveal>
         
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-12">
           {/* Dane kontaktowe i mapa */}
           <Reveal delay={100}>
-            <div className="bg-paper p-8 rounded-xl border border-line h-full flex flex-col">
-              <h3 className="text-xl font-bold mb-6">Dane firmy mores</h3>
-              <div className="space-y-4 mb-8 text-lg">
+            <div className="bg-paper p-8 lg:p-10 rounded-xl border border-line h-full flex flex-col">
+              <div className="mb-8 lg:min-h-[72px]">
+                <h3 className="text-2xl font-bold text-ink mb-2">Dane firmy mores</h3>
+              </div>
+              
+              <div className="space-y-5 mb-10 text-lg">
                 <p>
                   <span className="block text-sm text-muted mb-1">Telefon:</span>
-                  <a href={`tel:${companyData.phone.replace(/\s/g, '')}`} className="font-semibold text-brand hover:underline">{companyData.phone}</a>
+                  <a href={`tel:${companyData.phone.replace(/\s/g, '')}`} className="font-semibold text-brand hover:text-brand-dark transition-colors">{companyData.phone}</a>
                 </p>
                 <p>
                   <span className="block text-sm text-muted mb-1">E-mail:</span>
-                  <a href={`mailto:${companyData.email}`} className="font-semibold text-brand hover:underline">{companyData.email}</a>
+                  <a href={`mailto:${companyData.email}`} className="font-semibold text-brand hover:text-brand-dark transition-colors">{companyData.email}</a>
                 </p>
                 <p>
                   <span className="block text-sm text-muted mb-1">Adres produkcji:</span>
-                  {companyData.addressLine1}<br/>{companyData.addressLine2}
+                  <span className="text-ink">{companyData.addressLine1}<br/>{companyData.addressLine2}</span>
                 </p>
                 <p>
                   <span className="block text-sm text-muted mb-1">Godziny otwarcia:</span>
-                  {companyData.workingHours}
+                  <span className="text-ink">{companyData.workingHours}</span>
                 </p>
               </div>
-              <div className="mt-auto h-64 rounded-lg overflow-hidden border border-line">
+              
+              <div className="mt-auto h-[260px] rounded-lg overflow-hidden border border-line">
                 <iframe 
                   title="Mapa dojazdu"
                   width="100%" 
@@ -60,29 +64,38 @@ export const Contact: React.FC = () => {
 
           {/* Formularz */}
           <Reveal delay={200}>
-            <div className="bg-paper p-8 rounded-xl border border-line">
-              <h3 className="text-xl font-bold mb-4">Zapytaj o wycenę</h3>
-              <p className="text-sm text-muted mb-6">Aby przyspieszyć wycenę, podaj wymiary, materiał/wykończenie oraz szacowaną ilość sztuk.</p>
-              <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="bg-paper p-8 lg:p-10 rounded-xl border border-line h-full flex flex-col">
+              <div className="mb-8 lg:min-h-[72px]">
+                <h3 className="text-2xl font-bold text-ink mb-2">Zapytaj o wycenę</h3>
+                <p className="text-sm text-muted leading-relaxed">Aby przyspieszyć wycenę, podaj wymiary, materiał/wykończenie oraz szacowaną ilość sztuk.</p>
+              </div>
+              
+              <form onSubmit={handleSubmit} className="flex flex-col flex-1 space-y-5">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium mb-1">Imię i nazwisko / Firma *</label>
-                  <input required id="name" name="name" type="text" className="w-full px-4 py-2 border border-line rounded-lg focus:border-brand focus:ring-1 focus:ring-brand outline-none" />
+                  <label htmlFor="name" className="block text-sm font-medium text-ink mb-1.5">Imię i nazwisko / Firma *</label>
+                  <input required id="name" name="name" type="text" className="w-full px-4 py-3 bg-stone border border-line rounded-lg focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-colors" />
                 </div>
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-medium mb-1">Telefon *</label>
-                  <input required id="phone" name="phone" type="tel" className="w-full px-4 py-2 border border-line rounded-lg focus:border-brand focus:ring-1 focus:ring-brand outline-none" />
+                  <label htmlFor="phone" className="block text-sm font-medium text-ink mb-1.5">Telefon *</label>
+                  <input required id="phone" name="phone" type="tel" className="w-full px-4 py-3 bg-stone border border-line rounded-lg focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-colors" />
                 </div>
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium mb-1">Wiadomość / Parametry zlecenia *</label>
-                  <textarea required id="message" name="message" rows={5} className="w-full px-4 py-2 border border-line rounded-lg focus:border-brand focus:ring-1 focus:ring-brand outline-none resize-y"></textarea>
+                  <label htmlFor="message" className="block text-sm font-medium text-ink mb-1.5">Wiadomość / Parametry zlecenia *</label>
+                  <textarea required id="message" name="message" rows={5} className="w-full px-4 py-3 bg-stone border border-line rounded-lg focus:border-brand focus:ring-1 focus:ring-brand outline-none resize-y transition-colors"></textarea>
                 </div>
-                <div className="flex items-start gap-2">
-                  <input required id="rodo" type="checkbox" className="mt-1" />
-                  <label htmlFor="rodo" className="text-xs text-muted">Wyrażam zgodę na przetwarzanie danych w celu obsługi zapytania. *</label>
+                
+                <div className="flex items-start gap-3 pt-2">
+                  <input required id="rodo" type="checkbox" className="mt-1 w-4 h-4 text-brand bg-stone border-line rounded focus:ring-brand cursor-pointer" />
+                  <label htmlFor="rodo" className="text-xs text-muted leading-relaxed cursor-pointer">
+                    Wyrażam zgodę na przetwarzanie danych w celu obsługi zapytania. *
+                  </label>
                 </div>
-                <button type="submit" className="w-full bg-brand text-white font-bold py-3 rounded-lg hover:bg-brand-dark transition-colors">
-                  Wyślij wiadomość
-                </button>
+                
+                <div className="mt-auto pt-6">
+                  <button type="submit" className="w-full bg-brand text-white font-bold py-3.5 rounded-lg hover:bg-brand-dark transition-colors shadow-sm">
+                    Wyślij wiadomość
+                  </button>
+                </div>
               </form>
             </div>
           </Reveal>
