@@ -55,7 +55,7 @@ export const Contact: React.FC = () => {
                 <div>
                   <span className="block text-xs uppercase tracking-widest font-bold text-ink/40 mb-2">Adres produkcji</span>
                   <span className="font-sans text-xl text-ink block leading-snug">
-                    {companyData.addressLine1}<br/>{companyData.addressLine2}
+                    ul. Łąkowa 6<br/>55-095 Mirków k. Wrocławia
                   </span>
                 </div>
                 <div>
