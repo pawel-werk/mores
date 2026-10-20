@@ -48,15 +48,15 @@ export const Contact: React.FC = () => {
                 </p>
               </div>
               
-              <div className="mt-auto h-[260px] rounded-lg overflow-hidden border border-line">
+              <div className="mt-auto h-[260px] rounded-lg overflow-hidden border border-line bg-stone relative">
                 <iframe 
-                  title="Mapa dojazdu"
+                  title="Mapa dojazdu - Mores Mirków"
                   width="100%" 
                   height="100%" 
                   style={{ border: 0 }} 
                   loading="lazy" 
-                  allowFullScreen 
-                  src="https://maps.google.com/maps?q=%C5%81%C4%85kowa%206%2C%20Mirk%C3%B3w&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2503.4691459640957!2d17.150652!3d51.156515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470fe36f6d62a931%3A0x6b2b6c7a72d1f9a1!2zxYlxYWtvd2EgNiwgNTUtMDk1IE1pcmvDs3c!5e0!3m2!1spl!2spl!4v1700000000000!5m2!1spl!2spl"
                 />
               </div>
             </div>
