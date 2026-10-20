@@ -56,7 +56,7 @@ export const Contact: React.FC = () => {
                   style={{ border: 0 }} 
                   loading="lazy" 
                   allowFullScreen 
-                  src="https://maps.google.com/maps?q=Mirk%C3%B3w%20k.%20Wroc%C5%82awia&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                  src="https://maps.google.com/maps?q=%C5%81%C4%85kowa%206%2C%20Mirk%C3%B3w&t=&z=14&ie=UTF8&iwloc=&output=embed"
                 />
               </div>
             </div>

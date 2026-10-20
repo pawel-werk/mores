@@ -1,6 +1,6 @@
 import React from 'react';
 import { Reveal } from './Reveal';
-import { UsersIcon, FactoryIcon, StoreIcon } from './Icons';
+import { UsersIcon, FactoryIcon, StoreIcon, ArchitectIcon } from './Icons';
 
 const audiences = [
   { 
@@ -17,6 +17,11 @@ const audiences = [
     title: "Handlowcy i hurtownie", 
     desc: "Rozszerz swoją ofertę o wysokiej jakości fronty meblowe produkowane terminowo i powtarzalnie.",
     icon: StoreIcon
+  },
+  {
+    title: "Architekci i projektanci",
+    desc: "Zrealizujemy Twoje autorskie koncepcje i nietypowe wizje projektowe z dbałością o precyzję i każdy detal wykończenia.",
+    icon: ArchitectIcon
   }
 ];
 
@@ -27,7 +32,7 @@ export const Audience: React.FC = () => {
         <Reveal>
           <h2 id="audience-title" className="text-3xl md:text-4xl font-bold text-ink mb-16 text-center">Dla kogo pracujemy?</h2>
         </Reveal>
-        <div className="grid md:grid-cols-3 gap-12 md:gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           {audiences.map((item, i) => {
             const Icon = item.icon;
             return (
