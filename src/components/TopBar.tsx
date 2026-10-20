@@ -43,7 +43,7 @@ export const TopBar: React.FC = () => {
 
   return (
     <div 
-      className="bg-brand-dark text-white py-2 px-4 relative flex items-center justify-center text-sm"
+      className="bg-brand text-white py-2 px-4 relative flex items-center justify-center text-sm font-medium tracking-wide"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onFocus={() => setIsPaused(true)}
@@ -54,17 +54,17 @@ export const TopBar: React.FC = () => {
         aria-live="polite"
       >
         <span>{currentMessage.text} </span>
-        <a href={currentMessage.href} className="underline hover:text-brand-soft font-medium">
+        <a href={currentMessage.href} className="underline hover:text-white/80 transition-colors">
           {currentMessage.linkLabel}
         </a>
       </div>
       
-      {!reducedMotion && (
-        <div className="absolute bottom-1 flex gap-1 justify-center w-full pointer-events-none">
+      {!reducedMotion && topbarMessages.length > 1 && (
+        <div className="absolute bottom-0.5 flex gap-1.5 justify-center w-full pointer-events-none">
           {topbarMessages.map((_, idx) => (
             <button
               key={idx}
-              className={`w-1.5 h-1.5 rounded-full pointer-events-auto transition-colors ${idx === currentIndex ? 'bg-white' : 'bg-white/30'}`}
+              className={`w-1 h-1 rounded-sm pointer-events-auto transition-colors ${idx === currentIndex ? 'bg-white' : 'bg-white/40'}`}
               onClick={() => setCurrentIndex(idx)}
               aria-label={`Komunikat ${idx + 1}`}
             />
@@ -74,10 +74,10 @@ export const TopBar: React.FC = () => {
 
       <button 
         onClick={handleClose} 
-        className="absolute right-2 p-1 hover:bg-white/10 rounded"
+        className="absolute right-2 p-1 hover:bg-black/10 rounded transition-colors"
         aria-label="Zamknij komunikat"
       >
-        <XIcon className="w-4 h-4" />
+        <XIcon className="w-4 h-4" aria-hidden="true" />
       </button>
     </div>
   );

@@ -15,12 +15,14 @@ export const Reveal: React.FC<RevealProps> = ({ children, delay = 0 }) => {
       setIsVisible(true);
       return;
     }
+    
+    // Zwiększamy threshold do 0.15, aby element animował się głębiej w polu widzenia
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
         setIsVisible(true);
         observer.unobserve(entry.target);
       }
-    }, { threshold: 0.1 });
+    }, { threshold: 0.15 });
 
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
@@ -30,8 +32,8 @@ export const Reveal: React.FC<RevealProps> = ({ children, delay = 0 }) => {
     <div
       ref={ref}
       style={{ transitionDelay: `${delay}ms` }}
-      className={`transition-all duration-600 ease-out ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      className={`transition-all duration-[800ms] ease-out ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
       } ${prefersReduced ? '!opacity-100 !translate-y-0 !transition-none' : ''}`}
     >
       {children}

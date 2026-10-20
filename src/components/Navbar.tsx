@@ -4,6 +4,13 @@ import { Logo, LogoFallback } from './Logo';
 
 export const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -27,54 +34,58 @@ export const Navbar: React.FC = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-40 bg-paper/90 backdrop-blur border-b border-line">
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
-        <a href="#/" className="flex items-center gap-2 outline-none focus-visible:ring-2 focus-visible:ring-brand">
-          <Logo className="h-6 md:h-8" />
-          <LogoFallback />
+    <header 
+      className={`sticky top-0 z-40 transition-all duration-300 ${
+        isScrolled ? 'bg-paper/95 backdrop-blur-md shadow-sm border-b border-line' : 'bg-paper border-b border-transparent'
+      }`}
+    >
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-20 transition-all">
+        <a href="#/" className="flex items-center gap-2 outline-none focus-visible:ring-2 focus-visible:ring-brand rounded-sm">
+          <Logo className="h-6 md:h-7" variant="dark" />
+          <LogoFallback variant="dark" />
         </a>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex gap-8 items-center">
           {links.map((link) => (
-            <a key={link.name} href={link.href} className="text-ink font-medium hover:text-brand transition-colors">
+            <a key={link.name} href={link.href} className="text-sm uppercase tracking-widest font-semibold text-ink/80 hover:text-brand transition-colors">
               {link.name}
             </a>
           ))}
-          <a href="#kontakt" className="bg-brand text-white px-5 py-2.5 rounded-lg font-medium hover:bg-brand-dark transition-colors">
+          <a href="#kontakt" className="bg-ink text-paper px-6 py-2.5 text-sm uppercase tracking-wider font-bold hover:bg-brand transition-colors">
             Zapytaj o wycenę
           </a>
         </div>
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden p-2 text-ink"
+          className="md:hidden p-2 text-ink hover:text-brand transition-colors"
           onClick={() => setIsOpen(true)}
           aria-expanded={isOpen}
           aria-label="Otwórz menu"
         >
-          <MenuIcon className="w-6 h-6" />
+          <MenuIcon className="w-6 h-6" aria-hidden="true" />
         </button>
       </nav>
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="fixed inset-0 z-50 bg-paper flex flex-col pt-16 px-6">
+        <div className="fixed inset-0 z-50 bg-paper flex flex-col pt-20 px-6">
           <button
-            className="absolute top-4 right-4 p-2 text-ink"
+            className="absolute top-6 right-6 p-2 text-ink hover:text-brand transition-colors"
             onClick={() => setIsOpen(false)}
             aria-label="Zamknij menu"
           >
-            <XIcon className="w-8 h-8" />
+            <XIcon className="w-8 h-8" aria-hidden="true" />
           </button>
-          <div className="flex flex-col gap-6 text-xl mt-8">
-            <a href="#/" onClick={() => setIsOpen(false)} className="font-bold text-ink">Strona główna</a>
+          <div className="flex flex-col gap-8 text-2xl mt-8 font-serif">
+            <a href="#/" onClick={() => setIsOpen(false)} className="text-ink hover:text-brand transition-colors">Strona główna</a>
             {links.map((link) => (
               <a 
                 key={link.name} 
                 href={link.href} 
                 onClick={() => setIsOpen(false)}
-                className="font-medium text-muted hover:text-brand"
+                className="text-ink/80 hover:text-brand transition-colors"
               >
                 {link.name}
               </a>
@@ -82,7 +93,7 @@ export const Navbar: React.FC = () => {
             <a 
               href="#kontakt" 
               onClick={() => setIsOpen(false)}
-              className="mt-4 bg-brand text-center text-white px-5 py-3 rounded-lg font-medium"
+              className="mt-8 bg-ink text-center text-paper px-6 py-4 font-sans text-lg uppercase tracking-wider font-bold hover:bg-brand transition-colors"
             >
               Zapytaj o wycenę
             </a>

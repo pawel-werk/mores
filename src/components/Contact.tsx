@@ -15,44 +15,66 @@ export const Contact: React.FC = () => {
   };
 
   return (
-    <section id="kontakt" className="py-20 md:py-32 bg-stone" aria-labelledby="contact-title">
+    <section id="kontakt" className="py-20 md:py-32 bg-stone border-t border-line" aria-labelledby="contact-title">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
         <Reveal>
-          <h2 id="contact-title" className="text-3xl md:text-4xl font-bold text-ink mb-16 text-center">Skontaktuj się z nami</h2>
+          <div className="text-center mb-16 md:mb-24">
+            <h2 id="contact-title" className="font-serif text-4xl md:text-5xl text-ink mb-6">
+              Skontaktuj się z nami
+            </h2>
+            <p className="text-muted text-lg font-light leading-relaxed max-w-2xl mx-auto">
+              Jesteśmy do Twojej dyspozycji. Zadzwoń, napisz lub odwiedź nas w Mirkowie k. Wrocławia.
+            </p>
+          </div>
         </Reveal>
         
-        <div className="grid lg:grid-cols-2 gap-8 md:gap-12">
-          {/* Dane kontaktowe i mapa */}
+        {/* Kontener główny wyrównujący kolumny do tej samej wysokości */}
+        <div className="grid lg:grid-cols-2 gap-x-12 gap-y-16 items-stretch">
+          
+          {/* Lewa kolumna - Dane kontaktowe */}
           <Reveal delay={100}>
-            <div className="bg-paper p-8 lg:p-10 rounded-xl border border-line h-full flex flex-col">
-              <div className="mb-8 lg:min-h-[72px]">
-                <h3 className="text-2xl font-bold text-ink mb-2">Dane firmy mores</h3>
+            <div className="flex flex-col h-full bg-paper border border-line p-8 md:p-12 lg:p-16">
+              <h3 className="font-serif text-3xl text-ink mb-10 pb-6 border-b border-line">
+                Dane firmy
+              </h3>
+              
+              <div className="space-y-8 text-lg font-light flex-1">
+                <div>
+                  <span className="block text-xs uppercase tracking-widest font-bold text-ink/40 mb-2">Telefon</span>
+                  <a href={`tel:${companyData.phone.replace(/\s/g, '')}`} className="font-sans text-xl text-ink hover:text-brand transition-colors inline-block">
+                    {companyData.phone}
+                  </a>
+                </div>
+                <div>
+                  <span className="block text-xs uppercase tracking-widest font-bold text-ink/40 mb-2">E-mail</span>
+                  <a href={`mailto:${companyData.email}`} className="font-sans text-xl text-ink hover:text-brand transition-colors inline-block break-all">
+                    {companyData.email}
+                  </a>
+                </div>
+                <div>
+                  <span className="block text-xs uppercase tracking-widest font-bold text-ink/40 mb-2">Adres produkcji</span>
+                  <span className="font-sans text-xl text-ink block leading-snug">
+                    {companyData.addressLine1}<br/>{companyData.addressLine2}
+                  </span>
+                </div>
+                <div>
+                  <span className="block text-xs uppercase tracking-widest font-bold text-ink/40 mb-2">Godziny otwarcia</span>
+                  <span className="font-sans text-lg text-ink">
+                    {companyData.workingHours}
+                  </span>
+                </div>
               </div>
               
-              <div className="space-y-5 mb-10 text-lg flex-1">
-                <p>
-                  <span className="block text-sm text-muted mb-1">Telefon:</span>
-                  <a href={`tel:${companyData.phone.replace(/\s/g, '')}`} className="font-semibold text-brand hover:text-brand-dark transition-colors">{companyData.phone}</a>
-                </p>
-                <p>
-                  <span className="block text-sm text-muted mb-1">E-mail:</span>
-                  <a href={`mailto:${companyData.email}`} className="font-semibold text-brand hover:text-brand-dark transition-colors">{companyData.email}</a>
-                </p>
-                <p>
-                  <span className="block text-sm text-muted mb-1">Adres produkcji:</span>
-                  <span className="text-ink">Łąkowa 6<br/>55-095 Mirków k. Wrocławia</span>
-                </p>
-                <p>
-                  <span className="block text-sm text-muted mb-1">Godziny otwarcia:</span>
-                  <span className="text-ink">{companyData.workingHours}</span>
-                </p>
-              </div>
-              
-              {/* Zabezpieczony kontener mapy przed zapadaniem się we flexboxie */}
-              <div className="mt-auto relative w-full h-[300px] rounded-xl overflow-hidden border border-line bg-stone">
+              {/* Mapa Google - zintegrowana w dolnej części i zabezpieczona przez zapadnięciem */}
+              <div className="mt-12 h-64 md:h-72 w-full relative border border-line">
+                {/* Fallback podczas ładowania */}
+                <div className="absolute inset-0 flex items-center justify-center bg-stone">
+                  <span className="text-xs uppercase tracking-widest text-ink/30 font-bold">Ładowanie mapy...</span>
+                </div>
                 <iframe 
                   title="Mapa dojazdu - Mores Mirków"
-                  className="absolute inset-0 w-full h-full"
+                  className="absolute inset-0 w-full h-full z-10 filter grayscale-[20%] contrast-125 opacity-90 transition-opacity duration-1000"
                   style={{ border: 0 }} 
                   loading="lazy" 
                   referrerPolicy="no-referrer-when-downgrade"
@@ -62,43 +84,97 @@ export const Contact: React.FC = () => {
             </div>
           </Reveal>
 
-          {/* Formularz */}
+          {/* Prawa kolumna - Formularz */}
           <Reveal delay={200}>
-            <div className="bg-paper p-8 lg:p-10 rounded-xl border border-line h-full flex flex-col">
-              <div className="mb-8 lg:min-h-[72px]">
-                <h3 className="text-2xl font-bold text-ink mb-2">Zapytaj o wycenę</h3>
-                <p className="text-sm text-muted leading-relaxed">Aby przyspieszyć wycenę, podaj wymiary, materiał/wykończenie oraz szacowaną ilość sztuk.</p>
+            <div className="flex flex-col h-full bg-paper border border-line p-8 md:p-12 lg:p-16">
+              <div className="mb-10 pb-6 border-b border-line">
+                <h3 className="font-serif text-3xl text-ink mb-3">
+                  Zapytaj o wycenę
+                </h3>
+                <p className="text-muted font-light leading-relaxed">
+                  Podaj wymiary, wykończenie oraz szacowaną ilość sztuk.
+                </p>
               </div>
               
-              <form onSubmit={handleSubmit} className="flex flex-col flex-1 space-y-5">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-ink mb-1.5">Imię i nazwisko / Firma *</label>
-                  <input required id="name" name="name" type="text" className="w-full px-4 py-3 bg-stone border border-line rounded-lg focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-colors" />
-                </div>
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-ink mb-1.5">Telefon *</label>
-                  <input required id="phone" name="phone" type="tel" className="w-full px-4 py-3 bg-stone border border-line rounded-lg focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-colors" />
-                </div>
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-ink mb-1.5">Wiadomość / Parametry zlecenia *</label>
-                  <textarea required id="message" name="message" rows={5} className="w-full px-4 py-3 bg-stone border border-line rounded-lg focus:border-brand focus:ring-1 focus:ring-brand outline-none resize-y transition-colors"></textarea>
+              <form onSubmit={handleSubmit} className="flex flex-col flex-1">
+                <div className="space-y-8 flex-1">
+                  
+                  {/* Minimalistyczny input (tylko dolna krawędź) */}
+                  <div className="relative group">
+                    <input 
+                      required 
+                      id="name" 
+                      name="name" 
+                      type="text" 
+                      placeholder=" "
+                      className="peer w-full bg-transparent border-0 border-b border-line px-0 py-3 text-ink focus:ring-0 focus:border-brand transition-colors outline-none font-light" 
+                    />
+                    <label 
+                      htmlFor="name" 
+                      className="absolute left-0 top-3 text-ink/40 text-sm transition-all duration-300 peer-focus:-top-4 peer-focus:text-xs peer-focus:text-brand peer-focus:font-bold peer-focus:uppercase peer-focus:tracking-widest peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-ink/60 peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-widest cursor-text"
+                    >
+                      Imię i nazwisko / Firma *
+                    </label>
+                  </div>
+                  
+                  <div className="relative group">
+                    <input 
+                      required 
+                      id="phone" 
+                      name="phone" 
+                      type="tel" 
+                      placeholder=" "
+                      className="peer w-full bg-transparent border-0 border-b border-line px-0 py-3 text-ink focus:ring-0 focus:border-brand transition-colors outline-none font-light" 
+                    />
+                    <label 
+                      htmlFor="phone" 
+                      className="absolute left-0 top-3 text-ink/40 text-sm transition-all duration-300 peer-focus:-top-4 peer-focus:text-xs peer-focus:text-brand peer-focus:font-bold peer-focus:uppercase peer-focus:tracking-widest peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-ink/60 peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-widest cursor-text"
+                    >
+                      Telefon kontaktowy *
+                    </label>
+                  </div>
+                  
+                  <div className="relative group pt-4">
+                    <textarea 
+                      required 
+                      id="message" 
+                      name="message" 
+                      rows={4} 
+                      placeholder=" "
+                      className="peer w-full bg-transparent border-0 border-b border-line px-0 py-3 text-ink focus:ring-0 focus:border-brand transition-colors outline-none font-light resize-none"
+                    ></textarea>
+                    <label 
+                      htmlFor="message" 
+                      className="absolute left-0 top-7 text-ink/40 text-sm transition-all duration-300 peer-focus:top-0 peer-focus:text-xs peer-focus:text-brand peer-focus:font-bold peer-focus:uppercase peer-focus:tracking-widest peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-ink/60 peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-widest cursor-text"
+                    >
+                      Szczegóły zlecenia *
+                    </label>
+                  </div>
+                  
                 </div>
                 
-                <div className="flex items-start gap-3 pt-2">
-                  <input required id="rodo" type="checkbox" className="mt-1 w-4 h-4 text-brand bg-stone border-line rounded focus:ring-brand cursor-pointer" />
-                  <label htmlFor="rodo" className="text-xs text-muted leading-relaxed cursor-pointer">
+                <div className="mt-8 mb-10 flex items-start gap-3">
+                  <input 
+                    required 
+                    id="rodo" 
+                    type="checkbox" 
+                    className="mt-1 w-4 h-4 text-brand bg-transparent border-line rounded-sm focus:ring-brand focus:ring-offset-paper cursor-pointer" 
+                  />
+                  <label htmlFor="rodo" className="text-xs text-muted font-light leading-relaxed cursor-pointer selection:bg-brand selection:text-white">
                     Wyrażam zgodę na przetwarzanie danych w celu obsługi zapytania. *
                   </label>
                 </div>
                 
-                <div className="mt-auto pt-6">
-                  <button type="submit" className="w-full bg-brand text-white font-bold py-3.5 rounded-lg hover:bg-brand-dark transition-colors shadow-sm">
-                    Wyślij wiadomość
-                  </button>
-                </div>
+                <button 
+                  type="submit" 
+                  className="w-full bg-ink text-paper text-sm uppercase tracking-widest font-bold py-5 hover:bg-brand transition-colors mt-auto"
+                >
+                  Wyślij wiadomość
+                </button>
               </form>
             </div>
           </Reveal>
+          
         </div>
       </div>
     </section>
