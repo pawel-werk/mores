@@ -1,7 +1,6 @@
 import React from 'react';
 import { Reveal } from './Reveal';
 import { companyData } from '../data/content';
-import { ExternalLinkIcon } from './Icons';
 
 export const Contact: React.FC = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -15,8 +14,6 @@ export const Contact: React.FC = () => {
     window.location.href = `mailto:${companyData.email}?subject=Zapytanie ze strony internetowej&body=${body}`;
   };
 
-  const mapQueryUrl = "https://www.google.com/maps/search/?api=1&query=%C5%81%C4%85kowa+6%2C+55-095+Mirk%C3%B3w";
-
   return (
     <section id="kontakt" className="py-20 md:py-32 bg-stone" aria-labelledby="contact-title">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -25,14 +22,14 @@ export const Contact: React.FC = () => {
         </Reveal>
         
         <div className="grid lg:grid-cols-2 gap-8 md:gap-12">
-          {/* Dane kontaktowe i karta lokalizacji */}
+          {/* Dane kontaktowe i mapa */}
           <Reveal delay={100}>
             <div className="bg-paper p-8 lg:p-10 rounded-xl border border-line h-full flex flex-col">
               <div className="mb-8 lg:min-h-[72px]">
                 <h3 className="text-2xl font-bold text-ink mb-2">Dane firmy mores</h3>
               </div>
               
-              <div className="space-y-5 mb-10 text-lg">
+              <div className="space-y-5 mb-10 text-lg flex-1">
                 <p>
                   <span className="block text-sm text-muted mb-1">Telefon:</span>
                   <a href={`tel:${companyData.phone.replace(/\s/g, '')}`} className="font-semibold text-brand hover:text-brand-dark transition-colors">{companyData.phone}</a>
@@ -43,7 +40,7 @@ export const Contact: React.FC = () => {
                 </p>
                 <p>
                   <span className="block text-sm text-muted mb-1">Adres produkcji:</span>
-                  <span className="text-ink">{companyData.addressLine1}<br/>{companyData.addressLine2}</span>
+                  <span className="text-ink">Łąkowa 6<br/>55-095 Mirków k. Wrocławia</span>
                 </p>
                 <p>
                   <span className="block text-sm text-muted mb-1">Godziny otwarcia:</span>
@@ -51,21 +48,16 @@ export const Contact: React.FC = () => {
                 </p>
               </div>
               
-              <div className="mt-auto rounded-xl overflow-hidden border border-line bg-stone p-6 flex flex-col justify-between relative group">
-                <div className="absolute inset-0 bg-brand/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
-                <div className="mb-4">
-                  <span className="inline-block text-xs font-bold uppercase tracking-wider text-brand bg-brand/10 px-2.5 py-1 rounded-md mb-2">Lokalizacja warsztatu</span>
-                  <p className="font-semibold text-ink">ul. Łąkowa 6, 55-095 Mirków k. Wrocławia</p>
-                </div>
-                <a 
-                  href={mapQueryUrl} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 w-full bg-brand text-white font-medium py-3 px-4 rounded-lg hover:bg-brand-dark transition-colors shadow-sm"
-                >
-                  <span>Otwórz mapę dojazdu w Google Maps</span>
-                  <ExternalLinkIcon className="w-4 h-4" aria-hidden="true" />
-                </a>
+              {/* Zabezpieczony kontener mapy przed zapadaniem się we flexboxie */}
+              <div className="mt-auto relative w-full h-[300px] rounded-xl overflow-hidden border border-line bg-stone">
+                <iframe 
+                  title="Mapa dojazdu - Mores Mirków"
+                  className="absolute inset-0 w-full h-full"
+                  style={{ border: 0 }} 
+                  loading="lazy" 
+                  referrerPolicy="no-referrer-when-downgrade"
+                  src="https://maps.google.com/maps?q=%C5%81%C4%85kowa%206,%2055-095%20Mirk%C3%B3w&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                />
               </div>
             </div>
           </Reveal>
