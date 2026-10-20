@@ -1,6 +1,7 @@
 import React from 'react';
 import { Reveal } from './Reveal';
 import { companyData } from '../data/content';
+import { ExternalLinkIcon } from './Icons';
 
 export const Contact: React.FC = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -14,6 +15,8 @@ export const Contact: React.FC = () => {
     window.location.href = `mailto:${companyData.email}?subject=Zapytanie ze strony internetowej&body=${body}`;
   };
 
+  const mapQueryUrl = "https://www.google.com/maps/search/?api=1&query=%C5%81%C4%85kowa+6%2C+55-095+Mirk%C3%B3w";
+
   return (
     <section id="kontakt" className="py-20 md:py-32 bg-stone" aria-labelledby="contact-title">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -22,7 +25,7 @@ export const Contact: React.FC = () => {
         </Reveal>
         
         <div className="grid lg:grid-cols-2 gap-8 md:gap-12">
-          {/* Dane kontaktowe i mapa */}
+          {/* Dane kontaktowe i karta lokalizacji */}
           <Reveal delay={100}>
             <div className="bg-paper p-8 lg:p-10 rounded-xl border border-line h-full flex flex-col">
               <div className="mb-8 lg:min-h-[72px]">
@@ -48,16 +51,21 @@ export const Contact: React.FC = () => {
                 </p>
               </div>
               
-              <div className="mt-auto h-[260px] rounded-lg overflow-hidden border border-line bg-stone relative">
-                <iframe 
-                  title="Mapa dojazdu - Mores Mirków"
-                  width="100%" 
-                  height="100%" 
-                  style={{ border: 0 }} 
-                  loading="lazy" 
-                  referrerPolicy="no-referrer-when-downgrade"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2503.4691459640957!2d17.150652!3d51.156515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470fe36f6d62a931%3A0x6b2b6c7a72d1f9a1!2zxYlxYWtvd2EgNiwgNTUtMDk1IE1pcmvDs3c!5e0!3m2!1spl!2spl!4v1700000000000!5m2!1spl!2spl"
-                />
+              <div className="mt-auto rounded-xl overflow-hidden border border-line bg-stone p-6 flex flex-col justify-between relative group">
+                <div className="absolute inset-0 bg-brand/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+                <div className="mb-4">
+                  <span className="inline-block text-xs font-bold uppercase tracking-wider text-brand bg-brand/10 px-2.5 py-1 rounded-md mb-2">Lokalizacja warsztatu</span>
+                  <p className="font-semibold text-ink">ul. Łąkowa 6, 55-095 Mirków k. Wrocławia</p>
+                </div>
+                <a 
+                  href={mapQueryUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 w-full bg-brand text-white font-medium py-3 px-4 rounded-lg hover:bg-brand-dark transition-colors shadow-sm"
+                >
+                  <span>Otwórz mapę dojazdu w Google Maps</span>
+                  <ExternalLinkIcon className="w-4 h-4" aria-hidden="true" />
+                </a>
               </div>
             </div>
           </Reveal>
