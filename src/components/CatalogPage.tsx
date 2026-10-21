@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { DownloadIcon, ExternalLinkIcon } from './Icons';
+import React, { useEffect } from 'react';
+import { ExternalLinkIcon } from './Icons';
 import { Reveal } from './Reveal';
 import { MaterialPanel } from './MaterialPanel';
 
@@ -37,7 +37,6 @@ const catalogFronts: CatalogItem[] = [
 ];
 
 export const CatalogPage: React.FC = () => {
-  const [pdfError, setPdfError] = useState(false);
   const pdfUrl = "/katalog/mores-katalog.pdf";
 
   useEffect(() => {
@@ -52,7 +51,6 @@ export const CatalogPage: React.FC = () => {
   };
 
   return (
-    // Zmieniono pt-24 md:pt-32 na zaledwie pt-12 md:pt-16 dla mocnego skrócenia odstępu
     <div className="pt-12 md:pt-16 pb-16 md:pb-24 bg-paper min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
@@ -76,11 +74,12 @@ export const CatalogPage: React.FC = () => {
           </Reveal>
         </header>
 
-        <section className="mb-32">
+        <section className="mb-24">
           <Reveal>
             <div className="flex justify-between items-end mb-10 hairline-b pb-6">
               <div>
-                <p className="text-ink/60 font-light mt-4">Baza wykończeń. Poglądowe zestawienie naszych frezowań, fornirów i powłok lakierniczych.</p>
+                <h2 className="font-serif text-3xl md:text-4xl text-ink">Baza wykończeń</h2>
+                <p className="text-ink/60 font-light mt-4">Poglądowe zestawienie frezowań, fornirów i powłok lakierniczych.</p>
               </div>
             </div>
           </Reveal>
@@ -109,39 +108,6 @@ export const CatalogPage: React.FC = () => {
             ))}
           </div>
         </section>
-
-        <Reveal delay={200} variant="clip">
-          <div className="bg-ash/20 hairline-t hairline-b mb-24 relative rounded-sm">
-            {!pdfError ? (
-              <object 
-                data={pdfUrl} 
-                type="application/pdf" 
-                className="w-full h-[60vh] md:h-[80vh] block"
-                onError={() => setPdfError(true)}
-              >
-                <div className="p-16 text-center flex flex-col items-center justify-center h-full">
-                  <p className="text-ink/70 font-light mb-8 text-lg">Twoja przeglądarka nie obsługuje podglądu PDF.</p>
-                  <a href={pdfUrl} download className="bg-ink text-paper px-8 py-4 text-[15px] font-medium hover:bg-brand transition-colors rounded-sm">
-                    Pobierz plik
-                  </a>
-                </div>
-              </object>
-            ) : (
-              <div className="p-20 text-center flex flex-col items-center justify-center min-h-[500px]">
-                <div className="w-16 h-16 flex items-center justify-center mb-6 text-ink/20">
-                  <DownloadIcon className="w-10 h-10" aria-hidden="true" />
-                </div>
-                <h2 className="font-serif text-3xl mb-4 text-ink">Katalog techniczny</h2>
-                <p className="text-ink/70 font-light leading-relaxed max-w-md mx-auto mb-8">
-                  Pobierz specyfikację w formie dokumentu, zawierającą precyzyjne rysunki przekrojów i informacje technologiczne.
-                </p>
-                <a href={pdfUrl} download className="bg-ink text-paper px-8 py-4 text-[15px] font-medium hover:bg-brand transition-colors rounded-sm inline-flex items-center gap-3">
-                  <DownloadIcon className="w-4 h-4" aria-hidden="true" /> Pobierz PDF
-                </a>
-              </div>
-            )}
-          </div>
-        </Reveal>
 
         <section className="grid lg:grid-cols-12 gap-16 items-start">
           <div className="lg:col-span-6 hairline-t">
