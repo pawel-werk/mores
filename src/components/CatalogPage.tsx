@@ -10,6 +10,13 @@ export const CatalogPage: React.FC = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  // Funkcja wymuszająca przewinięcie do sekcji kontakt po powrocie na stronę główną
+  const handleScrollToContact = () => {
+    setTimeout(() => {
+      document.getElementById('kontakt')?.scrollIntoView({ behavior: 'smooth' });
+    }, 150);
+  };
+
   return (
     <div className="py-20 md:py-32 bg-paper min-h-screen">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -99,7 +106,11 @@ export const CatalogPage: React.FC = () => {
               <p className="mb-10 text-paper/70 font-light leading-relaxed">
                 Skopiuj numery wzorów z katalogu, dodaj wymiary i prześlij zapytanie do naszego zespołu.
               </p>
-              <a href="#kontakt" className="inline-block bg-brand text-white px-8 py-4 text-sm uppercase tracking-widest font-bold hover:bg-brand-dark transition-colors w-full sm:w-auto">
+              <a 
+                href="#kontakt" 
+                onClick={handleScrollToContact}
+                className="inline-block bg-brand text-white px-8 py-4 text-sm uppercase tracking-widest font-bold hover:bg-brand-dark transition-colors w-full sm:w-auto"
+              >
                 Przejdź do formularza
               </a>
             </div>
