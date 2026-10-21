@@ -167,3 +167,16 @@ export const StoreIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <path d="M7 8h4M13 16h4" {...accentProps} />
   </svg>
 );
+export const FurnitureIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg {...iconProps} strokeLinejoin="round" {...props}>
+    {/* Główna bryła mebla */}
+    <rect x="4" y="6" width="16" height="12" />
+    {/* Minimalistyczne nóżki */}
+    <path d="M6 18v2M18 18v2" />
+    {/* Podział na fronty/szuflady */}
+    <path d="M4 12h16" />
+    <path d="M12 12v6" />
+    {/* Uchwyty meblowe (Akcent pomarańczowy) */}
+    <path d="M12 9h-4M14 15h2M8 15h2" {...accentProps} />
+  </svg>
+);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Reveal } from './Reveal';
-import { UsersIcon, FactoryIcon, StoreIcon, ArchitectIcon } from './Icons';
+import { UsersIcon, FurnitureIcon, StoreIcon, ArchitectIcon } from './Icons';
 
 const audiences = [
   { 
@@ -11,7 +11,7 @@ const audiences = [
   { 
     title: "Producenci mebli", 
     desc: "Skorzystaj z naszego zaplecza jako wsparcia przy dużych seriach lub specjalistycznych wykończeniach.",
-    icon: FactoryIcon
+    icon: FurnitureIcon
   },
   { 
     title: "Handlowcy i hurtownie", 
