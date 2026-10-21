@@ -80,8 +80,6 @@ export const CatalogPage: React.FC = () => {
           <Reveal>
             <div className="flex justify-between items-end mb-10 hairline-b pb-6">
               <div>
-                <h2 className="font-serif text-3xl md:text-4xl text-ink">Baza wykończeń</h2>
-                <p className="text-ink/60 font-light mt-4">Poglądowe zestawienie frezowań, fornirów i powłok lakierniczych.</p>
               </div>
             </div>
           </Reveal>
