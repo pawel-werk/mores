@@ -19,7 +19,7 @@ const processSteps = [
     step: "03", 
     title: "Produkcja", 
     desc: "Precyzyjna obróbka i lakierowanie.",
-    badges: ["Standard 14 dni", "Ekspres 7 dni"], 
+    badges: ["Standard 14 dni", "Ekspres 7 dni"],
     icon: MachineIcon 
   },
   { 
@@ -36,7 +36,7 @@ export const Process: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <Reveal>
-          <div className="mb-20 md:mb-28 max-w-2xl">
+          <div className="mb-16 md:mb-20 max-w-2xl">
             <h2 id="process-title" className="font-serif text-4xl md:text-5xl text-ink leading-tight mb-6">
               Jak złożyć zamówienie?
             </h2>
@@ -47,7 +47,7 @@ export const Process: React.FC = () => {
         </Reveal>
         
         <div className="relative">
-          {/* Oś czasu - pozioma linia rysująca się w tle dla desktopu */}
+          {/* Oś czasu - pozioma linia dla desktopu */}
           <div className="hidden lg:block absolute top-[1.35rem] left-0 right-0 h-[1px] z-0">
             <Reveal variant="line" className="w-full h-full bg-ink/10" />
           </div>
@@ -62,11 +62,8 @@ export const Process: React.FC = () => {
                 <Reveal key={p.step} delay={i * 100}>
                   <div className="relative pl-12 lg:pl-0 group">
                     
-                    {/* Minimalistyczny punkt na osi pionowej (tylko mobile) */}
                     <div className="lg:hidden absolute left-[11px] top-3 w-[9px] h-[9px] bg-ash border border-ink/20 rounded-full group-hover:border-brand transition-colors duration-500" />
                     
-                    {/* Główny blok z ikoną i gigantycznym szeryfowym numerem */}
-                    {/* Klasy lg:bg-ash i lg:pr-6 maskują rysującą się pod spodem linię horyzontalną */}
                     <div className="flex items-center gap-4 mb-6 lg:bg-ash lg:inline-flex lg:pr-6">
                       <div className="text-ink/30 group-hover:text-brand transition-colors duration-500">
                         <Icon className="w-9 h-9" aria-hidden="true" />
@@ -76,18 +73,17 @@ export const Process: React.FC = () => {
                       </div>
                     </div>
 
-                    {/* Treść kroku */}
                     <div className="lg:pr-8">
                       <h3 className="font-serif text-2xl text-ink mb-3 transition-colors duration-500 group-hover:text-brand">
                         {p.title}
                       </h3>
                       {p.desc && <p className="text-ink/70 font-light leading-relaxed">{p.desc}</p>}
                       
-                      {/* Dyskretne, techniczne etykiety (Badges) bez krzykliwych teł */}
+                      {/* Twarde wyrównanie do lewej krawędzi tekstu nad nimi */}
                       {p.badges && (
-                        <div className="flex flex-wrap gap-2 mt-5">
+                        <div className="flex flex-wrap justify-start gap-2 mt-5">
                           {p.badges.map(b => (
-                            <span key={b} className="inline-flex items-center justify-center border border-ink/10 text-ink/60 text-[9px] uppercase tracking-widest font-bold px-2 py-1 rounded-sm whitespace-nowrap">
+                            <span key={b} className="inline-flex items-center justify-center border border-ink/10 text-ink/60 text-[9px] uppercase tracking-widest font-bold px-3 py-1.5 rounded-sm whitespace-nowrap bg-paper/50">
                               {b}
                             </span>
                           ))}
