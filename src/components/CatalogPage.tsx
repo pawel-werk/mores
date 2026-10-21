@@ -3,7 +3,6 @@ import { DownloadIcon, ExternalLinkIcon } from './Icons';
 import { Reveal } from './Reveal';
 import { MaterialPanel } from './MaterialPanel';
 
-// Typ i baza danych do wygenerowania 18 frontów na żywo
 type CatalogItem = {
   title: string;
   desc: string;
@@ -76,7 +75,6 @@ export const CatalogPage: React.FC = () => {
           </Reveal>
         </header>
 
-        {/* SEKCJA Z SYMULACJĄ PUSTYCH PROSTOKĄTÓW (18 WZORÓW) */}
         <section className="mb-32">
           <Reveal>
             <div className="flex justify-between items-end mb-10 hairline-b pb-6">
@@ -91,7 +89,6 @@ export const CatalogPage: React.FC = () => {
             {catalogFronts.map((item, idx) => (
               <Reveal key={idx} delay={(idx % 6) * 50} variant="clip">
                 <div className="group cursor-pointer">
-                  {/* U góry grafika frontu 3:4 */}
                   <div className="w-full aspect-[3/4] overflow-hidden rounded-sm shadow-sm transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-1.5">
                     <MaterialPanel 
                       variant={item.variant} 
@@ -99,7 +96,6 @@ export const CatalogPage: React.FC = () => {
                       className="w-full h-full transition-transform duration-[2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
                     />
                   </div>
-                  {/* Na dole nazwa i krótki opis */}
                   <div className="mt-4 hairline-t pt-3">
                     <h3 className="font-serif text-lg text-ink transition-colors duration-300 group-hover:text-brand">
                       {item.title}
@@ -114,7 +110,6 @@ export const CatalogPage: React.FC = () => {
           </div>
         </section>
 
-        {/* SEKCJA Z POBIERANIEM PDF */}
         <Reveal delay={200} variant="clip">
           <div className="bg-ash/20 hairline-t hairline-b mb-24 relative rounded-sm">
             {!pdfError ? (
@@ -148,7 +143,6 @@ export const CatalogPage: React.FC = () => {
           </div>
         </Reveal>
 
-        {/* ... (Reszta podstrony katalogu zostaje identyczna jak wcześniej) ... */}
         <section className="grid lg:grid-cols-12 gap-16 items-start">
           <div className="lg:col-span-6 hairline-t">
             <Reveal>
