@@ -109,7 +109,8 @@ export const CatalogPage: React.FC = () => {
           </div>
         </section>
 
-        <section className="grid lg:grid-cols-12 gap-16 items-start">
+        {/* Zmiana: zamieniono items-start na items-center */}
+        <section className="grid lg:grid-cols-12 gap-16 items-center">
           <div className="lg:col-span-6 hairline-t">
             <Reveal>
               <h2 className="font-serif text-3xl text-ink mb-10 pt-8">Jak korzystać z katalogu?</h2>
@@ -137,8 +138,9 @@ export const CatalogPage: React.FC = () => {
           </div>
           
           <div className="lg:col-span-6">
-            <Reveal delay={200} className="h-full">
-              <div className="bg-graphite text-ash p-12 md:p-16 relative overflow-hidden h-full flex flex-col justify-center rounded-sm">
+            {/* Usunięto z Reveal h-full, aby boks mógł się elegancko wycentrować */}
+            <Reveal delay={200}>
+              <div className="bg-graphite text-ash p-12 md:p-16 relative overflow-hidden flex flex-col justify-center rounded-sm">
                 <div className="absolute inset-0 bg-rings opacity-[0.04] pointer-events-none" aria-hidden="true" />
                 <div className="absolute inset-0 bg-grain mix-blend-overlay opacity-10 pointer-events-none" aria-hidden="true" />
                 
