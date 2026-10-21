@@ -1,6 +1,6 @@
 export interface GalleryItem {
   id: string;
-  src?: string; // Do późniejszego wykorzystania z prawdziwymi zdjęciami
+  src?: string;
   variant?: 'bazalt' | 'magma' | 'lithos' | 'tundra' | 'lumina';
   profile?: 'flat' | 'frame' | 'slatted';
   category: 'fronty' | 'lakierowanie' | 'nietypowe';
@@ -8,8 +8,6 @@ export interface GalleryItem {
   description: string;
 }
 
-// UZUPEŁNIJ: Gdy otrzymasz prawdziwe zdjęcia, podaj ścieżkę w 'src' (np. src: '/gallery/foto1.jpg').
-// Do tego czasu system wygeneruje realistyczne materiały na podstawie 'variant' i 'profile'.
 export const galleryData: GalleryItem[] = [
   {
     id: 'img-1',
@@ -42,21 +40,5 @@ export const galleryData: GalleryItem[] = [
     description: 'Ciepły kamień / Płaskie',
     variant: 'lithos',
     profile: 'flat'
-  },
-  {
-    id: 'img-5',
-    category: 'lakierowanie',
-    title: 'Showroom Meblowy',
-    description: 'Pomarańczowy akcent / Listwy',
-    variant: 'magma',
-    profile: 'slatted'
-  },
-  {
-    id: 'img-6',
-    category: 'nietypowe',
-    title: 'Zabudowa biurowa',
-    description: 'Ciemny orzech / Frez ramowy',
-    variant: 'bazalt',
-    profile: 'frame'
   }
 ];
