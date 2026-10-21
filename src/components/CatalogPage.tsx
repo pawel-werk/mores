@@ -91,12 +91,12 @@ export const CatalogPage: React.FC = () => {
               <div className="relative w-full max-w-[280px] sm:max-w-xs md:max-w-sm aspect-[3/4] rounded-sm shadow-md">
                 <MaterialPanel variant={selectedFront.variant} profile={selectedFront.profile} className="w-full h-full rounded-sm" />
                 
-                {/* POPRAWIONY ZOOM: idealne proporcje 3/4 (w-300 h-400) wymuszone max-w-none oraz pozycjonowanie ukazujące prawy górny róg wewnątrz kółka */}
+                {/* NOWY ZOOM: sztywno centrujemy się na prawym górnym rogu dzięki transformacji */}
                 <div className="absolute -top-6 -right-6 md:-top-10 md:-right-10 w-32 h-32 md:w-48 md:h-48 rounded-full border-[6px] border-paper shadow-2xl overflow-hidden z-20 pointer-events-none bg-paper">
                   <MaterialPanel 
                     variant={selectedFront.variant} 
                     profile={selectedFront.profile} 
-                    className="absolute w-[300%] h-[400%] max-w-none top-[10%] right-[10%]" 
+                    className="absolute w-[350%] aspect-[3/4] max-w-none left-1/2 top-1/2 -translate-x-[85%] -translate-y-[10%]" 
                   />
                 </div>
               </div>
@@ -111,7 +111,6 @@ export const CatalogPage: React.FC = () => {
                 {selectedFront.longDesc}
               </p>
 
-              {/* POPRAWIONE CTA: Dodałem mx-auto aby wycentrować przycisk */}
               <a 
                 href="#kontakt" 
                 onClick={(e) => {
