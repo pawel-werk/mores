@@ -11,7 +11,7 @@ const steps = [
 
 export const Production: React.FC = () => {
   return (
-    <section id="produkcja" className="py-24 md:py-32 bg-graphite relative overflow-hidden" aria-labelledby="production-title">
+  <section id="produkcja" className="py-12 md:py-16 bg-graphite relative overflow-hidden" aria-labelledby="production-title">
       
       {/* WIDOCZNE, wyraziste faktury drewna (słoje + szczotkowany fornir) dedykowane dla ciemnych sekcji */}
       <div className="absolute inset-0 bg-rings text-ash opacity-[0.04] pointer-events-none" aria-hidden="true" />
