@@ -22,7 +22,7 @@ export const Hero: React.FC = () => {
             <Reveal>
               <h1 className="font-serif text-5xl sm:text-6xl lg:text-[5rem] text-ink leading-[1.05] tracking-tight mb-8">
                 Fronty meblowe i zlecenia nietypowe. <br/>
-                <span className="italic font-light text-brand">Od cięcia po lakierowanie.</span>
+                <span className="serif font-light text-brand">Od cięcia po lakierowanie.</span>
               </h1>
             </Reveal>
             
