@@ -33,6 +33,40 @@ export const Navbar: React.FC = () => {
     { name: 'Kontakt', href: '#kontakt' },
   ];
 
+  // NOWOŚĆ: Niestandardowy handler kliknięć naprawiający konflikt z hash routerem
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    // Jeśli to link do podstrony (katalogu), zachowujemy się standardowo
+    if (href.startsWith('#/')) {
+      setIsOpen(false);
+      return;
+    }
+
+    // Jeśli to link do sekcji (np. #oferta), blokujemy zmianę adresu URL
+    e.preventDefault();
+    setIsOpen(false);
+
+    const targetId = href.replace('#', '');
+    const currentHash = window.location.hash;
+    const isHome = currentHash === '' || currentHash === '#/' || !currentHash.startsWith('#/');
+
+    if (isHome) {
+      // Jesteśmy na głównej stronie, więc tylko płynnie scrollujemy
+      const element = document.getElementById(targetId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // Jesteśmy na podstronie, więc wracamy na główną i scrollujemy po załadowaniu
+      window.location.hash = '#/';
+      setTimeout(() => {
+        const element = document.getElementById(targetId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 150);
+    }
+  };
+
   return (
     <header 
       className={`sticky top-0 z-40 transition-all duration-500 ${
@@ -41,7 +75,6 @@ export const Navbar: React.FC = () => {
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16 md:h-20 transition-all">
         
-        {/* Link z logo - dodano klasy group oraz animację hover */}
         <a 
           href="#/" 
           className="inline-block group outline-none focus-visible:ring-2 focus-visible:ring-brand rounded-sm"
@@ -59,14 +92,18 @@ export const Navbar: React.FC = () => {
             <a 
               key={link.name} 
               href={link.href} 
-              className="text-[15px] font-normal text-ink/80 hover:text-ink transition-colors relative group py-1"
+              onClick={(e) => handleNavClick(e, link.href)}
+              className="text-[15px] font-normal text-ink/80 hover:text-ink transition-colors relative group py-1 cursor-pointer"
             >
               {link.name}
-              {/* Nowa animacja: linia płynnie podnosi się z dołu (fade + slide-up) zamiast rysowania od lewej */}
               <span className="absolute left-0 bottom-0 w-full h-[1px] bg-brand opacity-0 translate-y-1.5 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"></span>
             </a>
           ))}
-          <a href="#kontakt" className="ml-4 bg-ink text-paper px-6 py-2.5 text-[15px] font-medium hover:bg-brand transition-colors rounded-sm">
+          <a 
+            href="#kontakt" 
+            onClick={(e) => handleNavClick(e, '#kontakt')}
+            className="ml-4 bg-ink text-paper px-6 py-2.5 text-[15px] font-medium hover:bg-brand transition-colors rounded-sm cursor-pointer"
+          >
             Zapytaj o wycenę
           </a>
         </div>
@@ -98,16 +135,16 @@ export const Navbar: React.FC = () => {
               <a 
                 key={link.name} 
                 href={link.href} 
-                onClick={() => setIsOpen(false)}
-                className="text-2xl text-ink/70 font-light hover:text-brand transition-colors"
+                onClick={(e) => handleNavClick(e, link.href)}
+                className="text-2xl text-ink/70 font-light hover:text-brand transition-colors cursor-pointer"
               >
                 {link.name}
               </a>
             ))}
             <a 
               href="#kontakt" 
-              onClick={() => setIsOpen(false)}
-              className="mt-8 bg-ink text-center text-paper px-6 py-4 text-lg font-medium hover:bg-brand transition-colors rounded-sm"
+              onClick={(e) => handleNavClick(e, '#kontakt')}
+              className="mt-8 bg-ink text-center text-paper px-6 py-4 text-lg font-medium hover:bg-brand transition-colors rounded-sm cursor-pointer"
             >
               Zapytaj o wycenę
             </a>
