@@ -17,10 +17,8 @@ export const Contact: React.FC = () => {
   };
 
   return (
-    // Zmieniono tło na bg-oak
     <section id="kontakt" className="py-12 md:py-16 bg-oak relative overflow-hidden" aria-labelledby="contact-title">
       
-      {/* Tekstury dostosowane do jasnego tła */}
       <div className="absolute inset-0 bg-rings text-ink opacity-[0.03] pointer-events-none" aria-hidden="true" />
       <div className="absolute inset-0 bg-grain mix-blend-overlay opacity-10 pointer-events-none" aria-hidden="true" />
       
@@ -31,7 +29,6 @@ export const Contact: React.FC = () => {
           {/* Lewa kolumna */}
           <div className="flex flex-col h-full text-ink pt-4">
             <Reveal>
-              {/* Zmieniono text-paper na text-ink */}
               <h2 id="contact-title" className="font-serif text-4xl md:text-5xl text-ink mb-16 leading-tight">
                 Skontaktuj się z nami
               </h2>
@@ -40,7 +37,6 @@ export const Contact: React.FC = () => {
             <div className="flex-1 flex flex-col justify-between">
               <div className="space-y-0">
                 <Reveal delay={100}>
-                  {/* Zmieniono ramki na border-ink/10 i teksty na text-ink */}
                   <div className="py-8 border-t border-ink/10">
                     <span className="block text-[10px] uppercase tracking-widest font-bold text-ink/40 mb-3">Telefon</span>
                     <a href={`tel:${companyData.phone.replace(/\s/g, '')}`} className="font-serif text-3xl md:text-4xl text-ink hover:text-brand transition-colors inline-block">
@@ -77,14 +73,13 @@ export const Contact: React.FC = () => {
               </div>
               
               <Reveal delay={400} className="mt-12 h-64 md:h-[22rem] w-full relative">
-                {/* Tło mapy zmienione na bg-oak */}
                 <div className="absolute inset-0 bg-oak flex items-center justify-center">
                   <span className="text-[10px] uppercase tracking-widest text-ink/30 font-bold">Ładowanie mapy...</span>
                 </div>
-                {/* Styl mapy dostosowany do jasnego tła (multiply zamiast luminosity) */}
+                {/* Usunięto blend-multiply, podniesiono opacity dla lepszej czytelności */}
                 <iframe 
                   title="Mapa dojazdu"
-                  className="absolute inset-0 w-full h-full z-10 filter grayscale opacity-80 mix-blend-multiply hover:opacity-80 transition-opacity duration-1000"
+                  className="absolute inset-0 w-full h-full z-10 filter grayscale opacity-80 hover:opacity-100 transition-opacity duration-1000"
                   style={{ border: 0 }} 
                   loading="lazy" 
                   referrerPolicy="no-referrer-when-downgrade"
@@ -94,7 +89,7 @@ export const Contact: React.FC = () => {
             </div>
           </div>
 
-          {/* Prawa kolumna - Formularz (bez zmian tła, by wyraźnie odcinał się od dębu) */}
+          {/* Prawa kolumna - Formularz */}
           <Reveal delay={500} className="h-full">
             <div className="flex flex-col h-full bg-paper p-8 md:p-12 lg:p-16 shadow-2xl">
               <div className="mb-12 hairline-b pb-8">
