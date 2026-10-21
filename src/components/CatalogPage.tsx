@@ -91,12 +91,12 @@ export const CatalogPage: React.FC = () => {
               <div className="relative w-full max-w-[280px] sm:max-w-xs md:max-w-sm aspect-[3/4] rounded-sm shadow-md">
                 <MaterialPanel variant={selectedFront.variant} profile={selectedFront.profile} className="w-full h-full rounded-sm" />
                 
-                {/* NOWY ZOOM: sztywno centrujemy się na prawym górnym rogu dzięki transformacji */}
-                <div className="absolute -top-6 -right-6 md:-top-10 md:-right-10 w-32 h-32 md:w-48 md:h-48 rounded-full border-[6px] border-paper shadow-2xl overflow-hidden z-20 pointer-events-none bg-paper">
+                {/* ZWIĘKSZONA LUPA I POPRAWIONY ZOOM: pokazujemy wyraźny narożnik z odstępem od krawędzi */}
+                <div className="absolute -top-8 -right-8 md:-top-12 md:-right-12 w-40 h-40 md:w-60 md:h-60 rounded-full border-[6px] border-paper shadow-2xl overflow-hidden z-20 pointer-events-none bg-paper">
                   <MaterialPanel 
                     variant={selectedFront.variant} 
                     profile={selectedFront.profile} 
-                    className="absolute w-[350%] aspect-[3/4] max-w-none left-1/2 top-1/2 -translate-x-[85%] -translate-y-[10%]" 
+                    className="absolute w-[220%] aspect-[3/4] max-w-none top-[15%] right-[15%]" 
                   />
                 </div>
               </div>
@@ -117,7 +117,7 @@ export const CatalogPage: React.FC = () => {
                   setSelectedFront(null);
                   handleScrollToContact();
                 }}
-                className="bg-ink text-paper px-8 py-4 text-[15px] font-medium hover:bg-brand transition-colors rounded-sm inline-block text-center w-max mx-auto"
+                className="bg-ink text-paper px-8 py-4 text-[15px] font-medium hover:bg-brand transition-colors rounded-sm inline-block text-center w-max mx-auto md:mx-0"
               >
                 Zapytaj o ten front
               </a>
