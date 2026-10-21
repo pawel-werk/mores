@@ -11,7 +11,6 @@ type CatalogItem = {
   longDesc: string;
 };
 
-// Nowe, unikalne nazwy i rozbudowane opisy do modala
 const catalogFronts: CatalogItem[] = [
   { title: "Lumina", desc: "Płaski / Gładki mat", variant: "lumina", profile: "flat", longDesc: "Minimalistyczny front o jedwabiście gładkiej powierzchni. Idealnie rozprasza światło, nadając wnętrzu nowoczesny, czysty charakter. Doskonały wybór do bezuchwytowych systemów zabudowy." },
   { title: "Silva", desc: "Ramowy / Klasyczny Shaker", variant: "lumina", profile: "frame", longDesc: "Klasyczny profil ramiakowy inspirowany stylem Shaker. Łączy w sobie tradycyjne rzemiosło z nowoczesną precyzją wykonania. Ponadczasowy design dla eleganckich projektów." },
@@ -47,7 +46,6 @@ export const CatalogPage: React.FC = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  // Obsługa klawisza ESC i blokady przewijania strony, gdy modal jest otwarty
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && selectedFront) setSelectedFront(null);
@@ -93,33 +91,34 @@ export const CatalogPage: React.FC = () => {
               <div className="relative w-full max-w-[280px] sm:max-w-xs md:max-w-sm aspect-[3/4] rounded-sm shadow-md">
                 <MaterialPanel variant={selectedFront.variant} profile={selectedFront.profile} className="w-full h-full rounded-sm" />
                 
-                {/* Szkło powiększające róg z detalem (zoom x2.5) */}
+                {/* POPRAWIONY ZOOM: idealne proporcje 3/4 (w-300 h-400) wymuszone max-w-none oraz pozycjonowanie ukazujące prawy górny róg wewnątrz kółka */}
                 <div className="absolute -top-6 -right-6 md:-top-10 md:-right-10 w-32 h-32 md:w-48 md:h-48 rounded-full border-[6px] border-paper shadow-2xl overflow-hidden z-20 pointer-events-none bg-paper">
                   <MaterialPanel 
                     variant={selectedFront.variant} 
                     profile={selectedFront.profile} 
-                    className="w-[250%] h-[250%] absolute top-0 right-0 origin-top-right" 
+                    className="absolute w-[300%] h-[400%] max-w-none top-[10%] right-[10%]" 
                   />
                 </div>
               </div>
             </div>
 
             {/* Teksty i CTA */}
-            <div className="w-full md:w-1/2 p-8 md:p-16 flex flex-col justify-center">
+            <div className="w-full md:w-1/2 p-8 md:p-16 flex flex-col justify-center text-center md:text-left">
               <h2 className="font-serif text-4xl md:text-5xl text-ink mb-2">{selectedFront.title}</h2>
               <p className="text-[10px] md:text-[11px] uppercase tracking-widest font-bold text-brand mb-8">{selectedFront.desc}</p>
               
-              <p className="text-ink/70 font-light leading-relaxed mb-12 text-lg md:text-xl">
+              <p className="text-ink/70 font-light leading-relaxed mb-12 text-lg md:text-xl text-left">
                 {selectedFront.longDesc}
               </p>
 
+              {/* POPRAWIONE CTA: Dodałem mx-auto aby wycentrować przycisk */}
               <a 
                 href="#kontakt" 
                 onClick={(e) => {
                   setSelectedFront(null);
                   handleScrollToContact();
                 }}
-                className="bg-ink text-paper px-8 py-4 text-[15px] font-medium hover:bg-brand transition-colors rounded-sm inline-block text-center w-max"
+                className="bg-ink text-paper px-8 py-4 text-[15px] font-medium hover:bg-brand transition-colors rounded-sm inline-block text-center w-max mx-auto"
               >
                 Zapytaj o ten front
               </a>
@@ -164,9 +163,7 @@ export const CatalogPage: React.FC = () => {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-4 gap-y-10 lg:gap-x-6 lg:gap-y-12">
             {catalogFronts.map((item, idx) => (
               <Reveal key={idx} delay={(idx % 6) * 50} variant="clip">
-                {/* Po kliknięciu otwieramy okno z detalami powiększonego frontu */}
                 <div className="group cursor-pointer" onClick={() => setSelectedFront(item)}>
-                  {/* POPRAWIONA ANIMACJA: Skalowanie całego wrappera likwiduje problem ucinania krawędzi */}
                   <div className="w-full aspect-[3/4] rounded-sm transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-2 group-hover:scale-[1.03] shadow-sm group-hover:shadow-lg">
                     <MaterialPanel 
                       variant={item.variant} 
