@@ -75,31 +75,26 @@ export const CatalogPage: React.FC = () => {
       
       {/* --- MODAL DETALU FRONTU --- */}
       {selectedFront && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-10 bg-ink/90 backdrop-blur-sm transition-opacity duration-300">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-8 bg-ink/90 backdrop-blur-sm transition-opacity duration-300">
           
-          {/* Powiększona plansza: szerokość do 1536px, 96vw, 90vh */}
-          <div className="relative w-full max-w-[1536px] w-[96vw] bg-paper rounded-sm shadow-2xl flex flex-col md:flex-row overflow-hidden animate-in fade-in zoom-in-95 duration-300 md:h-[90vh] max-h-screen">
+          <div className="relative w-full max-w-[1600px] w-[98vw] bg-paper rounded-sm shadow-2xl flex flex-col md:flex-row overflow-hidden animate-in fade-in zoom-in-95 duration-300 md:h-[94vh] max-h-screen">
             
+            {/* Odsunięto X na mobile od górnej/prawej krawędzi (top-6 right-6) */}
             <button 
               onClick={() => setSelectedFront(null)} 
-              className="absolute top-4 right-4 md:top-8 md:right-8 p-2 text-ink/40 hover:text-brand transition-colors z-30 bg-paper/50 backdrop-blur-md rounded-full"
+              className="absolute top-6 right-6 md:top-8 md:right-8 p-2 text-ink/40 hover:text-brand transition-colors z-30 bg-paper/50 backdrop-blur-md rounded-full"
               aria-label="Zamknij podgląd"
             >
               <XIcon className="w-8 h-8" aria-hidden="true" />
             </button>
 
-            {/* Zoptymalizowane paddingi dla większej planszy i powiększonego frontu */}
             <div className="w-full md:w-1/2 bg-ash/30 p-12 md:p-20 lg:p-24 relative flex items-center justify-center min-h-[450px] md:h-full">
               
-              {/* Powiększony bazowy front (max-w-[280px] na desktopie) */}
-              <div className="relative w-full max-w-[200px] md:max-w-[240px] lg:max-w-[280px] aspect-[3/4] rounded-sm shadow-md">
+              <div className="relative w-full max-w-[220px] md:max-w-[280px] lg:max-w-[340px] aspect-[3/4] rounded-sm shadow-md">
                 <MaterialPanel variant={selectedFront.variant} profile={selectedFront.profile} className="w-full h-full rounded-sm" />
                 
-                {/* Powiększona i przesunięta lupa (do w-80 h-80 na lg), by nie dotykała krawędzi */}
-                <div className="absolute -top-14 -right-14 md:-top-20 md:-right-20 lg:-top-[110px] lg:-right-[110px] w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full border-[4px] md:border-[8px] border-paper shadow-2xl overflow-hidden z-20 pointer-events-none bg-paper">
+                <div className="absolute -top-16 -right-20 md:-top-24 md:-right-28 lg:-top-[130px] lg:-right-[150px] w-56 h-56 md:w-72 md:h-72 lg:w-[340px] lg:h-[340px] rounded-full border-[4px] md:border-[8px] border-paper shadow-2xl overflow-hidden z-20 pointer-events-none bg-paper">
                   <div className="w-full h-full flex justify-end items-start pt-6 pr-6 md:pt-10 md:pr-10 lg:pt-12 lg:pr-12">
-                    
-                    {/* Zoom dopasowany proporcjonalnie */}
                     <div className="w-[200%] md:w-[220%] lg:w-[240%] aspect-[3/4] flex-shrink-0 shadow-sm rounded-sm overflow-hidden">
                       <MaterialPanel 
                         variant={selectedFront.variant} 
@@ -107,29 +102,29 @@ export const CatalogPage: React.FC = () => {
                         className="w-full h-full" 
                       />
                     </div>
-
                   </div>
                 </div>
 
               </div>
             </div>
 
-            {/* Teksty i CTA */}
+            {/* Teksty i wyśrodkowane CTA */}
             <div className="w-full md:w-1/2 p-8 md:p-16 lg:p-24 flex flex-col justify-center text-center md:text-left overflow-y-auto">
-              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-ink mb-2">{selectedFront.title}</h2>
+              <h2 className="font-serif text-4xl md:text-5xl lg:text-7xl text-ink mb-4">{selectedFront.title}</h2>
               <p className="text-[10px] md:text-[12px] uppercase tracking-widest font-bold text-brand mb-10">{selectedFront.desc}</p>
               
               <p className="text-ink/70 font-light leading-relaxed mb-16 text-lg md:text-xl lg:text-2xl text-left">
                 {selectedFront.longDesc}
               </p>
 
+              {/* Powiększony i wyśrodkowany przycisk (usunięto md:mx-0, zastosowano mx-auto i zwiększone paddingi/czcionkę) */}
               <a 
                 href="#kontakt" 
                 onClick={(e) => {
                   setSelectedFront(null);
                   handleScrollToContact();
                 }}
-                className="bg-ink text-paper px-8 py-4 text-[15px] font-medium hover:bg-brand transition-colors rounded-sm inline-block text-center w-max mx-auto md:mx-0"
+                className="bg-ink text-paper px-8 py-4 md:px-12 md:py-5 text-[15px] md:text-lg font-medium hover:bg-brand transition-colors rounded-sm inline-block text-center w-max mx-auto mt-4"
               >
                 Zapytaj o ten front
               </a>

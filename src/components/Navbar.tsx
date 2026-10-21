@@ -75,7 +75,6 @@ export const Navbar: React.FC = () => {
           className="inline-block group outline-none focus-visible:ring-2 focus-visible:ring-brand rounded-sm"
           aria-label="Strona główna"
         >
-          {/* Usunięto group-hover:contrast-125 i group-hover:drop-shadow-sm */}
           <div className="flex items-center gap-2 transform transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04] origin-left">
             <Logo className="h-5 md:h-6" variant="dark" />
             <LogoFallback variant="dark" />
@@ -115,11 +114,12 @@ export const Navbar: React.FC = () => {
         </button>
       </nav>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Dodano twarde tło w heksach i wymuszone h-[100dvh] aby naprawić prześwitywanie */}
       {isOpen && (
-        <div className="fixed inset-0 z-50 bg-paper flex flex-col pt-20 px-6">
+        <div className="fixed inset-0 z-[100] bg-[#F7F4EF] w-full h-[100dvh] flex flex-col pt-24 px-6">
+          {/* Odsunięto X od krawędzi */}
           <button
-            className="absolute top-6 right-6 p-2 text-ink hover:text-brand transition-colors"
+            className="absolute top-6 right-6 p-3 text-ink hover:text-brand transition-colors"
             onClick={() => setIsOpen(false)}
             aria-label="Zamknij menu"
           >
