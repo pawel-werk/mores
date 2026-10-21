@@ -26,7 +26,6 @@ export const GalleryTeaser: React.FC = () => {
           </Reveal>
         </div>
 
-        {/* Czysta siatka 4 elementów w pionowych prostokątach 3:4 */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
           {projects.map((project, idx) => (
             <Reveal key={project.id} delay={idx * 100} variant="clip">
@@ -42,7 +41,6 @@ export const GalleryTeaser: React.FC = () => {
                     />
                   </div>
                   
-                  {/* Introligatorski podpis pod kafelkiem */}
                   <div className="mt-5 flex flex-col gap-1 hairline-t pt-3">
                     <h3 className="font-serif text-xl text-ink transition-colors duration-300 group-hover:text-brand truncate">
                       {project.title}

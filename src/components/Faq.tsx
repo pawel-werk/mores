@@ -21,26 +21,22 @@ export const Faq: React.FC = () => {
             </Reveal>
           </div>
           
-          {/* Prawa kolumna - Akordeon oparty na natywnym tagu details */}
           <div className="lg:col-span-8">
             <div className="hairline-t">
               {faqData.map((faq, i) => (
                 <Reveal key={i} delay={i * 100}>
-                  {/* Atrybut 'name' pozwala na automatyczne zamykanie pozostałych zakładek w nowoczesnych przeglądarkach */}
+
                   <details name="faq-accordion" className="group hairline-b overflow-hidden marker:content-['']">
                     <summary className="flex justify-between items-center text-xl md:text-2xl font-serif text-ink cursor-pointer list-none py-8 hover:text-brand focus-visible:outline-none focus-visible:text-brand transition-colors duration-300 [&::-webkit-details-marker]:hidden">
                       <span className="pr-8">{faq.question}</span>
                       
-                      {/* Architektoniczna ikona Plus/Minus budowana w czystym CSS */}
                       <span className="relative w-6 h-6 flex-shrink-0 flex items-center justify-center">
-                        {/* Pozioma linia (zawsze widoczna, w kolorze brandu) */}
                         <span className="absolute w-4 h-[1.5px] bg-brand transition-transform duration-500 ease-out" />
                         {/* Pionowa linia (znika/obraca się po otwarciu, tworząc minus) */}
                         <span className="absolute w-[1.5px] h-4 bg-ink transition-transform duration-500 ease-out group-open:rotate-90 group-open:scale-0" />
                       </span>
                     </summary>
                     
-                    {/* Wewnętrzny kontener z miękkim pojawieniem się treści */}
                     <div className="text-ink/70 font-light text-lg leading-relaxed pb-10 md:pr-16 opacity-0 -translate-y-2 group-open:opacity-100 group-open:translate-y-0 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)]">
                       {faq.answer}
                     </div>

@@ -89,7 +89,6 @@ export const Contact: React.FC = () => {
             </div>
           </div>
 
-          {/* Prawa kolumna - Formularz */}
           <Reveal delay={500} className="h-full">
             <div className="flex flex-col h-full bg-paper p-8 md:p-12 lg:p-16 shadow-2xl">
               <div className="mb-12 hairline-b pb-8">
