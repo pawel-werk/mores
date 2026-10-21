@@ -43,28 +43,28 @@ export const TopBar: React.FC = () => {
 
   return (
     <div 
-      className="bg-brand text-white py-2 px-4 relative flex items-center justify-center text-sm font-medium tracking-wide"
+      className="bg-graphite text-ash py-2 px-4 relative flex items-center justify-center text-xs font-light tracking-wide hairline-b"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onFocus={() => setIsPaused(true)}
       onBlur={() => setIsPaused(false)}
     >
       <div 
-        className="text-center w-full max-w-4xl pr-8 line-clamp-2 md:line-clamp-1 transition-opacity duration-400"
+        className="text-center w-full max-w-4xl pr-8 line-clamp-2 md:line-clamp-1 transition-opacity duration-[800ms]"
         aria-live="polite"
       >
         <span>{currentMessage.text} </span>
-        <a href={currentMessage.href} className="underline hover:text-white/80 transition-colors">
+        <a href={currentMessage.href} className="text-brand hover:text-brand-soft transition-colors ml-1 font-medium">
           {currentMessage.linkLabel}
         </a>
       </div>
       
       {!reducedMotion && topbarMessages.length > 1 && (
-        <div className="absolute bottom-0.5 flex gap-1.5 justify-center w-full pointer-events-none">
+        <div className="absolute bottom-0 flex gap-1.5 justify-center w-full pointer-events-none pb-[2px]">
           {topbarMessages.map((_, idx) => (
             <button
               key={idx}
-              className={`w-1 h-1 rounded-sm pointer-events-auto transition-colors ${idx === currentIndex ? 'bg-white' : 'bg-white/40'}`}
+              className={`w-4 h-[1px] pointer-events-auto transition-colors ${idx === currentIndex ? 'bg-brand' : 'bg-ash/20'}`}
               onClick={() => setCurrentIndex(idx)}
               aria-label={`Komunikat ${idx + 1}`}
             />
@@ -74,10 +74,10 @@ export const TopBar: React.FC = () => {
 
       <button 
         onClick={handleClose} 
-        className="absolute right-2 p-1 hover:bg-black/10 rounded transition-colors"
+        className="absolute right-2 p-1 text-ash/60 hover:text-brand transition-colors outline-none focus-visible:ring-1 focus-visible:ring-brand"
         aria-label="Zamknij komunikat"
       >
-        <XIcon className="w-4 h-4" aria-hidden="true" />
+        <XIcon className="w-3.5 h-3.5" aria-hidden="true" />
       </button>
     </div>
   );

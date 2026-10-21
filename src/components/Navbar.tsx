@@ -30,28 +30,34 @@ export const Navbar: React.FC = () => {
     { name: 'Produkcja', href: '#produkcja' },
     { name: 'Realizacje', href: '#realizacje' },
     { name: 'Katalog', href: '#/katalog' },
+    { name: 'Kontakt', href: '#kontakt' },
   ];
 
   return (
     <header 
-      className={`sticky top-0 z-40 transition-all duration-300 ${
-        isScrolled ? 'bg-paper/95 backdrop-blur-md shadow-sm border-b border-line' : 'bg-paper border-b border-transparent'
+      className={`sticky top-0 z-40 transition-all duration-500 ${
+        isScrolled ? 'bg-paper/80 backdrop-blur-md hairline-b' : 'bg-paper border-b border-transparent'
       }`}
     >
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-20 transition-all">
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16 md:h-20 transition-all">
         <a href="#/" className="flex items-center gap-2 outline-none focus-visible:ring-2 focus-visible:ring-brand rounded-sm">
-          <Logo className="h-6 md:h-7" variant="dark" />
+          <Logo className="h-5 md:h-6" variant="dark" />
           <LogoFallback variant="dark" />
         </a>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex gap-8 items-center">
           {links.map((link) => (
-            <a key={link.name} href={link.href} className="text-sm uppercase tracking-widest font-semibold text-ink/80 hover:text-brand transition-colors">
+            <a 
+              key={link.name} 
+              href={link.href} 
+              className="text-[15px] font-normal text-ink/80 hover:text-ink transition-colors relative group"
+            >
               {link.name}
+              <span className="absolute left-0 -bottom-1.5 w-full h-px bg-brand scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
             </a>
           ))}
-          <a href="#kontakt" className="bg-ink text-paper px-6 py-2.5 text-sm uppercase tracking-wider font-bold hover:bg-brand transition-colors">
+          <a href="#kontakt" className="ml-4 bg-ink text-paper px-6 py-2.5 text-[15px] font-medium hover:bg-brand transition-colors rounded-sm">
             Zapytaj o wycenę
           </a>
         </div>
@@ -77,14 +83,14 @@ export const Navbar: React.FC = () => {
           >
             <XIcon className="w-8 h-8" aria-hidden="true" />
           </button>
-          <div className="flex flex-col gap-8 text-2xl mt-8 font-serif">
-            <a href="#/" onClick={() => setIsOpen(false)} className="text-ink hover:text-brand transition-colors">Strona główna</a>
+          <div className="flex flex-col gap-6 mt-12 font-sans">
+            <a href="#/" onClick={() => setIsOpen(false)} className="text-2xl text-ink font-light hover:text-brand transition-colors">Strona główna</a>
             {links.map((link) => (
               <a 
                 key={link.name} 
                 href={link.href} 
                 onClick={() => setIsOpen(false)}
-                className="text-ink/80 hover:text-brand transition-colors"
+                className="text-2xl text-ink/70 font-light hover:text-brand transition-colors"
               >
                 {link.name}
               </a>
@@ -92,7 +98,7 @@ export const Navbar: React.FC = () => {
             <a 
               href="#kontakt" 
               onClick={() => setIsOpen(false)}
-              className="mt-8 bg-ink text-center text-paper px-6 py-4 font-sans text-lg uppercase tracking-wider font-bold hover:bg-brand transition-colors"
+              className="mt-8 bg-ink text-center text-paper px-6 py-4 text-lg font-medium hover:bg-brand transition-colors rounded-sm"
             >
               Zapytaj o wycenę
             </a>

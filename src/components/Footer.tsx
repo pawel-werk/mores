@@ -5,25 +5,31 @@ export const Footer: React.FC = () => {
   const year = new Date().getFullYear();
   
   return (
-    <footer className="bg-[#E4DDD0] text-ink relative overflow-hidden py-16 md:py-24 border-t border-ink/10">
+    <footer className="bg-graphite text-ash relative overflow-hidden py-16 md:py-24 border-t border-ink">
+      
+      {/* Tekstury materii B2B premium w stopce */}
+      <div className="absolute inset-0 bg-rings opacity-[0.04] pointer-events-none" aria-hidden="true" />
+      <div className="absolute inset-0 bg-grain mix-blend-overlay opacity-10 pointer-events-none" aria-hidden="true" />
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 pb-16 border-b border-ink/10">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 pb-16 hairline-b">
           
           {/* Kolumna z logo i opisem */}
           <div className="md:col-span-5 lg:col-span-6 flex flex-col items-start">
-            <a href="#/" className="inline-block mb-6 outline-none focus-visible:ring-2 focus-visible:ring-brand rounded-sm group">
-              <Logo className="h-8 transition-all duration-500 opacity-80 group-hover:opacity-100" variant="dark" />
-              <LogoFallback variant="dark" />
+            <a href="#/" className="inline-block mb-8 outline-none focus-visible:ring-2 focus-visible:ring-brand rounded-sm group">
+              {/* Używamy białego wariantu Logo i dodajemy czysty kontrastowy hover */}
+              <Logo className="h-6 md:h-7 transition-all duration-500 opacity-80 group-hover:opacity-100 group-hover:contrast-125" variant="light" />
+              <LogoFallback variant="light" />
             </a>
-            <p className="text-ink/70 font-light max-w-sm leading-relaxed">
+            <p className="text-ash/60 font-light text-sm md:text-base max-w-sm leading-relaxed">
               Produkcja frontów meblowych i realizacja zleceń nietypowych. Łączymy rzemieślniczą precyzję z nowoczesnym zapleczem technologicznym.
             </p>
           </div>
           
           {/* Kolumna nawigacji */}
           <div className="md:col-span-3 lg:col-span-3">
-            <h4 className="text-xs uppercase tracking-widest font-bold text-ink/40 mb-6">Nawigacja</h4>
-            <ul className="space-y-4 font-light text-ink/80">
+            <h4 className="text-[10px] uppercase tracking-[0.2em] font-bold text-ash/30 mb-8">Nawigacja</h4>
+            <ul className="space-y-4 font-light text-ash/80">
               <li><a href="#oferta" className="hover:text-brand transition-colors inline-block">Oferta</a></li>
               <li><a href="#produkcja" className="hover:text-brand transition-colors inline-block">Park maszynowy</a></li>
               <li><a href="#/galeria" className="hover:text-brand transition-colors inline-block">Galeria realizacji</a></li>
@@ -33,26 +39,28 @@ export const Footer: React.FC = () => {
 
           {/* Kolumna kontaktu */}
           <div className="md:col-span-4 lg:col-span-3">
-            <h4 className="text-xs uppercase tracking-widest font-bold text-ink/40 mb-6">Współpraca</h4>
-            <ul className="space-y-4 font-light text-ink/80">
+            <h4 className="text-[10px] uppercase tracking-[0.2em] font-bold text-ash/30 mb-8">Współpraca</h4>
+            <ul className="space-y-4 font-light text-ash/80">
               <li><a href="#kontakt" className="hover:text-brand transition-colors inline-block">Kontakt i wycena</a></li>
               <li><a href="#faq" className="hover:text-brand transition-colors inline-block">Częste pytania</a></li>
-              <li className="pt-4 mt-4 border-t border-ink/10">
-                <a href="mailto:info@mores.pl" className="font-medium text-ink hover:text-brand transition-colors inline-block">info@mores.pl</a>
+              <li className="pt-4 mt-4 border-t border-ash/10">
+                <a href="mailto:info@mores.pl" className="font-medium text-paper hover:text-brand transition-colors inline-block">info@mores.pl</a>
               </li>
             </ul>
           </div>
           
         </div>
         
-        {/* Pasek dolny z copyrightem i polityką */}
-        <div className="flex flex-col-reverse md:flex-row justify-between items-center pt-8 gap-6 text-xs font-light text-ink/50">
+        {/* Pasek dolny z copyrightem i (TBD) polityką */}
+        <div className="flex flex-col-reverse md:flex-row justify-between items-center pt-8 gap-6 text-[11px] font-light text-ash/40">
           <div>
             &copy; {year} mores. Wszelkie prawa zastrzeżone.
           </div>
-          <div className="flex gap-6 uppercase tracking-widest font-bold text-ink/40">
-            <a href="#" className="hover:text-ink transition-colors">Polityka prywatności</a>
-            <a href="#" className="hover:text-ink transition-colors">Cookies</a>
+          <div className="flex gap-8 uppercase tracking-widest font-medium text-ash/30">
+            {/* Zgodnie z wytycznymi martwe linki usuwamy / komentujemy dopóki nie ma podstron */}
+            {/* <a href="/polityka" className="hover:text-ash transition-colors">Polityka prywatności</a> */}
+            {/* <a href="/cookies" className="hover:text-ash transition-colors">Cookies</a> */}
+            <span>Polityka Prywatności (W przygotowaniu)</span>
           </div>
         </div>
       </div>

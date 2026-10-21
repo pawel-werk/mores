@@ -6,31 +6,64 @@
   --color-brand-soft: #FFEAE0;
   
   --color-paper: #F7F4EF;
-  --color-stone: #FFFFFF;
+  --color-stone: #E6E1D8; /* Naprawiona wartość: z #FFF na szary beż (Ash) */
   --color-ink: #121212;
-  --color-muted: #5C4A3D; /* Walnut-inspired gray/brown */
+  --color-muted: #5C4A3D;
   
-  --color-line: #E5E0D8; /* Ash-inspired border color */
+  /* Nowe kolory - Materiałowość B2B Premium */
+  --color-graphite: #201A16; /* Ciepły, głęboki orzech/palone drewno */
+  --color-oak: #D5C5B3; /* Ciepłe drewno do tła katalogu */
+  --color-ash: #E6E1D8; /* Szarobeżowy odpowiednik kamienia */
+
+  --color-line: #E5E0D8;
   
   --font-sans: "Inter Tight", sans-serif;
   --font-serif: "Fraunces", serif;
 
-  --radius-sm: 0.125rem; /* 2px */
-  --radius-md: 0.25rem;  /* 4px */
-  --radius-lg: 0.375rem; /* 6px */
-  --radius-xl: 0.375rem; /* 6px - overwriting standard large radius for boxy feel */
+  --radius-sm: 0.125rem;
+  --radius-md: 0.25rem;
+  --radius-lg: 0.375rem;
+  --radius-xl: 0.375rem;
+
+  /* Animacje ujawniania i rysowania */
+  @keyframes clip-reveal {
+    0% { clip-path: inset(100% 0 0 0); }
+    100% { clip-path: inset(0 0 0 0); }
+  }
+  @keyframes line-reveal {
+    0% { transform: scaleX(0); transform-origin: left; }
+    100% { transform: scaleX(1); transform-origin: left; }
+  }
+  
+  --animate-clip-reveal: clip-reveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-line-reveal: line-reveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @layer utilities {
+  /* Klasyczne ziarno - zmniejszona intensywność */
   .bg-noise {
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
   }
 
-  .bg-wood-grain {
-    background-image: url("data:image/svg+xml,%3Csvg width='400' height='400' viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='1' opacity='0.04'%3E%3Ccircle cx='400' cy='400' r='50'/%3E%3Ccircle cx='400' cy='400' r='90'/%3E%3Ccircle cx='400' cy='400' r='130'/%3E%3Ccircle cx='400' cy='400' r='180'/%3E%3Ccircle cx='400' cy='400' r='230'/%3E%3Ccircle cx='400' cy='400' r='280'/%3E%3Ccircle cx='400' cy='400' r='340'/%3E%3Ccircle cx='400' cy='400' r='400'/%3E%3Ccircle cx='400' cy='400' r='460'/%3E%3Ccircle cx='400' cy='400' r='520'/%3E%3C/g%3E%3C/svg%3E");
+  /* Anizotropowe ziarno imitujące szczotkowane drewno/fornir */
+  .bg-grain {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.01 0.55' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.06'/%3E%3C/svg%3E");
+  }
+
+  /* Konstrukcyjny przekrój drewna (słoje). Opiera się nacurrentColor, by poprawnie rysować jasne i ciemne słoje. */
+  .bg-rings {
+    background-image: url("data:image/svg+xml,%3Csvg width='400' height='400' viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='currentColor' stroke-width='1.5' opacity='0.03'%3E%3Ccircle cx='400' cy='400' r='50'/%3E%3Ccircle cx='400' cy='400' r='90'/%3E%3Ccircle cx='400' cy='400' r='130'/%3E%3Ccircle cx='400' cy='400' r='180'/%3E%3Ccircle cx='400' cy='400' r='230'/%3E%3Ccircle cx='400' cy='400' r='280'/%3E%3Ccircle cx='400' cy='400' r='340'/%3E%3Ccircle cx='400' cy='400' r='400'/%3E%3Ccircle cx='400' cy='400' r='460'/%3E%3Ccircle cx='400' cy='400' r='520'/%3E%3C/g%3E%3C/svg%3E");
     background-position: bottom right;
     background-repeat: no-repeat;
     background-size: cover;
+  }
+
+  /* Precyzyjne, edytorskie linie */
+  .hairline-b {
+    @apply border-b border-ink/10;
+  }
+  .hairline-t {
+    @apply border-t border-ink/10;
   }
 }
 
@@ -51,7 +84,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-serif);
 }
 
-/* Wygładzenie focusa */
+/* Kanciaste, techniczne obrysy fokusowania */
 *:focus-visible {
   outline: 2px solid var(--color-brand);
   outline-offset: 2px;
