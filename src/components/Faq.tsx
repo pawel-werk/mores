@@ -4,7 +4,7 @@ import { faqData } from '../data/content';
 
 export const Faq: React.FC = () => {
   return (
-    <section id="faq" className="py-24 md:py-32 bg-paper relative z-10" aria-labelledby="faq-title">
+    <section id="faq" className="py-12 md:py-16 bg-paper relative z-10" aria-labelledby="faq-title">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="grid lg:grid-cols-12 gap-16 lg:gap-12 items-start">

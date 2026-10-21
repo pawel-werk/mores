@@ -27,7 +27,7 @@ const audiences = [
 
 export const Audience: React.FC = () => {
   return (
-    <section id="klienci" className="py-24 md:py-32 bg-paper" aria-labelledby="audience-title">
+    <section id="klienci" className="py-12 md:py-16 bg-paper" aria-labelledby="audience-title">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <Reveal>

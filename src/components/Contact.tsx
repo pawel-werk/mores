@@ -18,7 +18,7 @@ export const Contact: React.FC = () => {
   };
 
   return (
-    <section id="kontakt" className="py-24 md:py-32 bg-graphite relative overflow-hidden" aria-labelledby="contact-title">
+    <section id="kontakt" className="py-12 md:py-16 bg-graphite relative overflow-hidden" aria-labelledby="contact-title">
       
       {/* Tekstury materii B2B w ciemnej sekcji */}
       <div className="absolute inset-0 bg-rings text-ash opacity-[0.04] pointer-events-none" aria-hidden="true" />

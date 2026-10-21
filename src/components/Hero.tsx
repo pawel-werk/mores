@@ -11,7 +11,7 @@ export const Hero: React.FC = () => {
   ];
 
   return (
-    <section className="relative bg-paper pt-12 pb-20 md:pt-24 md:pb-32 overflow-hidden hairline-b">
+    <section className="relative bg-paper pt-12 pb-24 md:pt-16 md:pb-16 overflow-hidden hairline-b">
       {/* Bardzo dyskretne ziarno dla szlachetności tła */}
       <div className="absolute inset-0 bg-noise pointer-events-none" aria-hidden="true" />
       

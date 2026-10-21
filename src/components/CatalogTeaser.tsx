@@ -5,7 +5,7 @@ import { Logo } from './Logo';
 
 export const CatalogTeaser: React.FC = () => {
   return (
-    <section id="katalog-teaser" className="py-24 md:py-32 bg-oak text-ink overflow-hidden hairline-b" aria-labelledby="catalog-teaser-title">
+    <section id="katalog-teaser" className="py-12 md:py-16 bg-oak text-ink overflow-hidden hairline-b" aria-labelledby="catalog-teaser-title">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-12 gap-16 items-center">
           

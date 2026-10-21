@@ -9,7 +9,7 @@ export const GalleryTeaser: React.FC = () => {
   const projects = galleryData.slice(0, 4);
 
   return (
-    <section id="realizacje" className="py-24 md:py-32 bg-ash overflow-hidden" aria-labelledby="gallery-teaser-title">
+    <section id="realizacje" className="py-12 md:py-16 bg-ash overflow-hidden" aria-labelledby="gallery-teaser-title">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="flex flex-col md:flex-row md:justify-between md:items-end mb-16 md:mb-20 gap-6">

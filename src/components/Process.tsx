@@ -32,7 +32,7 @@ const processSteps = [
 
 export const Process: React.FC = () => {
   return (
-    <section id="proces" className="py-24 md:py-32 bg-ash relative" aria-labelledby="process-title">
+    <section id="proces" className="py-12 md:py-16 bg-ash relative" aria-labelledby="process-title">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <Reveal>
