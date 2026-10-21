@@ -75,7 +75,7 @@ export const Process: React.FC = () => {
                       </div>
                     </div>
 
-                    {/* Teksty i Etykiety */}
+                    
                     <div className="flex flex-col lg:items-center">
                       <h3 className="font-serif text-2xl text-ink mb-3 transition-colors duration-500 group-hover:text-brand">
                         {p.title}
@@ -83,7 +83,6 @@ export const Process: React.FC = () => {
                       {p.desc && <p className="text-ink/70 font-light leading-relaxed">{p.desc}</p>}
                       
                       {p.badges && (
-                        {/* Etykiety centrowane w osi poziomej dla lepszej symetrii na desktopie */}
                         <div className="flex flex-wrap justify-start lg:justify-center gap-2 mt-5">
                           {p.badges.map(b => (
                             <span key={b} className="inline-flex items-center justify-center border border-ink/10 text-ink/60 text-[9px] uppercase tracking-widest font-bold px-3 py-1.5 rounded-sm whitespace-nowrap bg-paper/50">

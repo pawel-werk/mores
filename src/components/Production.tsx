@@ -54,7 +54,8 @@ export const Production: React.FC = () => {
               
               return (
                 <div 
-                  key={step.title} 
+                  key={step.title}
+
                   className="group relative border-r border-b border-ink/10 p-6 lg:p-8 min-h-[160px] lg:min-h-[200px] flex flex-col justify-between hover:bg-paper/50 transition-colors duration-500"
                 >
                   <div className="flex justify-between items-start mb-6">
