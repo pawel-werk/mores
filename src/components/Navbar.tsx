@@ -40,9 +40,17 @@ export const Navbar: React.FC = () => {
       }`}
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16 md:h-20 transition-all">
-        <a href="#/" className="flex items-center gap-2 outline-none focus-visible:ring-2 focus-visible:ring-brand rounded-sm">
-          <Logo className="h-5 md:h-6" variant="dark" />
-          <LogoFallback variant="dark" />
+        
+        {/* Link z logo - dodano klasy group oraz animację hover */}
+        <a 
+          href="#/" 
+          className="inline-block group outline-none focus-visible:ring-2 focus-visible:ring-brand rounded-sm"
+          aria-label="Strona główna"
+        >
+          <div className="flex items-center gap-2 transform transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04] group-hover:contrast-125 group-hover:drop-shadow-sm origin-left">
+            <Logo className="h-5 md:h-6" variant="dark" />
+            <LogoFallback variant="dark" />
+          </div>
         </a>
 
         {/* Desktop Nav */}
