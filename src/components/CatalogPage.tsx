@@ -147,7 +147,7 @@ export const CatalogPage: React.FC = () => {
                 <div className="relative z-10">
                   <h3 className="font-serif text-3xl text-paper mb-6">Potrzebujesz wyceny konkretnych wzorów?</h3>
                   <p className="mb-10 text-ash/70 font-light leading-relaxed">
-                    Skopiuj numery wzorów z katalogu, dodaj wymiary i prześlij zapytanie do naszego zespołu za pomocą formularza.
+                    Wybierz wzory z katalogu, dodaj wymiary i prześlij zapytanie do naszego zespołu za pomocą formularza.
                   </p>
                   <a 
                     href="#kontakt" 
