@@ -9,7 +9,7 @@ export const Logo: React.FC<LogoProps> = ({ className = "h-8", variant = 'dark' 
   // Zaktualizowano wariant light na nowy link
   const logoSrc = variant === 'light' 
     ? "https://i.postimg.cc/3wyMNBqg/logo-light2.png" 
-    : "https://i.postimg.cc/3wG61hBS/logov2.png";
+    : "https://i.postimg.cc/FRBQG6L5/logo-2-2.png";
 
   return (
     <img 
