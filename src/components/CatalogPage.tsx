@@ -52,7 +52,8 @@ export const CatalogPage: React.FC = () => {
   };
 
   return (
-    <div className="py-24 md:py-32 bg-paper min-h-screen">
+    // Zmieniono pt-24 md:pt-32 na zaledwie pt-12 md:pt-16 dla mocnego skrócenia odstępu
+    <div className="pt-12 md:pt-16 pb-16 md:pb-24 bg-paper min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <header className="mb-16 md:mb-20 flex flex-col lg:flex-row lg:justify-between lg:items-end gap-10">
