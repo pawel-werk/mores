@@ -19,7 +19,7 @@ const processSteps = [
     step: "03", 
     title: "Produkcja", 
     desc: "Precyzyjna obróbka i lakierowanie.",
-    badges: ["Standard 14 dni", "Ekspres (+50%)"], 
+    badges: ["Standard 14 dni", "Ekspres 7 dni"], 
     icon: MachineIcon 
   },
   { 
