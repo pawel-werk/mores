@@ -55,7 +55,6 @@ export const Production: React.FC = () => {
               return (
                 <div 
                   key={step.title} 
-                  {/* ZMNIEJSZONE KAFELKI: z p-8 lg:p-10 na p-6 lg:p-8 oraz min-h-[220px] lg:min-h-[280px] na min-h-[160px] lg:min-h-[200px] */}
                   className="group relative border-r border-b border-ink/10 p-6 lg:p-8 min-h-[160px] lg:min-h-[200px] flex flex-col justify-between hover:bg-paper/50 transition-colors duration-500"
                 >
                   <div className="flex justify-between items-start mb-6">
