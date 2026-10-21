@@ -1,7 +1,6 @@
 import React from 'react';
 
 // Centralna konfiguracja autorskiego, architektonicznego stylu ikon B2B.
-// Używamy cienkiego obrysu (1.5px), ostrych zakończeń (square) i siatki 24x24.
 const iconProps = {
   fill: "none",
   stroke: "currentColor",
@@ -44,10 +43,10 @@ export const MinusIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
+// Strzałka zrobiona jako jednokolorowa (usunęliśmy accentProps)
 export const ArrowRight = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...iconProps} {...props}>
-    <path d="M15 5l7 7-7 7" />
-    <path d="M3 12h19" {...accentProps} />
+    <path d="M15 5l7 7-7 7M3 12h19" />
   </svg>
 );
 
@@ -67,7 +66,6 @@ export const ExternalLinkIcon = (props: React.SVGProps<SVGSVGElement>) => (
 
 // -- Ikony Branżowe (Produkcja, Narzędzia, Materiały) --
 
-// Front frezowany z profilem
 export const FrontIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...iconProps} {...props}>
     <rect x="4" y="2" width="16" height="20" />
@@ -76,7 +74,6 @@ export const FrontIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-// Pistolet lakierniczy
 export const PaintIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...iconProps} {...props}>
     <path d="M8 20l2-8h4l1 2v5h-4v-4H9" />
@@ -85,7 +82,6 @@ export const PaintIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-// Arkusz płyty z linią cięcia
 export const CutIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...iconProps} {...props}>
     <rect x="3" y="4" width="18" height="16" />
@@ -94,7 +90,6 @@ export const CutIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-// Kątownik z cyrklem (Zlecenia nietypowe / Architekci)
 export const CustomIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...iconProps} {...props}>
     <path d="M4 21V4h4v13h12v4H4z" />
@@ -102,7 +97,6 @@ export const CustomIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-// Stos płyt MDF/Forniru
 export const LayersIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...iconProps} {...props}>
     <polygon points="12 4 3 8 12 12 21 8" />
@@ -111,7 +105,6 @@ export const LayersIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-// Paleta z ciężarówką (Logistyka i Magazyn)
 export const TruckIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...iconProps} {...props}>
     <path d="M15 12l4-3h3v8h-6zM15 17v-5H3v5" />
@@ -121,7 +114,6 @@ export const TruckIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-// Formatyki z wymiarowaniem (Zapytanie)
 export const FileTextIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...iconProps} {...props}>
     <rect x="5" y="3" width="14" height="18" />
@@ -130,7 +122,6 @@ export const FileTextIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-// Kalkulator produkcyjny (Wycena)
 export const CalculatorIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...iconProps} {...props}>
     <rect x="5" y="3" width="14" height="18" />
@@ -139,7 +130,6 @@ export const CalculatorIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-// Maszyna CNC / Oś wrzeciona
 export const MachineIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...iconProps} {...props}>
     <path d="M6 3h12v18H6z" />
@@ -148,7 +138,6 @@ export const MachineIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-// B2B: Dwa łączące się profile / Stolarze
 export const UsersIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...iconProps} {...props}>
     <rect x="4" y="4" width="12" height="12" />
@@ -156,7 +145,6 @@ export const UsersIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-// Hala produkcyjna z kominem (Producenci)
 export const FactoryIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...iconProps} {...props}>
     <path d="M3 21V8l6-4v4l6-4v4l6-4v13H3z" />
@@ -164,7 +152,6 @@ export const FactoryIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-// Regały magazynowe (Hurtownie)
 export const StoreIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...iconProps} {...props}>
     <path d="M3 4v16h18V4H3zM3 12h18" />
@@ -172,5 +159,4 @@ export const StoreIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-// Architekci (tożsama z CustomIcon ze względu na przyrządy kreślarskie)
 export const ArchitectIcon = CustomIcon;
