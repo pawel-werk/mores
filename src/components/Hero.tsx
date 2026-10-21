@@ -35,43 +35,43 @@ export const Hero: React.FC = () => {
             </Reveal>
           </div>
 
-          {/* Kolumna wizualna - Fronty (Teraz jako klikalny link) */}
+          {/* Kolumna wizualna - Fronty */}
           <div className="relative h-[400px] md:h-[500px] lg:h-[600px] flex items-center justify-center lg:justify-end mt-10 lg:mt-0">
             <Reveal delay={300} className="w-full h-full relative">
-              {/* Cała grupa jest linkiem do katalogu */}
               <a 
                 href="#/katalog" 
                 className="absolute inset-0 flex items-center justify-center lg:justify-end group cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-brand rounded-sm"
                 aria-label="Przejdź do katalogu frontów"
               >
                 
-                {/* Delikatna pomarańczowa poświata na hover */}
+                {/* Poświata na hover */}
                 <div className="absolute right-10 top-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-brand/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
-                {/* Główny kontener animujący się na hover */}
-                <div className="relative w-full max-w-[500px] aspect-square transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03] group-hover:-translate-x-2">
+                {/* GŁÓWNY KONTENER: Przesunięty w lewo (w stronę tekstu) za pomocą marginesów (mr-6 do mr-16), aby zrobić miejsce na prawej krawędzi */}
+                <div className="relative w-[90%] md:w-full max-w-[420px] md:max-w-[460px] lg:max-w-[480px] aspect-square mr-6 md:mr-12 lg:mr-16 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03] group-hover:-translate-x-2">
                   
-                  {/* Panel 1: Tundra (rozsuwa się w lewo i w górę na hover) */}
-                  <div className="absolute left-0 top-1/4 w-[50%] h-[60%] z-10 transition-transform duration-700 group-hover:-translate-y-4 group-hover:-translate-x-2 group-hover:-rotate-2">
+                  {/* Panel 1: Tundra (Lewa strona) */}
+                  <div className="absolute left-0 top-[20%] md:top-1/4 w-[50%] h-[60%] z-10 transition-transform duration-700 group-hover:-translate-y-4 group-hover:-translate-x-2 group-hover:-rotate-2">
                     <MaterialPanel variant="tundra" profile="slatted" className="w-full h-full shadow-xl" />
-                    <div className="absolute top-6 -left-4 bg-paper/95 backdrop-blur-sm px-3 py-1.5 text-[8px] uppercase tracking-widest font-bold text-ink shadow-sm border border-ink/5 whitespace-nowrap">
+                    <div className="absolute top-6 -left-4 md:-left-6 bg-paper/95 backdrop-blur-sm px-3 py-1.5 text-[8px] uppercase tracking-widest font-bold text-ink shadow-sm border border-ink/5 whitespace-nowrap">
                       Tundra / Fornir
                     </div>
                   </div>
 
-                  {/* Panel 2: Magma (rozsuwa się w dół i w prawo na hover) */}
-                  <div className="absolute right-0 bottom-1/4 w-[45%] h-[55%] z-20 transition-transform duration-700 group-hover:translate-y-4 group-hover:translate-x-2 group-hover:rotate-2">
+                  {/* Panel 2: Magma (Prawa strona - Pomarańczowy) */}
+                  {/* Wysunięty ze środka: -right-4 md:-right-8 */}
+                  <div className="absolute -right-4 md:-right-8 bottom-[15%] md:bottom-[18%] w-[45%] h-[55%] z-20 transition-transform duration-700 group-hover:translate-y-4 group-hover:translate-x-2 group-hover:rotate-2">
                     <MaterialPanel variant="magma" profile="slatted" className="w-full h-full shadow-2xl" />
-                    {/* Rozwiązanie: Osadzenie plakietki całkowicie WEWNĄTRZ obszaru pomarańczowego frontu */}
-                    <div className="absolute bottom-4 right-4 md:bottom-6 md:right-6 bg-paper/95 backdrop-blur-sm px-3 py-1.5 text-[8px] uppercase tracking-widest font-bold text-ink shadow-sm border border-ink/5 z-30 whitespace-nowrap">
+                    {/* Badge wysunięty na zewnątrz frontu: -right-6 md:-right-10 */}
+                    <div className="absolute bottom-6 -right-6 md:bottom-10 md:-right-10 bg-paper/95 backdrop-blur-sm px-3 py-1.5 text-[8px] uppercase tracking-widest font-bold text-ink shadow-sm border border-ink/5 z-30 whitespace-nowrap">
                       Magma / Listwowanie
                     </div>
                   </div>
 
-                  {/* Panel 3: Bazalt (Wychodzi do przodu na hover) */}
-                  <div className="absolute left-1/4 top-1/2 -translate-y-1/2 w-[55%] h-[70%] z-30 transition-transform duration-700 group-hover:scale-105">
+                  {/* Panel 3: Bazalt (Środek - Czarny) */}
+                  <div className="absolute left-[20%] md:left-[22%] top-1/2 -translate-y-1/2 w-[55%] h-[70%] z-30 transition-transform duration-700 group-hover:scale-105">
                     <MaterialPanel variant="bazalt" profile="frame" className="w-full h-full shadow-2xl" />
-                    <div className="absolute top-1/4 -right-12 bg-paper/95 backdrop-blur-sm px-3 py-1.5 text-[8px] uppercase tracking-widest font-bold text-ink shadow-sm border border-ink/5 z-40 whitespace-nowrap">
+                    <div className="absolute top-1/4 -right-6 md:-right-12 bg-paper/95 backdrop-blur-sm px-3 py-1.5 text-[8px] uppercase tracking-widest font-bold text-ink shadow-sm border border-ink/5 z-40 whitespace-nowrap">
                       Bazalt / Profil ramowy
                     </div>
                   </div>
