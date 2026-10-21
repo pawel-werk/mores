@@ -5,7 +5,7 @@ export const Footer: React.FC = () => {
   const year = new Date().getFullYear();
   
   return (
-    <footer className="bg-graphite text-ash relative overflow-hidden py-12 md:py-16 border-t border-ink">
+    <footer className="bg-graphite text-ash relative overflow-hidden py-10 md:py-12 border-t border-ink">
       
       {/* Tekstury materii B2B premium w stopce */}
       <div className="absolute inset-0 bg-rings opacity-[0.04] pointer-events-none" aria-hidden="true" />
@@ -31,9 +31,8 @@ export const Footer: React.FC = () => {
             <h4 className="text-[10px] uppercase tracking-[0.2em] font-bold text-ash/30 mb-8">Nawigacja</h4>
             <ul className="space-y-4 font-light text-ash/80">
               <li><a href="#oferta" className="hover:text-brand transition-colors inline-block">Oferta</a></li>
-              <li><a href="#produkcja" className="hover:text-brand transition-colors inline-block">Park maszynowy</a></li>
               <li><a href="#/galeria" className="hover:text-brand transition-colors inline-block">Galeria realizacji</a></li>
-              <li><a href="#/katalog" className="hover:text-brand transition-colors inline-block">Katalog frezowań</a></li>
+              <li><a href="#/katalog" className="hover:text-brand transition-colors inline-block">Katalog frontów</a></li>
             </ul>
           </div>
 
