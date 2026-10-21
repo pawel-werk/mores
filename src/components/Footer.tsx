@@ -15,8 +15,10 @@ export const Footer: React.FC = () => {
           
           {/* Kolumna z logo i opisem */}
           <div className="md:col-span-5 lg:col-span-6 flex flex-col items-start">
-            <a href="#/" className="inline-block mb-6 outline-none focus-visible:ring-2 focus-visible:ring-brand rounded-sm">
-              <Logo className="h-8" variant="light" />
+            {/* Link do strony głównej (#/) z dodaną grupą (group) do obsługi hover na logo */}
+            <a href="#/" className="inline-block mb-6 outline-none focus-visible:ring-2 focus-visible:ring-brand rounded-sm group">
+              {/* Logo początkowo delikatnie zgaszone (opacity-80), na hover pełna widoczność i podbity kontrast */}
+              <Logo className="h-8 transition-all duration-500 opacity-80 group-hover:opacity-100 group-hover:contrast-[1.25]" variant="light" />
               <LogoFallback variant="light" />
             </a>
             <p className="text-paper/50 font-light max-w-sm leading-relaxed">

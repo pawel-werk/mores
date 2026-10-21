@@ -6,11 +6,10 @@ interface LogoProps {
 }
 
 export const Logo: React.FC<LogoProps> = ({ className = "h-8", variant = 'dark' }) => {
-  // Używamy dostarczonych linków, ale w docelowym środowisku 
-  // warto je podmienić na lokalne pliki np. "/logo.png" i "/logo-light.png" w folderze public
+  // Zaktualizowano główne logo na nowy link (zmieniono na bezpośredni URL obrazka i.postimg.cc)
   const logoSrc = variant === 'light' 
     ? "https://i.postimg.cc/90mnc7hj/logo-light.png" 
-    : "https://i.postimg.cc/3wG61hBS/logov2.png";
+    : "https://i.postimg.cc/n91vdDF6/logo.png";
 
   return (
     <img 
