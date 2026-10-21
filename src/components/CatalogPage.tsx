@@ -76,7 +76,8 @@ export const CatalogPage: React.FC = () => {
       {/* --- MODAL DETALU FRONTU --- */}
       {selectedFront && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-ink/90 backdrop-blur-sm transition-opacity duration-300">
-          <div className="relative w-full max-w-5xl bg-paper rounded-sm shadow-2xl flex flex-col md:flex-row overflow-hidden animate-in fade-in zoom-in-95 duration-300 max-h-screen md:max-h-[85vh] overflow-y-auto md:overflow-y-hidden">
+          {/* Zmieniono max-w-5xl na max-w-6xl aby modal był szerszy i dawał oddech */}
+          <div className="relative w-full max-w-6xl bg-paper rounded-sm shadow-2xl flex flex-col md:flex-row overflow-hidden animate-in fade-in zoom-in-95 duration-300 max-h-screen md:max-h-[85vh] overflow-y-auto md:overflow-y-hidden">
             
             <button 
               onClick={() => setSelectedFront(null)} 
@@ -86,16 +87,17 @@ export const CatalogPage: React.FC = () => {
               <XIcon className="w-8 h-8" aria-hidden="true" />
             </button>
 
-            {/* Wizualizacja z lupą */}
-            <div className="w-full md:w-1/2 bg-ash/30 p-8 md:p-12 relative flex items-center justify-center min-h-[400px]">
-              <div className="relative w-full max-w-[280px] sm:max-w-xs md:max-w-sm aspect-[3/4] rounded-sm shadow-md">
+            {/* Wizualizacja z lupą - powiększone marginesy (p-12 lg:p-20) zapobiegają ucięciu lupy */}
+            <div className="w-full md:w-1/2 bg-ash/30 p-10 md:p-16 lg:p-20 relative flex items-center justify-center min-h-[450px] md:min-h-[500px]">
+              {/* Pomniejszono bazową grafikę (z max-w-sm do max-w-[280px]) */}
+              <div className="relative w-full max-w-[220px] md:max-w-[260px] lg:max-w-[280px] aspect-[3/4] rounded-sm shadow-md">
                 <MaterialPanel variant={selectedFront.variant} profile={selectedFront.profile} className="w-full h-full rounded-sm" />
                 
-                {/* ZWIĘKSZONA LUPA I LŻEJSZY ZOOM: flexbox wymuszający prawy górny róg i tło z boku */}
-                <div className="absolute -top-8 -right-8 md:-top-12 md:-right-12 w-48 h-48 md:w-64 md:h-64 rounded-full border-[4px] md:border-[6px] border-paper shadow-2xl overflow-hidden z-20 pointer-events-none bg-paper">
+                {/* Lupa i Zoom */}
+                <div className="absolute -top-8 -right-8 md:-top-10 md:-right-10 w-48 h-48 md:w-64 md:h-64 rounded-full border-[4px] md:border-[6px] border-paper shadow-2xl overflow-hidden z-20 pointer-events-none bg-paper">
                   <div className="w-full h-full flex justify-end items-start pt-6 pr-6 md:pt-8 md:pr-8">
-                    {/* flex-shrink-0 zapobiega zgniataniu, a szerokość 220% daje łagodniejsze powiększenie */}
-                    <div className="w-[200%] md:w-[220%] aspect-[3/4] flex-shrink-0 shadow-sm rounded-sm overflow-hidden">
+                    {/* Mocniejszy zoom: zwiększono w-[220%] do w-[280%] co potęguje wrażenie detalu */}
+                    <div className="w-[250%] md:w-[280%] aspect-[3/4] flex-shrink-0 shadow-sm rounded-sm overflow-hidden">
                       <MaterialPanel 
                         variant={selectedFront.variant} 
                         profile={selectedFront.profile} 
@@ -109,7 +111,7 @@ export const CatalogPage: React.FC = () => {
             </div>
 
             {/* Teksty i CTA */}
-            <div className="w-full md:w-1/2 p-8 md:p-16 flex flex-col justify-center text-center md:text-left">
+            <div className="w-full md:w-1/2 p-8 md:p-16 lg:p-20 flex flex-col justify-center text-center md:text-left">
               <h2 className="font-serif text-4xl md:text-5xl text-ink mb-2">{selectedFront.title}</h2>
               <p className="text-[10px] md:text-[11px] uppercase tracking-widest font-bold text-brand mb-8">{selectedFront.desc}</p>
               
