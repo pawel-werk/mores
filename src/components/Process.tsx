@@ -60,14 +60,13 @@ export const Process: React.FC = () => {
               const Icon = p.icon;
               return (
                 <Reveal key={p.step} delay={i * 100}>
-                  {/* Główny kontener kroku - na desktopie wymuszamy wyśrodkowanie */}
                   <div className="relative pl-12 lg:pl-0 group flex flex-col lg:items-center lg:text-center">
                     
                     <div className="lg:hidden absolute left-[11px] top-3 w-[9px] h-[9px] bg-ash border border-ink/20 rounded-full group-hover:border-brand transition-colors duration-500" />
                     
-                    {/* Ikona i numer (wyśrodkowane i z paddingiem maskującym linię pod spodem) */}
                     <div className="flex items-center gap-4 mb-6 lg:bg-ash lg:px-4 z-10">
-                      <div className="text-ink/30 group-hover:text-brand transition-colors duration-500">
+                      {/* Lity jasnoszary kolor (text-[#B6B2AE]) bez opacity eliminuje widoczne nakładanie się linii */}
+                      <div className="text-[#B6B2AE] group-hover:text-brand transition-colors duration-500">
                         <Icon className="w-9 h-9" aria-hidden="true" />
                       </div>
                       <div className="font-serif text-5xl text-ink/10 group-hover:text-brand transition-colors duration-500">
@@ -75,7 +74,6 @@ export const Process: React.FC = () => {
                       </div>
                     </div>
 
-                    
                     <div className="flex flex-col lg:items-center">
                       <h3 className="font-serif text-2xl text-ink mb-3 transition-colors duration-500 group-hover:text-brand">
                         {p.title}

@@ -1,16 +1,15 @@
 import React from 'react';
 
-// Centralna konfiguracja autorskiego, architektonicznego stylu ikon B2B.
+// Dodano strokeLinecap i strokeLinejoin 'round', by krawędzie były miękkie i nigdy nie tworzyły ostrych sklejeń
 const iconProps = {
   fill: "none",
   stroke: "currentColor",
   viewBox: "0 0 24 24",
   strokeWidth: 1.5,
-  strokeLinecap: "square" as const,
-  strokeLinejoin: "miter" as const,
+  strokeLinecap: "round" as const,
+  strokeLinejoin: "round" as const,
 };
 
-// Akcentowy detal w kolorze marki
 const accentProps = {
   stroke: "var(--color-brand)",
 };
@@ -74,23 +73,24 @@ export const FrontIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 export const LayersIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg {...iconProps} strokeLinejoin="round" {...props}>
+  <svg {...iconProps} {...props}>
     <polygon points="12 4 3 8 12 12 21 8" />
     <polyline points="3 13 12 17 21 13" />
     <polyline points="3 18 12 22 21 18" {...accentProps} />
   </svg>
 );
 
+// NOWA IKONA: Wycinarnia (rozcięta płyta meblowa, idealnie czysta)
 export const CutIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...iconProps} {...props}>
-    <path d="M3 4h10v16H3z" />
-    <path d="M18 2v20" strokeDasharray="3 3" {...accentProps} />
-    <path d="M13 12h5" />
+    <path d="M5 5h4v14H5z" />
+    <path d="M15 5h4v14h-4z" />
+    <path d="M12 2v20" strokeDasharray="3 3" {...accentProps} />
   </svg>
 );
 
 export const PaintIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg {...iconProps} strokeLinejoin="round" {...props}>
+  <svg {...iconProps} {...props}>
     <path d="M11 9V4h4v5" />
     <path d="M6 9h10v4H6z" />
     <path d="M8 13l-1.5 5h3L11 13" />
@@ -99,24 +99,29 @@ export const PaintIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
+// NOWA IKONA: Ciężarówka (jeden ciągły obrys, koła wpisane idealnie w luki)
 export const TruckIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg {...iconProps} strokeLinejoin="round" {...props}>
-    <circle cx="6" cy="17" r="2" />
-    <circle cx="18" cy="17" r="2" />
-    <path d="M2 17h2M8 17h8M20 17h2" />
-    <path d="M2 17v-4h13" />
-    <path d="M15 17V9h3l3 3v5" />
-    <path d="M15 13h5" />
-    <path d="M4 10h9M4 7h9" {...accentProps} />
+  <svg {...iconProps} {...props}>
+    <circle cx="7" cy="17" r="2" />
+    <circle cx="17" cy="17" r="2" />
+    <path d="M3 17h2 M9 17h6 M19 17h2" />
+    <path d="M3 17V7h10v10" />
+    <path d="M13 11h4l3 3v3h-1" />
+    <path d="M5 10h6 M5 13h6" {...accentProps} />
   </svg>
 );
 
+// NOWA IKONA: Zlecenia nietypowe / Architekci (Krzywa wektorowa Beziera z punktami kontrolnymi)
 export const CustomIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...iconProps} {...props}>
-    <path d="M4 21V4h4v13h12v4H4z" />
-    <path d="M13 3l5 15M13 3l-2 6" {...accentProps} />
+    <rect x="4" y="15" width="2" height="2" />
+    <rect x="18" y="15" width="2" height="2" />
+    <circle cx="12" cy="6" r="1.5" />
+    <path d="M5 16 L12 7 M19 16 L12 7" strokeDasharray="2 2" />
+    <path d="M5 16 Q 12 0 19 16" {...accentProps} />
   </svg>
 );
+export const ArchitectIcon = CustomIcon;
 
 export const FileTextIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...iconProps} {...props}>
@@ -160,14 +165,5 @@ export const StoreIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...iconProps} {...props}>
     <path d="M3 4v16h18V4H3zM3 12h18" />
     <path d="M7 8h4M13 16h4" {...accentProps} />
-  </svg>
-);
-
-export const ArchitectIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg {...iconProps} {...props}>
-    <path d="M12 3v2" />
-    <path d="M12 5L7 17M12 5l5 13" />
-    <path d="M9 12h6" />
-    <path d="M 5 19 Q 12 23 19 19" {...accentProps} />
   </svg>
 );

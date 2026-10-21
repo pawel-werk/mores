@@ -54,12 +54,12 @@ export const Production: React.FC = () => {
               
               return (
                 <div 
-                  key={step.title}
-
+                  key={step.title} 
                   className="group relative border-r border-b border-ink/10 p-6 lg:p-8 min-h-[160px] lg:min-h-[200px] flex flex-col justify-between hover:bg-paper/50 transition-colors duration-500"
                 >
                   <div className="flex justify-between items-start mb-6">
-                    <Icon className="w-8 h-8 text-ink/30 group-hover:text-brand transition-colors duration-500" aria-hidden="true" />
+                    {/* Wstawiono text-[#B6B2AE] w miejsce text-ink/30 */}
+                    <Icon className="w-8 h-8 text-[#B6B2AE] group-hover:text-brand transition-colors duration-500" aria-hidden="true" />
                     <span className="font-serif text-3xl text-ink/10 group-hover:text-brand transition-colors duration-500">
                       {number}
                     </span>
