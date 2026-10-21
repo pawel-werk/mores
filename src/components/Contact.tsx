@@ -84,7 +84,7 @@ export const Contact: React.FC = () => {
                 {/* Styl mapy dostosowany do jasnego tła (multiply zamiast luminosity) */}
                 <iframe 
                   title="Mapa dojazdu"
-                  className="absolute inset-0 w-full h-full z-10 filter grayscale opacity-60 mix-blend-multiply hover:opacity-80 transition-opacity duration-1000"
+                  className="absolute inset-0 w-full h-full z-10 filter grayscale opacity-80 mix-blend-multiply hover:opacity-80 transition-opacity duration-1000"
                   style={{ border: 0 }} 
                   loading="lazy" 
                   referrerPolicy="no-referrer-when-downgrade"
