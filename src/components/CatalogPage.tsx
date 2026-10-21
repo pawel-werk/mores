@@ -87,13 +87,8 @@ export const CatalogPage: React.FC = () => {
               <XIcon className="w-6 h-6 md:w-8 md:h-8" aria-hidden="true" />
             </button>
 
-            {/* LEWA STRONA: Grafiki */}
+            {/* LEWA STRONA: Grafika (Z samym zoomem, usunięto miniaturę w rogu) */}
             <div className="w-full md:w-1/2 bg-ash/30 p-6 pt-12 pb-8 md:p-20 lg:p-24 relative flex items-center justify-center min-h-[340px] md:min-h-0 md:h-full shrink-0">
-              
-              {/* DODATKOWE ZDJĘCIE CAŁEGO FRONTU: czysta bryła, 1:1 jak z katalogu, wkomponowana w róg */}
-              <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 md:bottom-12 md:left-12 w-20 sm:w-24 md:w-32 lg:w-40 aspect-[3/4] rounded-sm shadow-xl bg-paper z-30 pointer-events-none transition-transform duration-300 hover:scale-105 border-2 md:border-4 border-paper/50">
-                <MaterialPanel variant={selectedFront.variant} profile={selectedFront.profile} className="w-full h-full rounded-sm" />
-              </div>
 
               {/* GŁÓWNE ZDJĘCIE Z LUPĄ (Zoom) */}
               <div className="relative w-full max-w-[160px] sm:max-w-[200px] md:max-w-[280px] lg:max-w-[340px] aspect-[3/4] rounded-sm shadow-md mt-4 md:mt-0">
