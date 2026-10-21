@@ -5,7 +5,7 @@ export const Footer: React.FC = () => {
   const year = new Date().getFullYear();
   
   return (
-    <footer className="bg-graphite text-ash relative overflow-hidden py-16 md:py-24 border-t border-ink">
+    <footer className="bg-graphite text-ash relative overflow-hidden py-12 md:py-16 border-t border-ink">
       
       {/* Tekstury materii B2B premium w stopce */}
       <div className="absolute inset-0 bg-rings opacity-[0.04] pointer-events-none" aria-hidden="true" />
