@@ -9,7 +9,6 @@ export const CatalogTeaser: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-12 gap-16 items-center">
           
-          {/* Kolumna tekstowa */}
           <div className="lg:col-span-5 order-2 lg:order-1">
             <Reveal>
               <h2 id="catalog-teaser-title" className="font-serif text-4xl md:text-5xl text-ink leading-tight mb-6">
@@ -22,7 +21,6 @@ export const CatalogTeaser: React.FC = () => {
             
             <Reveal delay={100}>
               <div className="flex flex-wrap items-center gap-8">
-                {/* Przycisk ze w pełni jednokolorową (białą) strzałką */}
                 <a href="#/katalog" className="bg-ink text-paper px-8 py-4 text-[15px] font-medium hover:bg-graphite transition-colors inline-flex items-center gap-3 rounded-sm">
                   Zobacz online <ArrowRight className="w-4 h-4 text-white" aria-hidden="true" />
                 </a>
@@ -36,7 +34,6 @@ export const CatalogTeaser: React.FC = () => {
             </Reveal>
           </div>
 
-          {/* Kolumna wizualna - Przywrócona "książkowa" bryła katalogu */}
           <div className="lg:col-span-7 order-1 lg:order-2 flex justify-center lg:justify-end">
             <Reveal delay={200} className="p-4 sm:p-8">
               <div className="relative w-64 sm:w-80 aspect-[1/1.414] group cursor-pointer perspective-1000">
@@ -64,7 +61,6 @@ export const CatalogTeaser: React.FC = () => {
                     </div>
                   </div>
                   
-                  {/* Detale introligatorskie przy grzbiecie */}
                   <div className="absolute left-0 top-0 bottom-0 w-px bg-black/15 pointer-events-none" />
                   <div className="absolute left-1.5 top-0 bottom-0 w-px bg-white/40 pointer-events-none" />
                 </a>
