@@ -73,19 +73,19 @@ export const FrontIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-// Przeprojektowany pistolet lakierniczy
+// Nowy, geometryczny i bezpieczny Pistolet Lakierniczy
 export const PaintIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...iconProps} {...props}>
-    {/* Korpus pistoletu z dyszą */}
-    <path d="M7 14h11v-4l-2-2h-4v6" />
-    {/* Kubek grawitacyjny na górze */}
-    <path d="M13 8l-1-5h4l-1 5" />
+    {/* Kubek grawitacyjny */}
+    <path d="M11 9V4h4v5" />
+    {/* Korpus / Lufa */}
+    <rect x="6" y="9" width="10" height="4" />
     {/* Rękojeść */}
-    <path d="M10 14l-1.5 7" />
+    <path d="M8 13l-1.5 6h2L10 13" />
     {/* Spust */}
-    <path d="M13 14v-2h-2" />
-    {/* Strumień lakieru (akcent) - przesunięty wyraźnie przed pistolet */}
-    <path d="M21 9l2-1M22 12h2M21 15l2 1" {...accentProps} />
+    <path d="M12 13v2" />
+    {/* Strumień lakieru (akcent) - wyraźnie odcięty od dyszy (startuje od x=19, pistolet kończy się na x=16) */}
+    <path d="M19 8l2-2M20 11h3M19 14l2 2" {...accentProps} />
   </svg>
 );
 
@@ -112,20 +112,14 @@ export const LayersIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-// Przeprojektowany samochód dostawczy
 export const TruckIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...iconProps} {...props}>
-    {/* Koła pojazdu */}
     <circle cx="6" cy="17" r="2" />
     <circle cx="17" cy="17" r="2" />
-    {/* Zderzaki i oś (nie wchodzące do środka kół) */}
     <path d="M2 17h2M8 17h7M19 17h2" />
-    {/* Platforma paki (tył i podłoga) */}
     <path d="M2 17v-3h13" />
-    {/* Geometryczna szoferka oddzielona od paki */}
     <path d="M15 17V8h3l3 3v6" />
     <path d="M15 12h5" />
-    {/* Ładunek (akcent) leżący na pace - bez dotykania szoferki */}
     <path d="M4 12h9M4 9h9" {...accentProps} />
   </svg>
 );
@@ -175,4 +169,16 @@ export const StoreIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-export const ArchitectIcon = CustomIcon;
+// Nowa, dedykowana ikona dla Architektów (Cyrkiel kreślarski rysujący łuk)
+export const ArchitectIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg {...iconProps} {...props}>
+    {/* Uchwyt cyrkla na górze */}
+    <path d="M12 3v2" />
+    {/* Rozstawione ramiona */}
+    <path d="M12 5L7 17M12 5l5 13" />
+    {/* Stabilizująca belka poprzeczna */}
+    <path d="M9 12h6" />
+    {/* Narysowany łuk krzywą Beziera (Akcent) */}
+    <path d="M 5 19 Q 12 23 19 19" {...accentProps} />
+  </svg>
+);
