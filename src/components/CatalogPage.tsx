@@ -75,10 +75,10 @@ export const CatalogPage: React.FC = () => {
       
       {/* --- MODAL DETALU FRONTU --- */}
       {selectedFront && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 md:p-12 bg-ink/90 backdrop-blur-sm transition-opacity duration-300">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-10 bg-ink/90 backdrop-blur-sm transition-opacity duration-300">
           
-          {/* Zmieniono rozmiar modala: max-w-[1400px] w-[95vw] oraz h-[85vh] dla potężnej planszy */}
-          <div className="relative w-full max-w-[1400px] w-[95vw] bg-paper rounded-sm shadow-2xl flex flex-col md:flex-row overflow-hidden animate-in fade-in zoom-in-95 duration-300 md:h-[85vh] max-h-screen">
+          {/* Powiększona plansza: szerokość do 1536px, 96vw, 90vh */}
+          <div className="relative w-full max-w-[1536px] w-[96vw] bg-paper rounded-sm shadow-2xl flex flex-col md:flex-row overflow-hidden animate-in fade-in zoom-in-95 duration-300 md:h-[90vh] max-h-screen">
             
             <button 
               onClick={() => setSelectedFront(null)} 
@@ -88,18 +88,18 @@ export const CatalogPage: React.FC = () => {
               <XIcon className="w-8 h-8" aria-hidden="true" />
             </button>
 
-            {/* Zwiększony obszar tła (ash/30) dla lewej kolumny z mocnymi paddingami wewnątrz */}
-            <div className="w-full md:w-1/2 bg-ash/30 p-12 md:p-24 lg:p-32 relative flex items-center justify-center min-h-[450px] md:h-full">
+            {/* Zoptymalizowane paddingi dla większej planszy i powiększonego frontu */}
+            <div className="w-full md:w-1/2 bg-ash/30 p-12 md:p-20 lg:p-24 relative flex items-center justify-center min-h-[450px] md:h-full">
               
-              {/* Drastycznie zmniejszona grafika bazowa frontu (max-w-[240px] na desktopie) */}
-              <div className="relative w-full max-w-[180px] md:max-w-[200px] lg:max-w-[240px] aspect-[3/4] rounded-sm shadow-md">
+              {/* Powiększony bazowy front (max-w-[280px] na desktopie) */}
+              <div className="relative w-full max-w-[200px] md:max-w-[240px] lg:max-w-[280px] aspect-[3/4] rounded-sm shadow-md">
                 <MaterialPanel variant={selectedFront.variant} profile={selectedFront.profile} className="w-full h-full rounded-sm" />
                 
-                {/* Zwiększona lupa (md:w-72 md:h-72) i mocniej odsunięta od rogu małej bazy (-top-20 -right-20) */}
-                <div className="absolute -top-12 -right-12 md:-top-20 md:-right-20 lg:-top-24 lg:-right-24 w-48 h-48 md:w-64 md:h-64 lg:w-72 lg:h-72 rounded-full border-[4px] md:border-[8px] border-paper shadow-2xl overflow-hidden z-20 pointer-events-none bg-paper">
+                {/* Powiększona i przesunięta lupa (do w-80 h-80 na lg), by nie dotykała krawędzi */}
+                <div className="absolute -top-14 -right-14 md:-top-20 md:-right-20 lg:-top-[110px] lg:-right-[110px] w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full border-[4px] md:border-[8px] border-paper shadow-2xl overflow-hidden z-20 pointer-events-none bg-paper">
                   <div className="w-full h-full flex justify-end items-start pt-6 pr-6 md:pt-10 md:pr-10 lg:pt-12 lg:pr-12">
                     
-                    {/* Poziom zooma: front wewnątrz lupy skaluje się proporcjonalnie do nowej bazy */}
+                    {/* Zoom dopasowany proporcjonalnie */}
                     <div className="w-[200%] md:w-[220%] lg:w-[240%] aspect-[3/4] flex-shrink-0 shadow-sm rounded-sm overflow-hidden">
                       <MaterialPanel 
                         variant={selectedFront.variant} 
@@ -114,7 +114,7 @@ export const CatalogPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Teksty i CTA (prawa kolumna dostosowana do nowej wysokości modala, scrollowalna w razie potrzeby) */}
+            {/* Teksty i CTA */}
             <div className="w-full md:w-1/2 p-8 md:p-16 lg:p-24 flex flex-col justify-center text-center md:text-left overflow-y-auto">
               <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-ink mb-2">{selectedFront.title}</h2>
               <p className="text-[10px] md:text-[12px] uppercase tracking-widest font-bold text-brand mb-10">{selectedFront.desc}</p>
