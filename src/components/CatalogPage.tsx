@@ -87,14 +87,19 @@ export const CatalogPage: React.FC = () => {
               <XIcon className="w-6 h-6 md:w-8 md:h-8" aria-hidden="true" />
             </button>
 
-            {/* Powiększona przestrzeń (min-h-[340px]) z dodanym pt-12, aby grafika odsunęła się od "X" na górze */}
+            {/* LEWA STRONA: Grafiki */}
             <div className="w-full md:w-1/2 bg-ash/30 p-6 pt-12 pb-8 md:p-20 lg:p-24 relative flex items-center justify-center min-h-[340px] md:min-h-0 md:h-full shrink-0">
               
-              {/* Zwiększony front bazowy (max-w-[160px]) dla lepszych proporcji na telefonie */}
+              {/* DODATKOWE ZDJĘCIE CAŁEGO FRONTU: czysta bryła, 1:1 jak z katalogu, wkomponowana w róg */}
+              <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 md:bottom-12 md:left-12 w-20 sm:w-24 md:w-32 lg:w-40 aspect-[3/4] rounded-sm shadow-xl bg-paper z-30 pointer-events-none transition-transform duration-300 hover:scale-105 border-2 md:border-4 border-paper/50">
+                <MaterialPanel variant={selectedFront.variant} profile={selectedFront.profile} className="w-full h-full rounded-sm" />
+              </div>
+
+              {/* GŁÓWNE ZDJĘCIE Z LUPĄ (Zoom) */}
               <div className="relative w-full max-w-[160px] sm:max-w-[200px] md:max-w-[280px] lg:max-w-[340px] aspect-[3/4] rounded-sm shadow-md mt-4 md:mt-0">
                 <MaterialPanel variant={selectedFront.variant} profile={selectedFront.profile} className="w-full h-full rounded-sm" />
                 
-                {/* Lupa dopasowana rozmiarem do nowego frontu (w-40 h-40) i delikatnie odsunięta (-top-8 -right-10) */}
+                {/* Kółko z Zoomem */}
                 <div className="absolute -top-8 -right-10 sm:-top-10 sm:-right-12 md:-top-24 md:-right-28 lg:-top-[130px] lg:-right-[150px] w-40 h-40 sm:w-48 sm:h-48 md:w-72 md:h-72 lg:w-[340px] lg:h-[340px] rounded-full border-[4px] md:border-[8px] border-paper shadow-2xl overflow-hidden z-20 pointer-events-none bg-paper">
                   <div className="w-full h-full flex justify-end items-start pt-4 pr-4 md:pt-10 md:pr-10 lg:pt-12 lg:pr-12">
                     <div className="w-[200%] md:w-[220%] lg:w-[240%] aspect-[3/4] flex-shrink-0 shadow-sm rounded-sm overflow-hidden">
@@ -110,7 +115,7 @@ export const CatalogPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Tekst ściśle upakowany, ale zachowujący czytelność – CTA zostaje wyżej i łapie się na ekran */}
+            {/* PRAWA STRONA: Teksty i wyśrodkowane CTA */}
             <div className="w-full md:w-1/2 p-5 sm:p-8 md:p-16 lg:p-24 flex flex-col justify-center text-center md:text-left overflow-y-auto">
               <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-ink mb-1 md:mb-4">{selectedFront.title}</h2>
               <p className="text-[9px] sm:text-[10px] md:text-[12px] uppercase tracking-widest font-bold text-brand mb-3 md:mb-10">{selectedFront.desc}</p>
@@ -170,80 +175,4 @@ export const CatalogPage: React.FC = () => {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-4 gap-y-10 lg:gap-x-6 lg:gap-y-12">
             {catalogFronts.map((item, idx) => (
               <Reveal key={idx} delay={(idx % 6) * 50} variant="clip">
-                <div className="group cursor-pointer" onClick={() => setSelectedFront(item)}>
-                  <div className="w-full aspect-[3/4] rounded-sm transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-2 group-hover:scale-[1.03] shadow-sm group-hover:shadow-lg">
-                    <MaterialPanel 
-                      variant={item.variant} 
-                      profile={item.profile}
-                      className="w-full h-full rounded-sm"
-                    />
-                  </div>
-                  <div className="mt-4 hairline-t pt-3">
-                    <h3 className="font-serif text-lg text-ink transition-colors duration-300 group-hover:text-brand">
-                      {item.title}
-                    </h3>
-                    <p className="text-[9px] sm:text-[10px] uppercase tracking-widest font-bold text-ink/40 mt-1">
-                      {item.desc}
-                    </p>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </section>
-
-        <section className="grid lg:grid-cols-12 gap-16 items-center">
-          <div className="lg:col-span-6 hairline-t">
-            <Reveal>
-              <h2 className="font-serif text-3xl text-ink mb-10 pt-8">Jak korzystać z katalogu?</h2>
-            </Reveal>
-            <div className="space-y-0">
-              {[
-                { title: "Wybierz wzór", desc: "Zwróć uwagę na głębokość frezu oraz opcje uchwytów wpuszczanych." },
-                { title: "Wybierz wykończenie", desc: "Oferujemy mat, półmat oraz wysoki połysk. Każdy front może być przygotowany również w surowym MDF." },
-                { title: "Wyślij zapytanie", desc: "Podaj kod frontu i zestawienie formatek do szybkiej wyceny." }
-              ].map((step, idx) => (
-                <Reveal key={idx} delay={idx * 100}>
-                  <div className="group relative flex gap-8 py-8 hairline-b hover:bg-ash/20 transition-colors duration-500 px-4 -mx-4">
-                    <div className="absolute top-[-1px] left-0 right-0 h-[1px] bg-brand scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)]" />
-                    <span className="flex-shrink-0 font-serif text-2xl text-ink/20 transition-colors duration-500 group-hover:text-brand">
-                      0{idx + 1}
-                    </span>
-                    <div>
-                      <h3 className="font-serif text-xl text-ink mb-2 transition-colors duration-500 group-hover:text-brand">{step.title}</h3>
-                      <p className="text-ink/70 font-light leading-relaxed">{step.desc}</p>
-                    </div>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-          
-          <div className="lg:col-span-6">
-            <Reveal delay={200}>
-              <div className="bg-graphite text-ash p-12 md:p-16 relative overflow-hidden flex flex-col justify-center rounded-sm">
-                <div className="absolute inset-0 bg-rings opacity-[0.04] pointer-events-none" aria-hidden="true" />
-                <div className="absolute inset-0 bg-grain mix-blend-overlay opacity-10 pointer-events-none" aria-hidden="true" />
-                
-                <div className="relative z-10">
-                  <h3 className="font-serif text-3xl text-paper mb-6">Potrzebujesz wyceny konkretnych wzorów?</h3>
-                  <p className="mb-10 text-ash/70 font-light leading-relaxed">
-                    Skopiuj numery wzorów z katalogu, dodaj wymiary i prześlij zapytanie do naszego zespołu za pomocą formularza.
-                  </p>
-                  <a 
-                    href="#kontakt" 
-                    onClick={handleScrollToContact}
-                    className="inline-block bg-paper text-ink px-8 py-4 text-[15px] font-medium hover:bg-brand hover:text-white transition-colors rounded-sm"
-                  >
-                    Przejdź do formularza
-                  </a>
-                </div>
-              </div>
-            </Reveal>
-          </div>
-        </section>
-
-      </div>
-    </div>
-  );
-};
+                <div className="group cursor-pointer" onClick={() => setSelected

@@ -62,7 +62,8 @@ export const Hero: React.FC = () => {
                   {/* Panel 2: Magma (rozsuwa się w dół i w prawo na hover) */}
                   <div className="absolute right-0 bottom-1/4 w-[45%] h-[55%] z-20 transition-transform duration-700 group-hover:translate-y-4 group-hover:translate-x-2 group-hover:rotate-2">
                     <MaterialPanel variant="magma" profile="slatted" className="w-full h-full shadow-2xl" />
-                    <div className="absolute bottom-6 -right-4 bg-paper/95 backdrop-blur-sm px-3 py-1.5 text-[8px] uppercase tracking-widest font-bold text-ink shadow-sm border border-ink/5 z-30">
+                    {/* POPRAWKA: Przesunięto plakietkę na lewą stronę (-left-8 md:-left-16), by uniknąć obcinania krawędzią ekranu */}
+                    <div className="absolute bottom-6 -left-8 md:-left-16 bg-paper/95 backdrop-blur-sm px-3 py-1.5 text-[8px] uppercase tracking-widest font-bold text-ink shadow-sm border border-ink/5 z-30">
                       Magma / Listwowanie
                     </div>
                   </div>
