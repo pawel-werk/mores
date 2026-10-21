@@ -91,14 +91,20 @@ export const CatalogPage: React.FC = () => {
               <div className="relative w-full max-w-[280px] sm:max-w-xs md:max-w-sm aspect-[3/4] rounded-sm shadow-md">
                 <MaterialPanel variant={selectedFront.variant} profile={selectedFront.profile} className="w-full h-full rounded-sm" />
                 
-                {/* ZWIĘKSZONA LUPA I POPRAWIONY ZOOM: pokazujemy wyraźny narożnik z odstępem od krawędzi */}
-                <div className="absolute -top-8 -right-8 md:-top-12 md:-right-12 w-40 h-40 md:w-60 md:h-60 rounded-full border-[6px] border-paper shadow-2xl overflow-hidden z-20 pointer-events-none bg-paper">
-                  <MaterialPanel 
-                    variant={selectedFront.variant} 
-                    profile={selectedFront.profile} 
-                    className="absolute w-[220%] aspect-[3/4] max-w-none top-[15%] right-[15%]" 
-                  />
+                {/* ZWIĘKSZONA LUPA I LŻEJSZY ZOOM: flexbox wymuszający prawy górny róg i tło z boku */}
+                <div className="absolute -top-8 -right-8 md:-top-12 md:-right-12 w-48 h-48 md:w-64 md:h-64 rounded-full border-[4px] md:border-[6px] border-paper shadow-2xl overflow-hidden z-20 pointer-events-none bg-paper">
+                  <div className="w-full h-full flex justify-end items-start pt-6 pr-6 md:pt-8 md:pr-8">
+                    {/* flex-shrink-0 zapobiega zgniataniu, a szerokość 220% daje łagodniejsze powiększenie */}
+                    <div className="w-[200%] md:w-[220%] aspect-[3/4] flex-shrink-0 shadow-sm rounded-sm overflow-hidden">
+                      <MaterialPanel 
+                        variant={selectedFront.variant} 
+                        profile={selectedFront.profile} 
+                        className="w-full h-full" 
+                      />
+                    </div>
+                  </div>
                 </div>
+
               </div>
             </div>
 
