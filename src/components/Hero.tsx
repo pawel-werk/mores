@@ -62,8 +62,8 @@ export const Hero: React.FC = () => {
                   {/* Panel 2: Magma (rozsuwa się w dół i w prawo na hover) */}
                   <div className="absolute right-0 bottom-1/4 w-[45%] h-[55%] z-20 transition-transform duration-700 group-hover:translate-y-4 group-hover:translate-x-2 group-hover:rotate-2">
                     <MaterialPanel variant="magma" profile="slatted" className="w-full h-full shadow-2xl" />
-                    {/* POPRAWKA: Bezpieczne pozycjonowanie wewnątrz panelu (right-3 bottom-4) */}
-                    <div className="absolute bottom-4 right-3 md:bottom-6 md:right-6 bg-paper/95 backdrop-blur-sm px-3 py-1.5 text-[8px] uppercase tracking-widest font-bold text-ink shadow-sm border border-ink/5 z-30 whitespace-nowrap">
+                    {/* Rozwiązanie: Osadzenie plakietki całkowicie WEWNĄTRZ obszaru pomarańczowego frontu */}
+                    <div className="absolute bottom-4 right-4 md:bottom-6 md:right-6 bg-paper/95 backdrop-blur-sm px-3 py-1.5 text-[8px] uppercase tracking-widest font-bold text-ink shadow-sm border border-ink/5 z-30 whitespace-nowrap">
                       Magma / Listwowanie
                     </div>
                   </div>
