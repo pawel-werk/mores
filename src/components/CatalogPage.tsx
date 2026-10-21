@@ -79,7 +79,6 @@ export const CatalogPage: React.FC = () => {
           
           <div className="relative w-full max-w-[1600px] w-[98vw] bg-paper rounded-sm shadow-2xl flex flex-col md:flex-row overflow-hidden animate-in fade-in zoom-in-95 duration-300 max-h-[95dvh] md:h-[94vh]">
             
-            {/* Poprawiony przycisk X na mobile: w rogu (top-3 right-3), z własnym tłem i wysokim Z-index aby nie nachodził na zoom */}
             <button 
               onClick={() => setSelectedFront(null)} 
               className="absolute top-3 right-3 md:top-8 md:right-8 p-2 text-ink/70 hover:text-brand transition-colors z-50 bg-paper/90 md:bg-paper/50 backdrop-blur-md rounded-full shadow-sm md:shadow-none"
@@ -88,15 +87,15 @@ export const CatalogPage: React.FC = () => {
               <XIcon className="w-6 h-6 md:w-8 md:h-8" aria-hidden="true" />
             </button>
 
-            {/* Kompaktowa sekcja graficzna na mobile: min-h-[260px] i mniejsze paddingi */}
-            <div className="w-full md:w-1/2 bg-ash/30 p-6 pt-12 md:p-20 lg:p-24 relative flex items-center justify-center min-h-[260px] md:h-full shrink-0">
+            {/* Powiększona przestrzeń (min-h-[340px]) z dodanym pt-12, aby grafika odsunęła się od "X" na górze */}
+            <div className="w-full md:w-1/2 bg-ash/30 p-6 pt-12 pb-8 md:p-20 lg:p-24 relative flex items-center justify-center min-h-[340px] md:min-h-0 md:h-full shrink-0">
               
-              {/* Maksymalnie skurczony front na mobile (max-w-[130px]) żeby oszczędzić miejsce na tekst na dole */}
-              <div className="relative w-full max-w-[130px] sm:max-w-[180px] md:max-w-[280px] lg:max-w-[340px] aspect-[3/4] rounded-sm shadow-md">
+              {/* Zwiększony front bazowy (max-w-[160px]) dla lepszych proporcji na telefonie */}
+              <div className="relative w-full max-w-[160px] sm:max-w-[200px] md:max-w-[280px] lg:max-w-[340px] aspect-[3/4] rounded-sm shadow-md mt-4 md:mt-0">
                 <MaterialPanel variant={selectedFront.variant} profile={selectedFront.profile} className="w-full h-full rounded-sm" />
                 
-                {/* Zmniejszona lupa na mobile (w-36 h-36) i lekko przesunięta */}
-                <div className="absolute -top-6 -right-10 sm:-top-10 sm:-right-12 md:-top-24 md:-right-28 lg:-top-[130px] lg:-right-[150px] w-36 h-36 sm:w-48 sm:h-48 md:w-72 md:h-72 lg:w-[340px] lg:h-[340px] rounded-full border-[4px] md:border-[8px] border-paper shadow-2xl overflow-hidden z-20 pointer-events-none bg-paper">
+                {/* Lupa dopasowana rozmiarem do nowego frontu (w-40 h-40) i delikatnie odsunięta (-top-8 -right-10) */}
+                <div className="absolute -top-8 -right-10 sm:-top-10 sm:-right-12 md:-top-24 md:-right-28 lg:-top-[130px] lg:-right-[150px] w-40 h-40 sm:w-48 sm:h-48 md:w-72 md:h-72 lg:w-[340px] lg:h-[340px] rounded-full border-[4px] md:border-[8px] border-paper shadow-2xl overflow-hidden z-20 pointer-events-none bg-paper">
                   <div className="w-full h-full flex justify-end items-start pt-4 pr-4 md:pt-10 md:pr-10 lg:pt-12 lg:pr-12">
                     <div className="w-[200%] md:w-[220%] lg:w-[240%] aspect-[3/4] flex-shrink-0 shadow-sm rounded-sm overflow-hidden">
                       <MaterialPanel 
@@ -111,12 +110,12 @@ export const CatalogPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Sekcja tekstowa ściśnięta na mobile, aby przycisk od razu łapał się w ekranie */}
+            {/* Tekst ściśle upakowany, ale zachowujący czytelność – CTA zostaje wyżej i łapie się na ekran */}
             <div className="w-full md:w-1/2 p-5 sm:p-8 md:p-16 lg:p-24 flex flex-col justify-center text-center md:text-left overflow-y-auto">
-              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-ink mb-2 md:mb-4">{selectedFront.title}</h2>
+              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-ink mb-1 md:mb-4">{selectedFront.title}</h2>
               <p className="text-[9px] sm:text-[10px] md:text-[12px] uppercase tracking-widest font-bold text-brand mb-3 md:mb-10">{selectedFront.desc}</p>
               
-              <p className="text-ink/70 font-light leading-relaxed mb-5 md:mb-16 text-[13px] sm:text-[15px] md:text-xl lg:text-2xl text-left">
+              <p className="text-ink/70 font-light leading-snug md:leading-relaxed mb-4 md:mb-16 text-[14px] sm:text-[15px] md:text-xl lg:text-2xl text-left">
                 {selectedFront.longDesc}
               </p>
 
@@ -126,7 +125,7 @@ export const CatalogPage: React.FC = () => {
                   setSelectedFront(null);
                   handleScrollToContact();
                 }}
-                className="bg-ink text-paper px-6 py-3 md:px-12 md:py-5 text-[14px] md:text-lg font-medium hover:bg-brand transition-colors rounded-sm inline-block text-center w-max mx-auto mt-2 md:mt-4"
+                className="bg-ink text-paper px-6 py-3 md:px-12 md:py-5 text-[14px] md:text-lg font-medium hover:bg-brand transition-colors rounded-sm inline-block text-center w-max mx-auto mt-1 md:mt-4"
               >
                 Zapytaj o ten front
               </a>
