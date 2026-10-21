@@ -97,58 +97,46 @@ export const Contact: React.FC = () => {
               </div>
               
               <form onSubmit={handleSubmit} className="flex flex-col flex-1">
-                <div className="space-y-8 flex-1">
+                <div className="space-y-6 flex-1">
                   
-                  {/* Minimalistyczny input (tylko dolna krawędź) */}
-                  <div className="relative group">
+                  {/* Statyczne, eleganckie pola formularza bez animacji */}
+                  <div className="flex flex-col">
+                    <label htmlFor="name" className="text-xs text-ink/60 uppercase tracking-widest font-bold mb-2 cursor-pointer">
+                      Imię i nazwisko / Firma *
+                    </label>
                     <input 
                       required 
                       id="name" 
                       name="name" 
                       type="text" 
-                      placeholder=" "
-                      className="peer w-full bg-transparent border-0 border-b border-line px-0 py-3 text-ink focus:ring-0 focus:border-brand transition-colors outline-none font-light" 
+                      className="w-full bg-transparent border-0 border-b border-line px-0 py-2 text-ink focus:ring-0 focus:outline-none focus:border-brand transition-colors font-light" 
                     />
-                    <label 
-                      htmlFor="name" 
-                      className="absolute left-0 top-3 text-ink/40 text-sm transition-all duration-300 peer-focus:-top-4 peer-focus:text-xs peer-focus:text-brand peer-focus:font-bold peer-focus:uppercase peer-focus:tracking-widest peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-ink/60 peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-widest cursor-text"
-                    >
-                      Imię i nazwisko / Firma *
-                    </label>
                   </div>
                   
-                  <div className="relative group">
+                  <div className="flex flex-col">
+                    <label htmlFor="phone" className="text-xs text-ink/60 uppercase tracking-widest font-bold mb-2 cursor-pointer">
+                      Telefon kontaktowy *
+                    </label>
                     <input 
                       required 
                       id="phone" 
                       name="phone" 
                       type="tel" 
-                      placeholder=" "
-                      className="peer w-full bg-transparent border-0 border-b border-line px-0 py-3 text-ink focus:ring-0 focus:border-brand transition-colors outline-none font-light" 
+                      className="w-full bg-transparent border-0 border-b border-line px-0 py-2 text-ink focus:ring-0 focus:outline-none focus:border-brand transition-colors font-light" 
                     />
-                    <label 
-                      htmlFor="phone" 
-                      className="absolute left-0 top-3 text-ink/40 text-sm transition-all duration-300 peer-focus:-top-4 peer-focus:text-xs peer-focus:text-brand peer-focus:font-bold peer-focus:uppercase peer-focus:tracking-widest peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-ink/60 peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-widest cursor-text"
-                    >
-                      Telefon kontaktowy *
-                    </label>
                   </div>
                   
-                  <div className="relative group pt-4">
+                  <div className="flex flex-col">
+                    <label htmlFor="message" className="text-xs text-ink/60 uppercase tracking-widest font-bold mb-2 cursor-pointer">
+                      Szczegóły zlecenia *
+                    </label>
                     <textarea 
                       required 
                       id="message" 
                       name="message" 
                       rows={4} 
-                      placeholder=" "
-                      className="peer w-full bg-transparent border-0 border-b border-line px-0 py-3 text-ink focus:ring-0 focus:border-brand transition-colors outline-none font-light resize-none"
+                      className="w-full bg-transparent border-0 border-b border-line px-0 py-2 text-ink focus:ring-0 focus:outline-none focus:border-brand transition-colors font-light resize-none"
                     ></textarea>
-                    <label 
-                      htmlFor="message" 
-                      className="absolute left-0 top-7 text-ink/40 text-sm transition-all duration-300 peer-focus:top-0 peer-focus:text-xs peer-focus:text-brand peer-focus:font-bold peer-focus:uppercase peer-focus:tracking-widest peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-ink/60 peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-widest cursor-text"
-                    >
-                      Szczegóły zlecenia *
-                    </label>
                   </div>
                   
                 </div>
@@ -158,7 +146,7 @@ export const Contact: React.FC = () => {
                     required 
                     id="rodo" 
                     type="checkbox" 
-                    className="mt-1 w-4 h-4 text-brand bg-transparent border-line rounded-sm focus:ring-brand focus:ring-offset-paper cursor-pointer" 
+                    className="mt-1 w-4 h-4 text-brand bg-transparent border-line rounded-sm focus:ring-brand focus:ring-offset-paper cursor-pointer outline-none focus:outline-none" 
                   />
                   <label htmlFor="rodo" className="text-xs text-muted font-light leading-relaxed cursor-pointer selection:bg-brand selection:text-white">
                     Wyrażam zgodę na przetwarzanie danych w celu obsługi zapytania. *
@@ -167,7 +155,7 @@ export const Contact: React.FC = () => {
                 
                 <button 
                   type="submit" 
-                  className="w-full bg-ink text-paper text-sm uppercase tracking-widest font-bold py-5 hover:bg-brand transition-colors mt-auto"
+                  className="w-full bg-ink text-paper text-sm uppercase tracking-widest font-bold py-5 hover:bg-brand transition-colors mt-auto outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand focus-visible:ring-offset-paper"
                 >
                   Wyślij wiadomość
                 </button>
