@@ -75,47 +75,51 @@ export const CatalogPage: React.FC = () => {
       
       {/* --- MODAL DETALU FRONTU --- */}
       {selectedFront && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-ink/90 backdrop-blur-sm transition-opacity duration-300">
-          {/* Zmieniono max-w-5xl na max-w-6xl aby modal był szerszy i dawał oddech */}
-          <div className="relative w-full max-w-6xl bg-paper rounded-sm shadow-2xl flex flex-col md:flex-row overflow-hidden animate-in fade-in zoom-in-95 duration-300 max-h-screen md:max-h-[85vh] overflow-y-auto md:overflow-y-hidden">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 md:p-12 bg-ink/90 backdrop-blur-sm transition-opacity duration-300">
+          
+          {/* Zmieniono rozmiar modala: max-w-[1400px] w-[95vw] oraz h-[85vh] dla potężnej planszy */}
+          <div className="relative w-full max-w-[1400px] w-[95vw] bg-paper rounded-sm shadow-2xl flex flex-col md:flex-row overflow-hidden animate-in fade-in zoom-in-95 duration-300 md:h-[85vh] max-h-screen">
             
             <button 
               onClick={() => setSelectedFront(null)} 
-              className="absolute top-4 right-4 md:top-6 md:right-6 p-2 text-ink/40 hover:text-brand transition-colors z-30 bg-paper/50 backdrop-blur-md rounded-full"
+              className="absolute top-4 right-4 md:top-8 md:right-8 p-2 text-ink/40 hover:text-brand transition-colors z-30 bg-paper/50 backdrop-blur-md rounded-full"
               aria-label="Zamknij podgląd"
             >
               <XIcon className="w-8 h-8" aria-hidden="true" />
             </button>
 
-            {/* Wizualizacja z lupą - powiększone marginesy (p-12 lg:p-20) zapobiegają ucięciu lupy */}
-            <div className="w-full md:w-1/2 bg-ash/30 p-10 md:p-16 lg:p-20 relative flex items-center justify-center min-h-[450px] md:min-h-[500px]">
-              {/* Pomniejszono bazową grafikę (z max-w-sm do max-w-[280px]) */}
-              <div className="relative w-full max-w-[220px] md:max-w-[260px] lg:max-w-[280px] aspect-[3/4] rounded-sm shadow-md">
+            {/* Zwiększony obszar tła (ash/30) dla lewej kolumny z mocnymi paddingami wewnątrz */}
+            <div className="w-full md:w-1/2 bg-ash/30 p-12 md:p-24 lg:p-32 relative flex items-center justify-center min-h-[450px] md:h-full">
+              
+              {/* Drastycznie zmniejszona grafika bazowa frontu (max-w-[240px] na desktopie) */}
+              <div className="relative w-full max-w-[180px] md:max-w-[200px] lg:max-w-[240px] aspect-[3/4] rounded-sm shadow-md">
                 <MaterialPanel variant={selectedFront.variant} profile={selectedFront.profile} className="w-full h-full rounded-sm" />
                 
-                {/* Lupa i Zoom */}
-                <div className="absolute -top-8 -right-8 md:-top-10 md:-right-10 w-48 h-48 md:w-64 md:h-64 rounded-full border-[4px] md:border-[6px] border-paper shadow-2xl overflow-hidden z-20 pointer-events-none bg-paper">
-                  <div className="w-full h-full flex justify-end items-start pt-6 pr-6 md:pt-8 md:pr-8">
-                    {/* Mocniejszy zoom: zwiększono w-[220%] do w-[280%] co potęguje wrażenie detalu */}
-                    <div className="w-[250%] md:w-[280%] aspect-[3/4] flex-shrink-0 shadow-sm rounded-sm overflow-hidden">
+                {/* Zwiększona lupa (md:w-72 md:h-72) i mocniej odsunięta od rogu małej bazy (-top-20 -right-20) */}
+                <div className="absolute -top-12 -right-12 md:-top-20 md:-right-20 lg:-top-24 lg:-right-24 w-48 h-48 md:w-64 md:h-64 lg:w-72 lg:h-72 rounded-full border-[4px] md:border-[8px] border-paper shadow-2xl overflow-hidden z-20 pointer-events-none bg-paper">
+                  <div className="w-full h-full flex justify-end items-start pt-6 pr-6 md:pt-10 md:pr-10 lg:pt-12 lg:pr-12">
+                    
+                    {/* Poziom zooma: front wewnątrz lupy skaluje się proporcjonalnie do nowej bazy */}
+                    <div className="w-[200%] md:w-[220%] lg:w-[240%] aspect-[3/4] flex-shrink-0 shadow-sm rounded-sm overflow-hidden">
                       <MaterialPanel 
                         variant={selectedFront.variant} 
                         profile={selectedFront.profile} 
                         className="w-full h-full" 
                       />
                     </div>
+
                   </div>
                 </div>
 
               </div>
             </div>
 
-            {/* Teksty i CTA */}
-            <div className="w-full md:w-1/2 p-8 md:p-16 lg:p-20 flex flex-col justify-center text-center md:text-left">
-              <h2 className="font-serif text-4xl md:text-5xl text-ink mb-2">{selectedFront.title}</h2>
-              <p className="text-[10px] md:text-[11px] uppercase tracking-widest font-bold text-brand mb-8">{selectedFront.desc}</p>
+            {/* Teksty i CTA (prawa kolumna dostosowana do nowej wysokości modala, scrollowalna w razie potrzeby) */}
+            <div className="w-full md:w-1/2 p-8 md:p-16 lg:p-24 flex flex-col justify-center text-center md:text-left overflow-y-auto">
+              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-ink mb-2">{selectedFront.title}</h2>
+              <p className="text-[10px] md:text-[12px] uppercase tracking-widest font-bold text-brand mb-10">{selectedFront.desc}</p>
               
-              <p className="text-ink/70 font-light leading-relaxed mb-12 text-lg md:text-xl text-left">
+              <p className="text-ink/70 font-light leading-relaxed mb-16 text-lg md:text-xl lg:text-2xl text-left">
                 {selectedFront.longDesc}
               </p>
 
