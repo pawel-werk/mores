@@ -43,7 +43,6 @@ export const MinusIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-// Strzałka zrobiona jako jednokolorowa (usunęliśmy accentProps)
 export const ArrowRight = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...iconProps} {...props}>
     <path d="M15 5l7 7-7 7M3 12h19" />
@@ -74,11 +73,19 @@ export const FrontIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
+// Przeprojektowany pistolet lakierniczy
 export const PaintIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...iconProps} {...props}>
-    <path d="M8 20l2-8h4l1 2v5h-4v-4H9" />
-    <path d="M7 12V8h8l2-2h2v2l-2 2h-6" />
-    <path d="M19 9l2-1M20 12h3M19 15l2 1" {...accentProps} />
+    {/* Korpus pistoletu z dyszą */}
+    <path d="M7 14h11v-4l-2-2h-4v6" />
+    {/* Kubek grawitacyjny na górze */}
+    <path d="M13 8l-1-5h4l-1 5" />
+    {/* Rękojeść */}
+    <path d="M10 14l-1.5 7" />
+    {/* Spust */}
+    <path d="M13 14v-2h-2" />
+    {/* Strumień lakieru (akcent) - przesunięty wyraźnie przed pistolet */}
+    <path d="M21 9l2-1M22 12h2M21 15l2 1" {...accentProps} />
   </svg>
 );
 
@@ -105,12 +112,21 @@ export const LayersIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
+// Przeprojektowany samochód dostawczy
 export const TruckIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...iconProps} {...props}>
-    <path d="M15 12l4-3h3v8h-6zM15 17v-5H3v5" />
-    <circle cx="6" cy="18" r="2" />
-    <circle cx="18" cy="18" r="2" />
-    <path d="M4 9h10M4 6h10" {...accentProps} />
+    {/* Koła pojazdu */}
+    <circle cx="6" cy="17" r="2" />
+    <circle cx="17" cy="17" r="2" />
+    {/* Zderzaki i oś (nie wchodzące do środka kół) */}
+    <path d="M2 17h2M8 17h7M19 17h2" />
+    {/* Platforma paki (tył i podłoga) */}
+    <path d="M2 17v-3h13" />
+    {/* Geometryczna szoferka oddzielona od paki */}
+    <path d="M15 17V8h3l3 3v6" />
+    <path d="M15 12h5" />
+    {/* Ładunek (akcent) leżący na pace - bez dotykania szoferki */}
+    <path d="M4 12h9M4 9h9" {...accentProps} />
   </svg>
 );
 
