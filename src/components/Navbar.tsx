@@ -51,10 +51,11 @@ export const Navbar: React.FC = () => {
             <a 
               key={link.name} 
               href={link.href} 
-              className="text-[15px] font-normal text-ink/80 hover:text-ink transition-colors relative group"
+              className="text-[15px] font-normal text-ink/80 hover:text-ink transition-colors relative group py-1"
             >
               {link.name}
-              <span className="absolute left-0 -bottom-1.5 w-full h-px bg-brand scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
+              {/* Nowa animacja: linia płynnie podnosi się z dołu (fade + slide-up) zamiast rysowania od lewej */}
+              <span className="absolute left-0 bottom-0 w-full h-[1px] bg-brand opacity-0 translate-y-1.5 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"></span>
             </a>
           ))}
           <a href="#kontakt" className="ml-4 bg-ink text-paper px-6 py-2.5 text-[15px] font-medium hover:bg-brand transition-colors rounded-sm">
