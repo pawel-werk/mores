@@ -75,26 +75,29 @@ export const CatalogPage: React.FC = () => {
       
       {/* --- MODAL DETALU FRONTU --- */}
       {selectedFront && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-8 bg-ink/90 backdrop-blur-sm transition-opacity duration-300">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 md:p-8 bg-ink/90 backdrop-blur-sm transition-opacity duration-300">
           
-          <div className="relative w-full max-w-[1600px] w-[98vw] bg-paper rounded-sm shadow-2xl flex flex-col md:flex-row overflow-hidden animate-in fade-in zoom-in-95 duration-300 md:h-[94vh] max-h-screen">
+          <div className="relative w-full max-w-[1600px] w-[98vw] bg-paper rounded-sm shadow-2xl flex flex-col md:flex-row overflow-hidden animate-in fade-in zoom-in-95 duration-300 max-h-[95dvh] md:h-[94vh]">
             
-            {/* Odsunięto X na mobile od górnej/prawej krawędzi (top-6 right-6) */}
+            {/* Poprawiony przycisk X na mobile: w rogu (top-3 right-3), z własnym tłem i wysokim Z-index aby nie nachodził na zoom */}
             <button 
               onClick={() => setSelectedFront(null)} 
-              className="absolute top-6 right-6 md:top-8 md:right-8 p-2 text-ink/40 hover:text-brand transition-colors z-30 bg-paper/50 backdrop-blur-md rounded-full"
+              className="absolute top-3 right-3 md:top-8 md:right-8 p-2 text-ink/70 hover:text-brand transition-colors z-50 bg-paper/90 md:bg-paper/50 backdrop-blur-md rounded-full shadow-sm md:shadow-none"
               aria-label="Zamknij podgląd"
             >
-              <XIcon className="w-8 h-8" aria-hidden="true" />
+              <XIcon className="w-6 h-6 md:w-8 md:h-8" aria-hidden="true" />
             </button>
 
-            <div className="w-full md:w-1/2 bg-ash/30 p-12 md:p-20 lg:p-24 relative flex items-center justify-center min-h-[450px] md:h-full">
+            {/* Kompaktowa sekcja graficzna na mobile: min-h-[260px] i mniejsze paddingi */}
+            <div className="w-full md:w-1/2 bg-ash/30 p-6 pt-12 md:p-20 lg:p-24 relative flex items-center justify-center min-h-[260px] md:h-full shrink-0">
               
-              <div className="relative w-full max-w-[220px] md:max-w-[280px] lg:max-w-[340px] aspect-[3/4] rounded-sm shadow-md">
+              {/* Maksymalnie skurczony front na mobile (max-w-[130px]) żeby oszczędzić miejsce na tekst na dole */}
+              <div className="relative w-full max-w-[130px] sm:max-w-[180px] md:max-w-[280px] lg:max-w-[340px] aspect-[3/4] rounded-sm shadow-md">
                 <MaterialPanel variant={selectedFront.variant} profile={selectedFront.profile} className="w-full h-full rounded-sm" />
                 
-                <div className="absolute -top-16 -right-20 md:-top-24 md:-right-28 lg:-top-[130px] lg:-right-[150px] w-56 h-56 md:w-72 md:h-72 lg:w-[340px] lg:h-[340px] rounded-full border-[4px] md:border-[8px] border-paper shadow-2xl overflow-hidden z-20 pointer-events-none bg-paper">
-                  <div className="w-full h-full flex justify-end items-start pt-6 pr-6 md:pt-10 md:pr-10 lg:pt-12 lg:pr-12">
+                {/* Zmniejszona lupa na mobile (w-36 h-36) i lekko przesunięta */}
+                <div className="absolute -top-6 -right-10 sm:-top-10 sm:-right-12 md:-top-24 md:-right-28 lg:-top-[130px] lg:-right-[150px] w-36 h-36 sm:w-48 sm:h-48 md:w-72 md:h-72 lg:w-[340px] lg:h-[340px] rounded-full border-[4px] md:border-[8px] border-paper shadow-2xl overflow-hidden z-20 pointer-events-none bg-paper">
+                  <div className="w-full h-full flex justify-end items-start pt-4 pr-4 md:pt-10 md:pr-10 lg:pt-12 lg:pr-12">
                     <div className="w-[200%] md:w-[220%] lg:w-[240%] aspect-[3/4] flex-shrink-0 shadow-sm rounded-sm overflow-hidden">
                       <MaterialPanel 
                         variant={selectedFront.variant} 
@@ -108,23 +111,22 @@ export const CatalogPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Teksty i wyśrodkowane CTA */}
-            <div className="w-full md:w-1/2 p-8 md:p-16 lg:p-24 flex flex-col justify-center text-center md:text-left overflow-y-auto">
-              <h2 className="font-serif text-4xl md:text-5xl lg:text-7xl text-ink mb-4">{selectedFront.title}</h2>
-              <p className="text-[10px] md:text-[12px] uppercase tracking-widest font-bold text-brand mb-10">{selectedFront.desc}</p>
+            {/* Sekcja tekstowa ściśnięta na mobile, aby przycisk od razu łapał się w ekranie */}
+            <div className="w-full md:w-1/2 p-5 sm:p-8 md:p-16 lg:p-24 flex flex-col justify-center text-center md:text-left overflow-y-auto">
+              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-ink mb-2 md:mb-4">{selectedFront.title}</h2>
+              <p className="text-[9px] sm:text-[10px] md:text-[12px] uppercase tracking-widest font-bold text-brand mb-3 md:mb-10">{selectedFront.desc}</p>
               
-              <p className="text-ink/70 font-light leading-relaxed mb-16 text-lg md:text-xl lg:text-2xl text-left">
+              <p className="text-ink/70 font-light leading-relaxed mb-5 md:mb-16 text-[13px] sm:text-[15px] md:text-xl lg:text-2xl text-left">
                 {selectedFront.longDesc}
               </p>
 
-              {/* Powiększony i wyśrodkowany przycisk (usunięto md:mx-0, zastosowano mx-auto i zwiększone paddingi/czcionkę) */}
               <a 
                 href="#kontakt" 
                 onClick={(e) => {
                   setSelectedFront(null);
                   handleScrollToContact();
                 }}
-                className="bg-ink text-paper px-8 py-4 md:px-12 md:py-5 text-[15px] md:text-lg font-medium hover:bg-brand transition-colors rounded-sm inline-block text-center w-max mx-auto mt-4"
+                className="bg-ink text-paper px-6 py-3 md:px-12 md:py-5 text-[14px] md:text-lg font-medium hover:bg-brand transition-colors rounded-sm inline-block text-center w-max mx-auto mt-2 md:mt-4"
               >
                 Zapytaj o ten front
               </a>
