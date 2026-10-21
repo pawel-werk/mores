@@ -19,7 +19,7 @@ const processSteps = [
     step: "03", 
     title: "Produkcja", 
     desc: "Precyzyjna obróbka i lakierowanie.",
-    badges: ["Standard 14 dni", "Ekspres (+50%)"], 
+    badges: ["Standard 14 dni", "Ekspres 7 dni"], // Zmieniono z (+50%) na 7 dni
     icon: MachineIcon 
   },
   { 
@@ -66,7 +66,6 @@ export const Process: React.FC = () => {
                     <div className="lg:hidden absolute left-[11px] top-3 w-[9px] h-[9px] bg-ash border border-ink/20 rounded-full group-hover:border-brand transition-colors duration-500" />
                     
                     {/* Główny blok z ikoną i gigantycznym szeryfowym numerem */}
-                    {/* Klasy lg:bg-ash i lg:pr-6 maskują rysującą się pod spodem linię horyzontalną */}
                     <div className="flex items-center gap-4 mb-6 lg:bg-ash lg:inline-flex lg:pr-6">
                       <div className="text-ink/30 group-hover:text-brand transition-colors duration-500">
                         <Icon className="w-9 h-9" aria-hidden="true" />
@@ -83,11 +82,11 @@ export const Process: React.FC = () => {
                       </h3>
                       {p.desc && <p className="text-ink/70 font-light leading-relaxed">{p.desc}</p>}
                       
-                      {/* Dyskretne, techniczne etykiety (Badges) bez krzykliwych teł */}
+                      {/* Etykiety: Wyśrodkowane w osi kolumny (flex justify-center lub justify-start dla innych) */}
                       {p.badges && (
-                        <div className="flex flex-wrap gap-2 mt-5">
+                        <div className="flex flex-wrap justify-center sm:justify-start gap-2 mt-5">
                           {p.badges.map(b => (
-                            <span key={b} className="inline-flex items-center justify-center border border-ink/10 text-ink/60 text-[9px] uppercase tracking-widest font-bold px-2 py-1 rounded-sm whitespace-nowrap">
+                            <span key={b} className="inline-flex items-center justify-center border border-ink/10 text-ink/60 text-[9px] uppercase tracking-widest font-bold px-3 py-1.5 rounded-sm whitespace-nowrap bg-paper/50">
                               {b}
                             </span>
                           ))}
