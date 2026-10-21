@@ -79,7 +79,7 @@ export const Contact: React.FC = () => {
                 {/* Usunięto blend-multiply, podniesiono opacity dla lepszej czytelności */}
                 <iframe 
                   title="Mapa dojazdu"
-                  className="absolute inset-0 w-full h-full z-10 filter grayscale opacity-80 hover:opacity-100 transition-opacity duration-1000"
+                  className="absolute inset-0 w-full h-full z-10 filter grayscale opacity-72 hover:opacity-100 transition-opacity duration-1000"
                   style={{ border: 0 }} 
                   loading="lazy" 
                   referrerPolicy="no-referrer-when-downgrade"
