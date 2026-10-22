@@ -31,7 +31,7 @@ export const topbarMessages = [
 export const faqData = [
   {
     question: "Czy realizujecie zlecenia nietypowe według projektu?",
-    answer: "Tak, nasza wycinarnia i lakiernia pozwalają nam realizować zamówienia poza standardowymi wymiarami i wzorami. Skontaktuj się z nami, aby wycenić projekt."
+    answer: "Tak, precyzyjna formatyzacja oraz własna lakiernia pozwalają nam realizować zamówienia poza standardowymi wymiarami i wzorami. Skontaktuj się z nami, aby wycenić projekt."
   },
   {
     question: "Czy można zamówić u Was pojedyncze fronty (np. na wymianę)?",

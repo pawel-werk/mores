@@ -15,7 +15,7 @@ const services = [
   },
   { 
     title: "Cięcie i formatowanie", 
-    desc: "Precyzyjna wycinarnia przygotowująca materiały do dalszej obróbki szybko i z optymalizacją odpadu.",
+    desc: "Precyzyjna formatyzacja przygotowująca materiały do dalszej obróbki szybko i z optymalizacją odpadu.",
     icon: CutIcon
   },
   { 

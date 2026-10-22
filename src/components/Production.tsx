@@ -4,7 +4,7 @@ import { LayersIcon, CutIcon, PaintIcon, TruckIcon } from './Icons';
 
 const steps = [
   { title: "Półprodukty", icon: LayersIcon },
-  { title: "Wycinarnia", icon: CutIcon },
+  { title: "Formatyzacja", icon: CutIcon },
   { title: "Lakiernia", icon: PaintIcon },
   { title: "Magazyn i\u00A0logistyka", icon: TruckIcon }
 ];
@@ -31,7 +31,7 @@ export const Production: React.FC = () => {
             <div className="grid md:grid-cols-2 gap-8 md:gap-12 mt-4 lg:mt-0">
               <Reveal delay={100}>
                 <p className="text-ink/70 font-light leading-relaxed">
-                  Największą przewagą mores jest kompletne zaplecze produkcyjne. Posiadając własną wycinarnię, lakiernię oraz obszerny magazyn, zdejmujemy z Ciebie problem szukania podwykonawców.
+                  Największą przewagą mores jest kompletne zaplecze produkcyjne. Posiadając zaplecze do formatyzacji, własną lakiernię oraz obszerny magazyn, zdejmujemy z Ciebie problem szukania podwykonawców.
                 </p>
               </Reveal>
               <Reveal delay={200}>
