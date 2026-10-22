@@ -1,5 +1,6 @@
 import React from 'react';
 import { Reveal } from './Reveal';
+import { ArrowRight } from './Icons';
 import { companyData } from '../data/content';
 
 export const Contact: React.FC = () => {
@@ -58,9 +59,20 @@ export const Contact: React.FC = () => {
                   <div className="py-8 border-t border-b border-ink/10 grid grid-cols-2 gap-8">
                     <div>
                       <span className="block text-[10px] uppercase tracking-widest font-bold text-ink/40 mb-3">Adres produkcji</span>
-                      <span className="font-light text-lg text-ink block leading-relaxed">
-                        {companyData.addressLine1}<br/>{companyData.addressLine2}
-                      </span>
+                      <a 
+                        href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(companyData.addressLine1 + ', ' + companyData.addressLine2)}`}
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="group inline-flex items-start gap-2 text-ink font-light hover:text-brand transition-colors outline-none focus-visible:ring-2 focus-visible:ring-brand rounded-sm leading-relaxed text-lg"
+                      >
+                        <span>
+                          {companyData.addressLine1}<br/>{companyData.addressLine2}
+                        </span>
+                        <ArrowRight 
+                          className="w-4 h-4 mt-1.5 opacity-40 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" 
+                          aria-hidden="true" 
+                        />
+                      </a>
                     </div>
                     <div>
                       <span className="block text-[10px] uppercase tracking-widest font-bold text-ink/40 mb-3">Godziny otwarcia</span>
