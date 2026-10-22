@@ -40,7 +40,6 @@ export const Lightbox: React.FC<LightboxProps> = ({ item, currentIndex, total, o
     }, 150);
   };
 
-  // Ustawienie domyślnych detali w przypadku ich braku (dla starszych zdjęć w bazie)
   const displayDetails = item.details || [
     { label: 'Kategoria', value: item.category },
     { label: 'Typ wykończenia', value: item.description }
@@ -84,7 +83,7 @@ export const Lightbox: React.FC<LightboxProps> = ({ item, currentIndex, total, o
           )}
         </div>
 
-        {/* PRAWA STRONA: Opis, detale i CTA wyśrodkowane */}
+        {/* PRAWA STRONA: Opis, detale i CTA */}
         <div className="w-full lg:w-[40%] p-6 sm:p-10 lg:p-16 flex flex-col justify-center items-center text-center lg:text-left lg:items-start overflow-y-auto">
           
           <div className="w-full max-w-md mx-auto lg:mx-0">
@@ -117,8 +116,8 @@ export const Lightbox: React.FC<LightboxProps> = ({ item, currentIndex, total, o
               ))}
             </div>
 
-            {/* Wyśrodkowany przycisk na środku kolumny */}
-            <div className="flex justify-center lg:justify-start">
+            {/* Wymuszenie wyśrodkowania przycisku na 100% szerokości kolumny */}
+            <div className="flex justify-center w-full">
               <a 
                 href="#kontakt" 
                 onClick={handleScrollToContact}

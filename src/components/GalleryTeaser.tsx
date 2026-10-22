@@ -15,13 +15,13 @@ type Project = {
 const projectsData: Project[] = [
   {
     id: '1',
-    title: 'Szałwia i Drewno',
+    title: 'Ponadczasowe drewno', // Zmiana nazwy
     subtitle: 'Dom pod miastem',
-    category: 'Kuchnia / Ryflowania',
+    category: 'Kuchnia / Frezowania',
     image: 'https://i.postimg.cc/6pJTtTbK/DSC-5246.jpg',
-    description: 'Projekt nowoczesnej kuchni łączącej ryflowane fronty w odcieniu szałwii z ciepłym, naturalnym drewnem. Precyzyjne frezowania dodają głębi i tekstury, tworząc przytulne, a zarazem niezwykle eleganckie wnętrze, w którym rzemiosło gra główne skrzypce.',
+    description: 'Projekt nowoczesnej kuchni łączącej frezowane fronty z ciepłym, naturalnym drewnem. Precyzyjne frezowania dodają głębi i tekstury, tworząc przytulne, a zarazem niezwykle eleganckie wnętrze, w którym rzemiosło gra główne skrzypce.',
     details: [
-      { label: 'Fronty', value: 'Ryflowane / Gładkie' },
+      { label: 'Fronty', value: 'Frezowane / Gładkie' },
       { label: 'Wykończenie', value: 'Lakier matowy / Naturalny fornir' },
       { label: 'Detale', value: 'Frezowanie asymetryczne' }
     ]
@@ -41,14 +41,14 @@ const projectsData: Project[] = [
   },
   {
     id: '3',
-    title: 'Grafitowy Minimalizm',
+    title: 'Biały minimalizm', // Zmiana nazwy
     subtitle: 'Loft industrialny',
-    category: 'Zabudowa / Gładki mat',
+    category: 'Zabudowa / Lakier błyszczący',
     image: 'https://i.postimg.cc/FzvmwJsq/DSC-5540.jpg',
-    description: 'Monochromatyczna, minimalistyczna kuchnia w głębokim graficie. Gładkie, matowe powierzchnie o podwyższonej odporności na ślady palców idealnie wpisują się w nowoczesną architekturę, stanowiąc czyste tło dla reszty wyposażenia.',
+    description: 'Jasna, minimalistyczna kuchnia w klasycznej bieli. Gładkie, błyszczące powierzchnie idealnie wpisują się w nowoczesną architekturę, stanowiąc czyste i świeże tło dla reszty wyposażenia.',
     details: [
       { label: 'Fronty', value: 'Płaskie' },
-      { label: 'Wykończenie', value: 'Głęboki mat' },
+      { label: 'Wykończenie', value: 'Lakier błyszczący' }, // Zmiana wykończenia
       { label: 'Detale', value: 'Bezuchwytowy system Tip-On' }
     ]
   },
@@ -138,19 +138,21 @@ export const GalleryTeaser: React.FC = () => {
                   ))}
                 </div>
                 
-                {/* Nowy przycisk CTA */}
-                <a 
-                  href="#kontakt" 
-                  onClick={() => {
-                    setActiveProject(null);
-                    setTimeout(() => {
-                      document.getElementById('kontakt')?.scrollIntoView({ behavior: 'smooth' });
-                    }, 150);
-                  }}
-                  className="inline-block bg-ink text-paper text-center px-6 py-4 lg:px-8 text-[14px] lg:text-[15px] font-medium hover:bg-brand hover:text-white transition-colors rounded-sm w-full sm:w-max"
-                >
-                  Zapytaj o wycenę
-                </a>
+                {/* Wymuszenie wyśrodkowania przycisku na 100% szerokości kolumny */}
+                <div className="flex justify-center w-full">
+                  <a 
+                    href="#kontakt" 
+                    onClick={() => {
+                      setActiveProject(null);
+                      setTimeout(() => {
+                        document.getElementById('kontakt')?.scrollIntoView({ behavior: 'smooth' });
+                      }, 150);
+                    }}
+                    className="inline-block bg-ink text-paper text-center px-8 py-4 text-[14px] lg:text-[15px] font-medium hover:bg-brand hover:text-white transition-colors rounded-sm"
+                  >
+                    Zapytaj o wycenę
+                  </a>
+                </div>
               </div>
             </div>
 

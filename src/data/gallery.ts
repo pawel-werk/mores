@@ -51,7 +51,7 @@ export const galleryData: GalleryItem[] = [
     image: 'https://i.postimg.cc/FzvmwJsq/DSC-5540.jpg',
     details: [
       { label: 'Fronty', value: 'Płaskie' },
-      { label: 'Wykończenie', value: 'Głęboki mat' },
+      { label: 'Wykończenie', value: 'Lakier błyszczący' },
       { label: 'Detale', value: 'Bezuchwytowy system Tip-On' }
     ]
   },
