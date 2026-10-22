@@ -113,4 +113,79 @@ export const GalleryTeaser: React.FC = () => {
               <span className="text-[10px] uppercase tracking-widest font-bold text-brand mb-4 block">
                 {activeProject.category}
               </span>
-              <h3
+              <h3 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-ink mb-2">
+                {activeProject.title}
+              </h3>
+              <p className="text-ink/50 text-sm lg:text-base font-light mb-8 lg:mb-12">
+                {activeProject.subtitle}
+              </p>
+              
+              <p className="text-ink/70 font-light leading-relaxed text-sm sm:text-base lg:text-lg mb-10">
+                {activeProject.description}
+              </p>
+
+              <div className="space-y-4 mt-auto border-t border-ink/10 pt-8">
+                {activeProject.details.map((detail, idx) => (
+                  <div key={idx} className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-4 pb-4 border-b border-ink/5 last:border-0">
+                    <span className="text-[10px] uppercase tracking-widest font-bold text-ink/40">
+                      {detail.label}
+                    </span>
+                    <span className="text-ink text-sm font-medium">
+                      {detail.value}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+          </div>
+        </div>
+      )}
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <header className="mb-16 md:mb-24">
+          <Reveal>
+            <h2 className="font-serif text-4xl md:text-5xl text-ink mb-6">Nasze realizacje</h2>
+            <p className="text-ink/70 text-lg font-light leading-relaxed max-w-2xl">
+              Wybrane projekty, w których nasze fronty i elementy stolarskie stały się częścią wyjątkowych wnętrz.
+            </p>
+          </Reveal>
+        </header>
+
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+          {projectsData.map((project, idx) => (
+            <Reveal key={project.id} delay={idx * 100} variant="slide-up">
+              <div 
+                className="group cursor-pointer block outline-none focus-visible:ring-2 focus-visible:ring-brand rounded-sm"
+                onClick={() => setActiveProject(project)}
+              >
+                <div className="relative aspect-[4/3] overflow-hidden rounded-sm mb-6 bg-ash/20">
+                  <img 
+                    src={project.image} 
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-ink/0 group-hover:bg-ink/10 transition-colors duration-500" />
+                </div>
+                
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-4">
+                  <div>
+                    <span className="text-[10px] uppercase tracking-widest font-bold text-brand mb-2 block">
+                      {project.category}
+                    </span>
+                    <h3 className="font-serif text-2xl md:text-3xl text-ink group-hover:text-brand transition-colors">
+                      {project.title}
+                    </h3>
+                  </div>
+                  <span className="text-ink/50 text-sm font-light">
+                    {project.subtitle}
+                  </span>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
