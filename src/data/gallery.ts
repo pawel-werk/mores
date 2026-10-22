@@ -23,8 +23,8 @@ export const galleryData: GalleryItem[] = [
     image: 'https://i.postimg.cc/6pJTtTbK/DSC-5246.jpg',
     details: [
       { label: 'Fronty', value: 'Frezowane / Gładkie' }, // Zmiana
-      { label: 'Wykończenie', value: 'Lakier matowy / Naturalny fornir' },
-      { label: 'Detale', value: 'Frezowanie asymetryczne' }
+      { label: 'Wykończenie', value: 'Lakier matowy' },
+      { label: 'Detale', value: 'Frezowanie symetryczne' }
     ]
   },
   {
