@@ -1,83 +1,114 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { XIcon } from './Icons';
-import { GalleryItem } from '../data/gallery';
 import { MaterialPanel } from './MaterialPanel';
 
-interface LightboxProps {
-  item: GalleryItem;
+type LightboxProps = {
+  item: any;
   currentIndex: number;
   total: number;
   onClose: () => void;
   onNext: () => void;
   onPrev: () => void;
-}
+};
 
 export const Lightbox: React.FC<LightboxProps> = ({ item, currentIndex, total, onClose, onNext, onPrev }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-
+  
   useEffect(() => {
-    document.body.style.overflow = 'hidden';
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
       if (e.key === 'ArrowRight') onNext();
       if (e.key === 'ArrowLeft') onPrev();
     };
     document.addEventListener('keydown', handleKeyDown);
-    containerRef.current?.focus();
+    document.body.style.overflow = 'hidden';
+    
     return () => {
-      document.body.style.overflow = '';
       document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = '';
     };
   }, [onClose, onNext, onPrev]);
 
+  const handleScrollToContact = () => {
+    onClose(); 
+    setTimeout(() => {
+      const contactSection = document.getElementById('kontakt');
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        window.location.href = '/#kontakt';
+      }
+    }, 150);
+  };
+
   return (
-    <div 
-      className="fixed inset-0 z-50 bg-graphite/95 flex flex-col items-center justify-center p-4 md:p-8 backdrop-blur-md transition-opacity"
-      role="dialog"
-      aria-modal="true"
-      aria-label="Podgląd zdjęcia"
-    >
-      <div ref={containerRef} tabIndex={-1} className="w-full max-w-7xl h-full relative flex flex-col items-center outline-none">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-6 md:p-8 bg-ink/90 backdrop-blur-sm transition-opacity duration-300">
+      
+      <div className="relative w-full max-w-[1400px] w-[96vw] bg-paper rounded-sm shadow-2xl flex flex-col lg:flex-row overflow-hidden animate-in fade-in zoom-in-95 duration-300 max-h-[95dvh] lg:h-[85vh]">
         
-        <div className="w-full flex justify-between items-center text-ash mb-6 px-4 absolute top-0 z-10">
-          <span className="text-[10px] uppercase tracking-widest font-bold opacity-50">{currentIndex + 1} / {total}</span>
-          <button onClick={onClose} className="p-2 text-ash/60 hover:text-brand transition-colors" aria-label="Zamknij">
-            <XIcon className="w-6 h-6" aria-hidden="true" />
+        {/* Przycisk ZAMKNIJ */}
+        <button 
+          onClick={onClose} 
+          className="absolute top-4 right-4 lg:top-8 lg:right-8 p-2 text-ink/70 hover:text-brand transition-colors z-50 bg-paper/90 backdrop-blur-md rounded-full shadow-sm"
+          aria-label="Zamknij"
+        >
+          <XIcon className="w-6 h-6 lg:w-8 lg:h-8" aria-hidden="true" />
+        </button>
+
+        {/* LEWA STRONA: Zdjęcie i nawigacja */}
+        <div className="w-full lg:w-[60%] h-[40vh] lg:h-full relative shrink-0 bg-ash/30 flex items-center justify-center overflow-hidden">
+          
+          <button onClick={onPrev} className="absolute left-2 lg:left-6 top-1/2 -translate-y-1/2 p-2 lg:p-4 text-ink hover:text-brand transition-colors z-40 bg-paper/90 backdrop-blur-md rounded-full shadow-lg outline-none focus-visible:ring-2 focus-visible:ring-brand">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
           </button>
+          
+          <button onClick={onNext} className="absolute right-2 lg:right-6 top-1/2 -translate-y-1/2 p-2 lg:p-4 text-ink hover:text-brand transition-colors z-40 bg-paper/90 backdrop-blur-md rounded-full shadow-lg outline-none focus-visible:ring-2 focus-visible:ring-brand">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+
+          {item.image ? (
+            <img 
+              src={item.image} 
+              alt={item.title} 
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <div className="w-[60%] max-w-[340px] aspect-[3/4]">
+              <MaterialPanel variant={item.variant || 'bazalt'} profile={item.profile || 'flat'} className="w-full h-full shadow-2xl rounded-sm" />
+            </div>
+          )}
         </div>
 
-        <div className="relative w-full flex-1 flex items-center justify-center group my-16">
-          <button 
-            onClick={onPrev} 
-            className="absolute left-0 p-4 text-ash/30 hover:text-brand transition-colors z-10 hidden md:block outline-none focus-visible:text-brand"
-            aria-label="Poprzednie"
-          >
-             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square"><path d="M15 18l-6-6 6-6"/></svg>
-          </button>
-          
-          <div className="w-full max-w-3xl aspect-square md:aspect-[4/3] shadow-2xl relative">
-             {/* Pełne wsparcie dla wygenerowanych paneli ORAZ zwykłych zdjęć */}
-             <MaterialPanel 
-               src={item.src}
-               variant={item.variant}
-               profile={item.profile}
-               className="w-full h-full"
-             />
+        {/* PRAWA STRONA: Opis i CTA */}
+        <div className="w-full lg:w-[40%] p-6 sm:p-10 lg:p-16 flex flex-col justify-between overflow-y-auto">
+          <div>
+            <span className="text-[10px] uppercase tracking-widest font-bold text-brand mb-4 block">
+              {item.description}
+            </span>
+            <h3 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-ink mb-6">
+              {item.title}
+            </h3>
+            
+            <p className="text-ink/70 font-light leading-relaxed text-sm sm:text-base lg:text-lg mb-10">
+              {item.longDesc || "Ekskluzywna realizacja dopasowana do indywidualnych potrzeb klienta. Wykorzystanie najwyższej jakości materiałów i precyzyjne wykończenie zapewniają ponadczasowy efekt."}
+            </p>
           </div>
-          
-          <button 
-            onClick={onNext} 
-            className="absolute right-0 p-4 text-ash/30 hover:text-brand transition-colors z-10 hidden md:block outline-none focus-visible:text-brand"
-            aria-label="Następne"
-          >
-             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square"><path d="M9 18l6-6-6-6"/></svg>
-          </button>
+
+          <div className="mt-auto border-t border-ink/10 pt-8">
+            <div className="flex items-center justify-between mb-8">
+              <span className="text-[10px] uppercase tracking-widest font-bold text-ink/40">Realizacja</span>
+              <span className="text-[12px] font-medium text-ink">{currentIndex + 1} / {total}</span>
+            </div>
+            
+            <a 
+              href="#kontakt" 
+              onClick={handleScrollToContact}
+              className="inline-block bg-ink text-paper text-center px-6 py-4 lg:px-8 text-[14px] lg:text-[15px] font-medium hover:bg-brand hover:text-white transition-colors rounded-sm w-full sm:w-max"
+            >
+              Zapytaj o wycenę
+            </a>
+          </div>
         </div>
-        
-        <div className="text-center px-4 max-w-2xl">
-          <h3 className="font-serif text-2xl text-paper mb-2">{item.title}</h3>
-          <p className="text-[11px] uppercase tracking-[0.2em] font-bold text-ash/50">{item.description}</p>
-        </div>
+
       </div>
     </div>
   );

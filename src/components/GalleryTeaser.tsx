@@ -124,17 +124,33 @@ export const GalleryTeaser: React.FC = () => {
                 {activeProject.description}
               </p>
 
-              <div className="space-y-4 mt-auto border-t border-ink/10 pt-8">
-                {activeProject.details.map((detail, idx) => (
-                  <div key={idx} className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-4 pb-4 border-b border-ink/5 last:border-0">
-                    <span className="text-[10px] uppercase tracking-widest font-bold text-ink/40">
-                      {detail.label}
-                    </span>
-                    <span className="text-ink text-sm font-medium">
-                      {detail.value}
-                    </span>
-                  </div>
-                ))}
+              <div className="mt-auto border-t border-ink/10 pt-8">
+                <div className="space-y-4 mb-10">
+                  {activeProject.details.map((detail, idx) => (
+                    <div key={idx} className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-4 pb-4 border-b border-ink/5 last:border-0">
+                      <span className="text-[10px] uppercase tracking-widest font-bold text-ink/40">
+                        {detail.label}
+                      </span>
+                      <span className="text-ink text-sm font-medium">
+                        {detail.value}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+                
+                {/* Nowy przycisk CTA */}
+                <a 
+                  href="#kontakt" 
+                  onClick={() => {
+                    setActiveProject(null);
+                    setTimeout(() => {
+                      document.getElementById('kontakt')?.scrollIntoView({ behavior: 'smooth' });
+                    }, 150);
+                  }}
+                  className="inline-block bg-ink text-paper text-center px-6 py-4 lg:px-8 text-[14px] lg:text-[15px] font-medium hover:bg-brand hover:text-white transition-colors rounded-sm w-full sm:w-max"
+                >
+                  Zapytaj o wycenę
+                </a>
               </div>
             </div>
 
