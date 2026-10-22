@@ -59,7 +59,6 @@ export const Hero: React.FC = () => {
                   </div>
 
                   {/* Panel 2: Magma (Prawa strona - Pomarańczowy) */}
-                  {/* Wysunięty ze środka: -right-4 md:-right-8 */}
                   <div className="absolute -right-4 md:-right-8 bottom-[15%] md:bottom-[18%] w-[45%] h-[55%] z-20 transition-transform duration-700 group-hover:translate-y-4 group-hover:translate-x-2 group-hover:rotate-2">
                     <MaterialPanel variant="magma" profile="slatted" className="w-full h-full shadow-2xl" />
                     {/* Badge wysunięty na zewnątrz frontu: -right-6 md:-right-10 */}
@@ -71,7 +70,8 @@ export const Hero: React.FC = () => {
                   {/* Panel 3: Bazalt (Środek - Czarny) */}
                   <div className="absolute left-[20%] md:left-[22%] top-1/2 -translate-y-1/2 w-[55%] h-[70%] z-30 transition-transform duration-700 group-hover:scale-105">
                     <MaterialPanel variant="bazalt" profile="frame" className="w-full h-full shadow-2xl" />
-                    <div className="absolute top-1/4 -right-6 md:-right-12 bg-paper/95 backdrop-blur-sm px-3 py-1.5 text-[8px] uppercase tracking-widest font-bold text-ink shadow-sm border border-ink/5 z-40 whitespace-nowrap">
+                    {/* Plakietka przesunięta w lewo (right-4 md:right-8), aby nie nachodziła na pomarańczowy front */}
+                    <div className="absolute top-1/4 right-4 md:right-8 bg-paper/95 backdrop-blur-sm px-3 py-1.5 text-[8px] uppercase tracking-widest font-bold text-ink shadow-sm border border-ink/5 z-40 whitespace-nowrap">
                       Bazalt / Profil ramowy
                     </div>
                   </div>
