@@ -1,44 +1,43 @@
-export interface GalleryItem {
+// Przykład modyfikacji typu w src/data/gallery.ts
+export type GalleryItem = {
   id: string;
-  src?: string;
-  variant?: 'bazalt' | 'magma' | 'lithos' | 'tundra' | 'lumina';
-  profile?: 'flat' | 'frame' | 'slatted';
   category: 'fronty' | 'lakierowanie' | 'nietypowe';
   title: string;
   description: string;
-}
+  src?: string; // Jeśli używasz lokalnych zdjęć
+  image?: string; // DODANE: zewnętrzny link do obrazka
+  variant?: 'bazalt' | 'magma' | 'lithos' | 'tundra' | 'lumina';
+  profile?: 'flat' | 'frame' | 'slatted';
+};
 
 export const galleryData: GalleryItem[] = [
   {
-    id: 'img-1',
+    id: '1',
     category: 'fronty',
-    title: 'Rezydencja Konstancin',
-    description: 'Fornir dąb naturalny / Płaskie',
-    variant: 'tundra',
-    profile: 'flat'
+    title: 'Szałwia i Drewno',
+    description: 'Kuchnia / Ryflowania',
+    image: 'https://i.postimg.cc/6pJTtTbK/DSC-5246.jpg'
   },
   {
-    id: 'img-2',
+    id: '2',
+    category: 'fronty',
+    title: 'Ciemna Elegancja',
+    description: 'Kuchnia / Lamele',
+    image: 'https://i.postimg.cc/433YFqFj/DSC-5394.jpg'
+  },
+  {
+    id: '3',
     category: 'lakierowanie',
-    title: 'Butik Warszawa',
-    description: 'Lakier głęboki mat / Listwowanie',
-    variant: 'bazalt',
-    profile: 'slatted'
+    title: 'Grafitowy Minimalizm',
+    description: 'Zabudowa / Gładki mat',
+    image: 'https://i.postimg.cc/FzvmwJsq/DSC-5540.jpg'
   },
   {
-    id: 'img-3',
+    id: '4',
     category: 'fronty',
-    title: 'Apartament Złota',
-    description: 'Biel satynowa / Shaker',
-    variant: 'lumina',
-    profile: 'frame'
+    title: 'Jasna Klasyka',
+    description: 'Kuchnia / Shaker',
+    image: 'https://i.postimg.cc/MH6Ny0GB/DSC-6492.jpg'
   },
-  {
-    id: 'img-4',
-    category: 'nietypowe',
-    title: 'Recepcja Hotelu',
-    description: 'Ciepły kamień / Płaskie',
-    variant: 'lithos',
-    profile: 'flat'
-  }
+  // ... reszta Twoich danych bez zmian ...
 ];

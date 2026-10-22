@@ -69,13 +69,22 @@ export const GalleryPage: React.FC = () => {
                 onClick={() => setLightboxIndex(idx)}
                 className="group w-full text-left outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 focus-visible:ring-offset-paper rounded-sm"
               >
-                <div className="w-full aspect-[3/4] overflow-hidden rounded-sm shadow-sm transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-2 group-hover:shadow-md">
-                  <MaterialPanel 
-                    src={item.src}
-                    variant={item.variant}
-                    profile={item.profile}
-                    className="w-full h-full transition-transform duration-[2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
-                  />
+                <div className="w-full aspect-[3/4] overflow-hidden rounded-sm shadow-sm transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-2 group-hover:shadow-md bg-ash/20">
+                  {/* Wyświetla obraz z linku, jeśli istnieje. Jeśli nie - MaterialPanel */}
+                  {item.image ? (
+                     <img 
+                       src={item.image} 
+                       alt={item.title} 
+                       className="w-full h-full object-cover transition-transform duration-[2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+                     />
+                  ) : (
+                    <MaterialPanel 
+                      src={item.src}
+                      variant={item.variant}
+                      profile={item.profile}
+                      className="w-full h-full transition-transform duration-[2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+                    />
+                  )}
                 </div>
                 
                 <div className="mt-5 flex flex-col gap-1 hairline-t pt-3">
@@ -118,6 +127,7 @@ export const GalleryPage: React.FC = () => {
 
       </div>
 
+      {/* Lightbox zaktualizowany, aby obsługiwać item.image (wymaga modyfikacji pliku Lightbox.tsx, jeśli tego jeszcze nie ma) */}
       {lightboxIndex !== null && (
         <Lightbox 
           item={filteredData[lightboxIndex]}
