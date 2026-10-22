@@ -22,8 +22,8 @@ const projectsData: Project[] = [
     description: 'Projekt nowoczesnej kuchni łączącej frezowane fronty z ciepłym, naturalnym drewnem. Precyzyjne frezowania dodają głębi i tekstury, tworząc przytulne, a zarazem niezwykle eleganckie wnętrze, w którym rzemiosło gra główne skrzypce.',
     details: [
       { label: 'Fronty', value: 'Frezowane / Gładkie' },
-      { label: 'Wykończenie', value: 'Lakier matowy / Naturalny fornir' },
-      { label: 'Detale', value: 'Frezowanie asymetryczne' }
+      { label: 'Wykończenie', value: 'Lakier matowy' },
+      { label: 'Detale', value: 'Klasyczne frezy' }
     ]
   },
   {
@@ -35,7 +35,7 @@ const projectsData: Project[] = [
     description: 'Ekskluzywna zabudowa kuchenna oparta na głębokiej czerni i strukturze drobnych lameli. Połączenie ciemnego, szczotkowanego drewna z monumentalną, kamienną wyspą podkreśla luksusowy i bezkompromisowy charakter otwartej przestrzeni.',
     details: [
       { label: 'Fronty', value: 'Lamele / Płaskie' },
-      { label: 'Wykończenie', value: 'Fornir barwiony / Ultramat' },
+      { label: 'Wykończenie', value: 'Anty finger / Ultramat' },
       { label: 'Detale', value: 'Zintegrowane podcięcia' }
     ]
   },
@@ -48,7 +48,7 @@ const projectsData: Project[] = [
     description: 'Jasna, minimalistyczna kuchnia w klasycznej bieli. Gładkie, błyszczące powierzchnie idealnie wpisują się w nowoczesną architekturę, stanowiąc czyste i świeże tło dla reszty wyposażenia.',
     details: [
       { label: 'Fronty', value: 'Płaskie' },
-      { label: 'Wykończenie', value: 'Lakier błyszczący' }, // Zmiana wykończenia
+      { label: 'Wykończenie', value: 'Lakier błyszczący' },
       { label: 'Detale', value: 'Bezuchwytowy system Tip-On' }
     ]
   },
@@ -58,9 +58,9 @@ const projectsData: Project[] = [
     subtitle: 'Rezydencja Konstancin',
     category: 'Kuchnia / Shaker',
     image: 'https://i.postimg.cc/MH6Ny0GB/DSC-6492.jpg',
-    description: 'Ponadczasowa, jasna kuchnia z frontami ramiakowymi inspirowanymi stylem shaker. Klasyczna elegancja przełamanej bieli połączona z mosiężnymi uchwytami i grubymi, kamiennymi blatami tworzy wyjątkowo jasną, prestiżową strefę dzienną.',
+    description: 'Ponadczasowa, jasna kuchnia z frontami inspirowanymi stylem shaker. Klasyczna elegancja przełamanej bieli połączona z mosiężnymi uchwytami i grubymi, kamiennymi blatami tworzy wyjątkowo jasną, prestiżową strefę dzienną.',
     details: [
-      { label: 'Fronty', value: 'Ramowe (Klasyczny Shaker)' },
+      { label: 'Fronty', value: 'Ramowe' },
       { label: 'Wykończenie', value: 'Lakier półmatowy' },
       { label: 'Detale', value: 'Klasyczne proporcje ramiaka' }
     ]
