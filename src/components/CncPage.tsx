@@ -51,7 +51,7 @@ export const CncPage: React.FC = () => {
             <div className="absolute bottom-8 -left-4 md:-left-12 bg-paper/95 backdrop-blur-sm p-6 shadow-xl border border-ink/5 z-10 max-w-xs">
               <span className="text-[10px] uppercase tracking-widest font-bold text-brand mb-2 block">Technologia</span>
               <h3 className="font-serif text-xl text-ink mb-2">PG CNC 2030 ATC</h3>
-              <p className="text-sm font-light text-ink/70">Nowoczesny nesting CNC do płyt, tworzyw i kompozytów.</p>
+              <p className="text-sm font-light text-ink/70">Nowoczesny nesting CNC płyt, tworzyw i kompozytów.</p>
             </div>
           </Reveal>
         </div>
