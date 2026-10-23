@@ -109,7 +109,8 @@ export const CncPage: React.FC = () => {
         </div>
 
         {/* SZCZEGÓŁY Z MAILA */}
-        <div className="grid lg:grid-cols-12 gap-16 mb-24 md:mb-32 items-start">
+        {/* Zamieniono items-start na items-center w poniższym divie, aby wyśrodkować zawartość pionowo */}
+        <div className="grid lg:grid-cols-12 gap-16 mb-24 md:mb-32 items-center">
           <div className="lg:col-span-5">
             <Reveal>
               <h2 className="font-serif text-3xl text-ink mb-6">Materiały i możliwości</h2>
@@ -123,7 +124,6 @@ export const CncPage: React.FC = () => {
           </div>
           <div className="lg:col-span-7 space-y-0">
             <Reveal delay={100}>
-              {/* Zmieniono py-6 na pb-6 aby idealnie wyrównać z nagłówkiem po lewej */}
               <div className="pb-6 hairline-b">
                 <h4 className="text-[11px] uppercase tracking-widest font-bold text-ink/40 mb-2">Obrabiane materiały</h4>
                 <p className="text-lg text-ink font-light">Plexi (PMMA), dibond, PVC spienione i twarde, HPL, MDF, sklejka oraz płyty meblowe.</p>
