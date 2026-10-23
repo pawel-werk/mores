@@ -55,7 +55,7 @@ export const CncPage: React.FC = () => {
               </span>
               <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl text-ink leading-[1.1] tracking-tight mb-8">
                 Twoja koncepcja<br />naszą precyzją.<br />
-                <span className="text-brand">My zamieniamy ją w gotowy produkt.</span>
+                <span className="text-brand">Zamieniamy pomysły w gotowy produkt.</span>
               </h1>
             </Reveal>
             <Reveal delay={100}>
