@@ -30,6 +30,7 @@ export const Navbar: React.FC = () => {
     { name: 'Produkcja', href: '#produkcja' },
     { name: 'Realizacje', href: '#realizacje' },
     { name: 'Katalog', href: '#/katalog' },
+    { name: 'CNC', href: '#/cnc' }, // DODANO LINK
     { name: 'Kontakt', href: '#kontakt' },
   ];
 
@@ -114,10 +115,9 @@ export const Navbar: React.FC = () => {
         </button>
       </nav>
 
-      {/* Mobile Menu - Dodano twarde tło w heksach i wymuszone h-[100dvh] aby naprawić prześwitywanie */}
+      {/* Mobile Menu */}
       {isOpen && (
         <div className="fixed inset-0 z-[100] bg-[#F7F4EF] w-full h-[100dvh] flex flex-col pt-24 px-6">
-          {/* Odsunięto X od krawędzi */}
           <button
             className="absolute top-6 right-6 p-3 text-ink hover:text-brand transition-colors"
             onClick={() => setIsOpen(false)}

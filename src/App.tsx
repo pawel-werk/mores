@@ -2,6 +2,7 @@ import { useHashRoute } from './hooks/useHashRoute'
 import { HomePage } from './components/HomePage'
 import { GalleryPage } from './components/GalleryPage'
 import { CatalogPage } from './components/CatalogPage'
+import { CncPage } from './components/CncPage' // DODANO IMPORT
 import { TopBar } from './components/TopBar'
 import { Navbar } from './components/Navbar'
 import { Footer } from './components/Footer'
@@ -15,6 +16,8 @@ function App() {
         return <GalleryPage />
       case 'katalog':
         return <CatalogPage />
+      case 'cnc': // DODANO ROUTING
+        return <CncPage />
       default:
         return <HomePage />
     }
