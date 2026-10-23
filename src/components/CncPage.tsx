@@ -185,7 +185,7 @@ export const CncPage: React.FC = () => {
                     <h4 className="text-paper font-medium text-sm mb-1 flex items-center gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-brand block"></span> Lokalny partner
                     </h4>
-                    <p className="text-ash/50 text-xs font-light pl-3.5">Wrocław i Dolny Śląsk na czas</p>
+                    <p className="text-ash/50 text-xs font-light pl-3.5">Wrocław i Dolny Śląsk</p>
                   </div>
                 </div>
 
