@@ -51,7 +51,7 @@ export const CncPage: React.FC = () => {
           <div>
             <Reveal>
               <span className="text-[10px] uppercase tracking-widest font-bold text-brand mb-4 block">
-                Wsparcie produkcyjne dla architektów i biur projektowych
+                Wsparcie produkcyjne dla agencji reklamowych, architektów i biur projektowych
               </span>
               <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl text-ink leading-[1.1] tracking-tight mb-8">
                 Twoja koncepcja<br />naszą precyzją.<br />
