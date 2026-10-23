@@ -38,17 +38,17 @@ export const CncPage: React.FC = () => {
             </Reveal>
           </div>
           
-          <Reveal delay={300} className="relative h-[400px] md:h-[500px] lg:h-[600px]">
-            {/* Zdjęcie maszyny PG CNC */}
+          <Reveal delay={300} className="relative h-[400px] md:h-[500px] lg:h-[600px] group cursor-pointer">
+            {/* Zdjęcie maszyny PG CNC - Dodano efekty powrotu do koloru na hover */}
             <div className="absolute inset-0 bg-ash/20 rounded-sm overflow-hidden flex items-center justify-center">
               <img 
                 src="https://pgcnc.pl/cache/images/public/images/shop/940_940_auto/894545_bananaproai_com-202654132.webp" 
                 alt="Maszyna PG CNC 2030 ATC" 
-                className="w-full h-full object-cover grayscale opacity-90 mix-blend-multiply transition-transform duration-700 hover:scale-105" 
+                className="w-full h-full object-cover grayscale opacity-90 mix-blend-multiply transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105 group-hover:grayscale-0 group-hover:opacity-100 group-hover:mix-blend-normal" 
               />
             </div>
             {/* Plakietka z technologią */}
-            <div className="absolute bottom-8 -left-4 md:-left-12 bg-paper/95 backdrop-blur-sm p-6 shadow-xl border border-ink/5 z-10 max-w-xs">
+            <div className="absolute bottom-8 -left-4 md:-left-12 bg-paper/95 backdrop-blur-sm p-6 shadow-xl border border-ink/5 z-10 max-w-xs transition-transform duration-700 group-hover:-translate-y-2">
               <span className="text-[10px] uppercase tracking-widest font-bold text-brand mb-2 block">Technologia</span>
               <h3 className="font-serif text-xl text-ink mb-2">PG CNC 2030 ATC</h3>
               <p className="text-sm font-light text-ink/70">Nowoczesny nesting CNC płyt, tworzyw i kompozytów.</p>
