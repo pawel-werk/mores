@@ -39,15 +39,15 @@ export const CncPage: React.FC = () => {
           </div>
           
           <Reveal delay={300} className="relative h-[400px] md:h-[500px] lg:h-[600px]">
-            {/* Stockowe zdjęcie frezarki CNC (do ewentualnej podmiany w przyszłości) */}
-            <div className="absolute inset-0 bg-ash/20 rounded-sm overflow-hidden">
+            {/* Zdjęcie maszyny PG CNC */}
+            <div className="absolute inset-0 bg-ash/20 rounded-sm overflow-hidden flex items-center justify-center">
               <img 
-                src="https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?q=80&w=1000&auto=format&fit=crop" 
-                alt="Maszyna CNC" 
+                src="https://pgcnc.pl/cache/images/public/images/shop/940_940_auto/894545_bananaproai_com-202654132.webp" 
+                alt="Maszyna PG CNC 2030 ATC" 
                 className="w-full h-full object-cover grayscale opacity-90 mix-blend-multiply transition-transform duration-700 hover:scale-105" 
               />
             </div>
-            {/* Plakietka z technologią (z ulotki) */}
+            {/* Plakietka z technologią */}
             <div className="absolute bottom-8 -left-4 md:-left-12 bg-paper/95 backdrop-blur-sm p-6 shadow-xl border border-ink/5 z-10 max-w-xs">
               <span className="text-[10px] uppercase tracking-widest font-bold text-brand mb-2 block">Technologia</span>
               <h3 className="font-serif text-xl text-ink mb-2">PG CNC 2030 ATC</h3>
@@ -56,7 +56,7 @@ export const CncPage: React.FC = () => {
           </Reveal>
         </div>
 
-        {/* CO MOŻEMY DLA CIEBIE WYPRODUKOWAĆ? (Z kafelków na ulotce) */}
+        {/* CO MOŻEMY DLA CIEBIE WYPRODUKOWAĆ? */}
         <div className="mb-24 md:mb-32">
           <Reveal>
             <h2 className="font-serif text-3xl md:text-4xl text-ink mb-12">Co możemy dla Ciebie wyprodukować?</h2>
@@ -114,7 +114,7 @@ export const CncPage: React.FC = () => {
           </div>
         </div>
 
-        {/* BLOK KONTAKTOWY (Dane z ulotki z podmienionym adresem i mailem) */}
+        {/* BLOK KONTAKTOWY */}
         <Reveal delay={300}>
           <div className="bg-graphite text-paper p-8 md:p-16 lg:p-20 relative overflow-hidden rounded-sm shadow-2xl">
             <div className="absolute inset-0 bg-rings opacity-[0.04] pointer-events-none" aria-hidden="true" />
@@ -122,7 +122,7 @@ export const CncPage: React.FC = () => {
             
             <div className="relative z-10 grid lg:grid-cols-2 gap-16">
               
-              {/* Lewa strona - CTA z ulotki */}
+              {/* Lewa strona - CTA */}
               <div>
                 <span className="text-[10px] uppercase tracking-widest font-bold text-brand mb-4 block">
                   Wyślij projekt do wyceny w 24h
