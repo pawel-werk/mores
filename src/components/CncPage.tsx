@@ -7,6 +7,41 @@ export const CncPage: React.FC = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const productionFeatures = [
+    {
+      title: "Nesting i rozkrój płyt",
+      desc: "Optymalne wykorzystanie materiału i precyzyjne cięcie CNC."
+    },
+    {
+      title: "Frezowanie CNC",
+      desc: "Precyzyjne frezowanie 2D i 3D MDF, płyty, sklejki i PVC."
+    },
+    {
+      title: "Elementy meblowe",
+      desc: "Wykonywanie frontów, korpusów, półek i innych elementów na wymiar."
+    },
+    {
+      title: "Komponenty pod montaż",
+      desc: "Dokładne wykonanie elementów gotowych do dalszego montażu."
+    },
+    {
+      title: "Fronty frezowane",
+      desc: "Estetyka i precyzja w każdym detalu elementów dekoracyjnych."
+    },
+    {
+      title: "Elementy POS i ekspozytory",
+      desc: "Funkcjonalne i estetyczne rozwiązania dla przestrzeni komercyjnych."
+    },
+    {
+      title: "Produkcja indywidualna i seryjna",
+      desc: "Elastyczność i powtarzalna jakość w małych i większych seriach."
+    },
+    {
+      title: "Wsparcie projektowe",
+      desc: "Przygotowanie dokumentacji produkcyjnej (DWG, DXF), optymalizacja detali."
+    }
+  ];
+
   return (
     <div className="pt-24 md:pt-32 pb-16 md:pb-24 bg-paper min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -16,16 +51,16 @@ export const CncPage: React.FC = () => {
           <div>
             <Reveal>
               <span className="text-[10px] uppercase tracking-widest font-bold text-brand mb-4 block">
-                Wsparcie produkcyjne dla agencji reklamowych
+                Wsparcie produkcyjne dla architektów i biur projektowych
               </span>
               <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl text-ink leading-[1.1] tracking-tight mb-8">
-                Twoja agencja sprzedaje pomysł.<br />
-                <span className="text-brand">My zamieniamy go w gotowy produkt.</span>
+                Twoja koncepcja<br />naszą precyzją.<br />
+                <span className="text-brand">My zamieniamy ją w gotowy produkt.</span>
               </h1>
             </Reveal>
             <Reveal delay={100}>
               <p className="text-lg md:text-xl text-ink/70 font-light leading-relaxed mb-10 max-w-lg">
-                Od prototypu po krótkie serie produkcyjne – precyzyjnie, terminowo, bez zbędnych formalności. Zapewniamy powtarzalność i elastyczne terminy realizacji.
+                Od projektu po gotowy element. Precyzja, technologia, partnerstwo. Zapewniamy powtarzalność, elastyczne terminy i wsparcie na każdym etapie.
               </p>
             </Reveal>
             <Reveal delay={200}>
@@ -39,7 +74,7 @@ export const CncPage: React.FC = () => {
           </div>
           
           <Reveal delay={300} className="relative h-[400px] md:h-[500px] lg:h-[600px] group cursor-pointer">
-            {/* Zdjęcie maszyny PG CNC - Dodano efekty powrotu do koloru na hover */}
+            {/* Zdjęcie maszyny PG CNC - Powrót do koloru na hover */}
             <div className="absolute inset-0 bg-ash/20 rounded-sm overflow-hidden flex items-center justify-center">
               <img 
                 src="https://pgcnc.pl/cache/images/public/images/shop/940_940_auto/894545_bananaproai_com-202654132.webp" 
@@ -56,30 +91,24 @@ export const CncPage: React.FC = () => {
           </Reveal>
         </div>
 
-        {/* CO MOŻEMY DLA CIEBIE WYPRODUKOWAĆ? */}
+        {/* ROZBUDOWANA SEKCJA OFERTY (Zamiast 6 krótkich kafelków, 8 szczegółowych punktów) */}
         <div className="mb-24 md:mb-32">
           <Reveal>
             <h2 className="font-serif text-3xl md:text-4xl text-ink mb-12">Co możemy dla Ciebie wyprodukować?</h2>
           </Reveal>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
-            {[
-              "Standy POS i ekspozytory",
-              "Litery przestrzenne i logotypy",
-              "Zabudowy eventowe i targowe",
-              "Elementy identyfikacji wizualnej",
-              "Prototypy i krótkie serie",
-              "Nietypowe projekty CNC"
-            ].map((item, idx) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {productionFeatures.map((item, idx) => (
               <Reveal key={idx} delay={idx * 50}>
-                <div className="p-6 hairline-l hairline-b hover:bg-ash/10 transition-colors h-full flex items-center">
-                  <h3 className="font-serif text-lg text-ink">{item}</h3>
+                <div className="p-6 hairline-l hairline-t hover:bg-ash/10 transition-colors h-full flex flex-col justify-start">
+                  <h3 className="font-serif text-xl text-ink mb-3">{item.title}</h3>
+                  <p className="text-ink/60 font-light text-sm leading-relaxed">{item.desc}</p>
                 </div>
               </Reveal>
             ))}
           </div>
         </div>
 
-        {/* SZCZEGÓŁY Z MAILA */}
+        {/* SZCZEGÓŁY Z MAILA (Pozostawione dla SEO i dokładnego opisu) */}
         <div className="grid lg:grid-cols-12 gap-16 mb-24 md:mb-32 items-start">
           <div className="lg:col-span-5">
             <Reveal>
@@ -114,7 +143,7 @@ export const CncPage: React.FC = () => {
           </div>
         </div>
 
-        {/* BLOK KONTAKTOWY */}
+        {/* ZAKTUALIZOWANY BLOK KONTAKTOWY (Z nowymi opisami pod atutami) */}
         <Reveal delay={300}>
           <div className="bg-graphite text-paper p-8 md:p-16 lg:p-20 relative overflow-hidden rounded-sm shadow-2xl">
             <div className="absolute inset-0 bg-rings opacity-[0.04] pointer-events-none" aria-hidden="true" />
@@ -127,22 +156,37 @@ export const CncPage: React.FC = () => {
                 <span className="text-[10px] uppercase tracking-widest font-bold text-brand mb-4 block">
                   Wyślij projekt do wyceny w 24h
                 </span>
-                <h2 className="font-serif text-4xl text-paper mb-6">Sprawdź nas przy pierwszym zleceniu!</h2>
+                <h2 className="font-serif text-4xl text-paper mb-4">Prześlij pliki do wyceny</h2>
+                <p className="text-ash/70 font-light mb-10 text-lg">
+                  Przygotujemy szczegółową wycenę i odpowiemy na wszystkie pytania.
+                </p>
                 
-                <ul className="space-y-4 mb-10 text-ash/80 font-light">
-                  <li className="flex items-center gap-3">
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand"></span> Szybka wycena
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand"></span> Precyzyjne wykonanie
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand"></span> Wsparcie techniczne
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand"></span> Lokalny partner
-                  </li>
-                </ul>
+                <div className="grid grid-cols-2 gap-y-6 gap-x-4 mb-10">
+                  <div>
+                    <h4 className="text-paper font-medium text-sm mb-1 flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-brand block"></span> Szybka wycena
+                    </h4>
+                    <p className="text-ash/50 text-xs font-light pl-3.5">Odpowiadamy na czas</p>
+                  </div>
+                  <div>
+                    <h4 className="text-paper font-medium text-sm mb-1 flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-brand block"></span> Precyzyjne wykonanie
+                    </h4>
+                    <p className="text-ash/50 text-xs font-light pl-3.5">Nowoczesny nesting CNC</p>
+                  </div>
+                  <div>
+                    <h4 className="text-paper font-medium text-sm mb-1 flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-brand block"></span> Wsparcie techniczne
+                    </h4>
+                    <p className="text-ash/50 text-xs font-light pl-3.5">Doradzamy na każdym etapie</p>
+                  </div>
+                  <div>
+                    <h4 className="text-paper font-medium text-sm mb-1 flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-brand block"></span> Lokalny partner
+                    </h4>
+                    <p className="text-ash/50 text-xs font-light pl-3.5">Wrocław i Dolny Śląsk na czas</p>
+                  </div>
+                </div>
 
                 <a 
                   href="/#kontakt" 
@@ -175,7 +219,7 @@ export const CncPage: React.FC = () => {
                   <span className="text-xl font-light">info@mores.pl</span>
                 </a>
 
-                {/* Mapa Google - Wyrównana względem pinezki */}
+                {/* Mapa Google */}
                 <a href="https://www.google.com/maps/search/?api=1&query=Łąkowa+6,+55-095+Mirków" target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-4 text-ash hover:text-brand transition-colors outline-none focus-visible:ring-2 focus-visible:ring-brand rounded-sm w-max">
                   <span className="w-10 h-10 rounded-full border border-paper/10 flex items-center justify-center group-hover:border-brand/30 transition-colors shrink-0">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
