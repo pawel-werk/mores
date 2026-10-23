@@ -91,7 +91,7 @@ export const CncPage: React.FC = () => {
           </Reveal>
         </div>
 
-        {/* ROZBUDOWANA SEKCJA OFERTY (Zamiast 6 krótkich kafelków, 8 szczegółowych punktów) */}
+        {/* ROZBUDOWANA SEKCJA OFERTY (8 szczegółowych punktów) */}
         <div className="mb-24 md:mb-32">
           <Reveal>
             <h2 className="font-serif text-3xl md:text-4xl text-ink mb-12">Co możemy dla Ciebie wyprodukować?</h2>
@@ -108,7 +108,7 @@ export const CncPage: React.FC = () => {
           </div>
         </div>
 
-        {/* SZCZEGÓŁY Z MAILA (Pozostawione dla SEO i dokładnego opisu) */}
+        {/* SZCZEGÓŁY Z MAILA */}
         <div className="grid lg:grid-cols-12 gap-16 mb-24 md:mb-32 items-start">
           <div className="lg:col-span-5">
             <Reveal>
@@ -123,7 +123,8 @@ export const CncPage: React.FC = () => {
           </div>
           <div className="lg:col-span-7 space-y-0">
             <Reveal delay={100}>
-              <div className="py-6 hairline-b">
+              {/* Zmieniono py-6 na pb-6 aby idealnie wyrównać z nagłówkiem po lewej */}
+              <div className="pb-6 hairline-b">
                 <h4 className="text-[11px] uppercase tracking-widest font-bold text-ink/40 mb-2">Obrabiane materiały</h4>
                 <p className="text-lg text-ink font-light">Plexi (PMMA), dibond, PVC spienione i twarde, HPL, MDF, sklejka oraz płyty meblowe.</p>
               </div>
@@ -143,7 +144,7 @@ export const CncPage: React.FC = () => {
           </div>
         </div>
 
-        {/* ZAKTUALIZOWANY BLOK KONTAKTOWY (Z nowymi opisami pod atutami) */}
+        {/* ZAKTUALIZOWANY BLOK KONTAKTOWY */}
         <Reveal delay={300}>
           <div className="bg-graphite text-paper p-8 md:p-16 lg:p-20 relative overflow-hidden rounded-sm shadow-2xl">
             <div className="absolute inset-0 bg-rings opacity-[0.04] pointer-events-none" aria-hidden="true" />
