@@ -175,22 +175,7 @@ export const CncPage: React.FC = () => {
                   <span className="text-xl font-light">info@mores.pl</span>
                 </a>
 
-                {/* Mapa Google */}
-                <a href="https://www.google.com/maps/search/?api=1&query=Łąkowa+6,+55-095+Mirków" target="_blank" rel="noopener noreferrer" className="group inline-flex items-start gap-4 text-ash hover:text-brand transition-colors outline-none focus-visible:ring-2 focus-visible:ring-brand rounded-sm w-max">
+                {/* Mapa Google - Wyrównana względem pinezki */}
+                <a href="https://www.google.com/maps/search/?api=1&query=Łąkowa+6,+55-095+Mirków" target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-4 text-ash hover:text-brand transition-colors outline-none focus-visible:ring-2 focus-visible:ring-brand rounded-sm w-max">
                   <span className="w-10 h-10 rounded-full border border-paper/10 flex items-center justify-center group-hover:border-brand/30 transition-colors shrink-0">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                  </span>
-                  <span className="text-lg font-light leading-snug mt-1.5">
-                    ul. Łąkowa 6<br />55-095 Mirków k. Wrocławia
-                  </span>
-                </a>
-              </div>
-              
-            </div>
-          </div>
-        </Reveal>
-
-      </div>
-    </div>
-  );
-};
+                    <svg width="18" height="18" viewBox="0 0
