@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Reveal } from './Reveal';
+import { companyData } from '../data/content';
 
 export const CncPage: React.FC = () => {
   useEffect(() => {
@@ -42,6 +43,29 @@ export const CncPage: React.FC = () => {
     }
   ];
 
+  const targetAudiences = [
+    "Bary & Restauracje",
+    "Hotele & Pensjonaty",
+    "Sieci Handlowe & Retail",
+    "Producenci Mebli & Agencje POS/BTL",
+    "Architekci Wnętrz & Deweloperzy"
+  ];
+
+  const workSteps = [
+    { title: "Zapytanie i Dokumentacja", desc: "Analizujemy dostarczone przez Ciebie pliki." },
+    { title: "Wycena i Dobór Technologii", desc: "Przedstawiamy optymalne rozwiązania produkcyjne." },
+    { title: "Wzór i Seria Próbna", desc: "Testujemy detale przed produkcją wieloseryjną." },
+    { title: "Produkcja Seryjna i Dostawa", desc: "Zapewniamy terminową realizację i powtarzalność." }
+  ];
+
+  const machines = [
+    { name: "Centrum Nestingowe CNC", image: "https://pgcnc.pl/cache/images/public/images/shop/940_940_auto/894545_bananaproai_com-202654132.webp" },
+    { name: "Okleiniarka Krawędziowa", image: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=800&auto=format&fit=crop" },
+    { name: "Własna Lakiernia", image: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=800&auto=format&fit=crop" },
+    { name: "Formatyzerka / Piła", image: "https://images.unsplash.com/photo-1532509774739-df0330030c24?q=80&w=800&auto=format&fit=crop" },
+    { name: "Centrum Wiertarskie", image: "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?q=80&w=800&auto=format&fit=crop" },
+  ];
+
   return (
     <div className="pt-24 md:pt-32 pb-16 md:pb-24 bg-paper min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -51,16 +75,16 @@ export const CncPage: React.FC = () => {
           <div>
             <Reveal>
               <span className="text-[10px] uppercase tracking-widest font-bold text-brand mb-4 block">
-                Wsparcie produkcyjne dla agencji reklamowych, architektów i biur projektowych
+                Wsparcie produkcyjne dla firm, seryjne produkcje, podwykonawstwo
               </span>
               <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl text-ink leading-[1.1] tracking-tight mb-8">
-                Twoja koncepcja<br />naszą precyzją.<br />
-                <span className="text-brand">Zamieniamy pomysły w gotowy produkt.</span>
+                Twoja koncepcja naszą precyzją.<br />
+                <span className="text-brand">My zamieniamy ją w gotowy produkt.</span>
               </h1>
             </Reveal>
             <Reveal delay={100}>
               <p className="text-lg md:text-xl text-ink/70 font-light leading-relaxed mb-10 max-w-lg">
-                Od projektu po gotowy element. Precyzja, technologia, partnerstwo. Zapewniamy powtarzalność, elastyczne terminy i wsparcie na każdym etapie.
+                Od prototypu po krótkie serie produkcyjne – precyzyjnie, bez zbędnych formalności. Zapewniamy powtarzalność i elastyczne terminy realizacji.
               </p>
             </Reveal>
             <Reveal delay={200}>
@@ -74,7 +98,6 @@ export const CncPage: React.FC = () => {
           </div>
           
           <Reveal delay={300} className="relative h-[400px] md:h-[500px] lg:h-[600px] group cursor-pointer">
-            {/* Zdjęcie maszyny PG CNC - Powrót do koloru na hover */}
             <div className="absolute inset-0 bg-ash/20 rounded-sm overflow-hidden flex items-center justify-center">
               <img 
                 src="https://pgcnc.pl/cache/images/public/images/shop/940_940_auto/894545_bananaproai_com-202654132.webp" 
@@ -82,19 +105,36 @@ export const CncPage: React.FC = () => {
                 className="w-full h-full object-cover grayscale opacity-90 mix-blend-multiply transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105 group-hover:grayscale-0 group-hover:opacity-100 group-hover:mix-blend-normal" 
               />
             </div>
-            {/* Plakietka z technologią */}
-            <div className="absolute bottom-8 -left-4 md:-left-12 bg-paper/95 backdrop-blur-sm p-6 shadow-xl border border-ink/5 z-10 max-w-xs transition-transform duration-700 group-hover:-translate-y-2">
-              <span className="text-[10px] uppercase tracking-widest font-bold text-brand mb-2 block">Technologia</span>
-              <h3 className="font-serif text-xl text-ink mb-2">PG CNC 2030 ATC</h3>
-              <p className="text-sm font-light text-ink/70">Nowoczesny nesting CNC płyt, tworzyw i kompozytów.</p>
+            {/* Zaktualizowana plakietka z nowym tekstem o parametrach maszyny */}
+            <div className="absolute bottom-8 -left-4 md:-left-12 bg-paper/95 backdrop-blur-sm p-6 shadow-xl border border-ink/5 z-10 max-w-sm transition-transform duration-700 group-hover:-translate-y-2">
+              <span className="text-[10px] uppercase tracking-widest font-bold text-brand mb-2 block">PG CNC 2030 ATC</span>
+              <p className="text-sm font-medium text-ink/90 leading-relaxed">
+                Wielkoformatowe centra CNC, pole robocze do 3000 x 2000 mm, tolerancja obróbki ±0.1 mm, frezowanie 3D, nesting, wiercenie i rowkowanie.
+              </p>
             </div>
           </Reveal>
         </div>
 
-        {/* ROZBUDOWANA SEKCJA OFERTY (8 szczegółowych punktów) */}
+        {/* DLA KOGO PRACUJEMY */}
+        <div className="mb-24 md:mb-32 bg-ash/30 p-8 md:p-16 rounded-sm">
+          <Reveal>
+            <h2 className="font-serif text-3xl md:text-4xl text-ink mb-10 text-center">Dla kogo pracujemy?</h2>
+          </Reveal>
+          <div className="flex flex-wrap justify-center gap-4 md:gap-6">
+            {targetAudiences.map((audience, idx) => (
+              <Reveal key={idx} delay={idx * 50}>
+                <div className="bg-paper px-6 py-4 rounded-sm shadow-sm border border-ink/5 text-ink/80 font-medium text-sm md:text-base hover:text-brand hover:border-brand/30 transition-colors">
+                  {audience}
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+
+        {/* CO WYKONUJEMY */}
         <div className="mb-24 md:mb-32">
           <Reveal>
-            <h2 className="font-serif text-3xl md:text-4xl text-ink mb-12">Co możemy dla Ciebie wyprodukować?</h2>
+            <h2 className="font-serif text-3xl md:text-4xl text-ink mb-12 text-center">Co wykonujemy?</h2>
           </Reveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {productionFeatures.map((item, idx) => (
@@ -108,8 +148,53 @@ export const CncPage: React.FC = () => {
           </div>
         </div>
 
-        {/* SZCZEGÓŁY Z MAILA */}
-        {/* Zamieniono items-start na items-center w poniższym divie, aby wyśrodkować zawartość pionowo */}
+        {/* JAK PRACUJEMY */}
+        <div className="mb-24 md:mb-32">
+          <Reveal>
+            <h2 className="font-serif text-3xl md:text-4xl text-ink mb-12 text-center">Jak pracujemy?</h2>
+          </Reveal>
+          <div className="grid md:grid-cols-4 gap-8 relative">
+            <div className="hidden md:block absolute top-[28px] left-10 right-10 h-[1px] bg-ink/10" />
+            {workSteps.map((step, idx) => (
+              <Reveal key={idx} delay={idx * 100} className="relative text-center">
+                <div className="w-14 h-14 bg-paper border border-ink/10 rounded-full flex items-center justify-center mx-auto mb-6 relative z-10 font-serif text-xl text-brand">
+                  {idx + 1}
+                </div>
+                <h3 className="font-serif text-xl text-ink mb-2">{step.title}</h3>
+                <p className="text-ink/60 font-light text-sm">{step.desc}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+
+        {/* PARK MASZYNOWY */}
+        <div className="mb-24 md:mb-32 bg-graphite p-8 md:p-16 rounded-sm text-paper overflow-hidden relative">
+          <div className="absolute inset-0 bg-rings opacity-[0.04] pointer-events-none" aria-hidden="true" />
+          <Reveal>
+            <h2 className="font-serif text-3xl md:text-4xl mb-4 text-center">Park maszynowy</h2>
+            <p className="text-center text-ash/70 font-light mb-12 max-w-2xl mx-auto">
+              Nowoczesne zaplecze techniczne gwarantuje precyzję i powtarzalność przy dużych seriach produkcyjnych.
+            </p>
+          </Reveal>
+          <div className="grid grid-cols-2 lg:grid-cols-5 gap-6">
+            {machines.map((machine, idx) => (
+              <Reveal key={idx} delay={idx * 100}>
+                <div className="group cursor-pointer">
+                  <div className="w-full aspect-square bg-ink/50 overflow-hidden rounded-sm mb-4">
+                    <img 
+                      src={machine.image} 
+                      alt={machine.name} 
+                      className="w-full h-full object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 group-hover:scale-105 mix-blend-screen group-hover:mix-blend-normal"
+                    />
+                  </div>
+                  <h4 className="text-paper text-sm text-center font-medium">{machine.name}</h4>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+
+        {/* ZAKTUALIZOWANE: MATERIAŁY I MOŻLIWOŚCI (Szerszy kontekst dla B2B) */}
         <div className="grid lg:grid-cols-12 gap-16 mb-24 md:mb-32 items-center">
           <div className="lg:col-span-5">
             <Reveal>
@@ -118,7 +203,7 @@ export const CncPage: React.FC = () => {
                 Realizujemy zarówno pojedyncze zamówienia, jak i produkcję seryjną. Oferujemy indywidualną wycenę dla każdego zlecenia.
               </p>
               <p className="text-ink/70 font-light leading-relaxed">
-                Chętnie podejmiemy współpracę jako dodatkowe zaplecze produkcyjne przy większych lub nietypowych realizacjach. Jeśli korzystasz z zewnętrznych usług CNC i potrzebujesz mocy produkcyjnych – jesteśmy idealnym partnerem.
+                Chętnie podejmiemy współpracę jako zaplecze produkcyjne przy większych realizacjach komercyjnych, deweloperskich i prywatnych. Niezależnie czy jesteś stolarzem, architektem, czy reprezentujesz sieć retail – jeśli potrzebujesz mocy produkcyjnych do wykonania nietypowych detali, elementów meblowych czy wykończeń – jesteśmy idealnym partnerem.
               </p>
             </Reveal>
           </div>
@@ -126,25 +211,25 @@ export const CncPage: React.FC = () => {
             <Reveal delay={100}>
               <div className="pb-6 hairline-b">
                 <h4 className="text-[11px] uppercase tracking-widest font-bold text-ink/40 mb-2">Obrabiane materiały</h4>
-                <p className="text-lg text-ink font-light">Plexi (PMMA), dibond, PVC spienione i twarde, HPL, MDF, sklejka oraz płyty meblowe.</p>
+                <p className="text-lg text-ink font-light">MDF, HDF, sklejka, płyty wiórowe, OSB, drewno, laminaty kompaktowe i dekoracyjne, Plexi (PMMA), dibond, PVC spienione i twarde oraz HPL.</p>
               </div>
             </Reveal>
             <Reveal delay={150}>
               <div className="py-6 hairline-b">
-                <h4 className="text-[11px] uppercase tracking-widest font-bold text-ink/40 mb-2">Produkcja reklamowa</h4>
-                <p className="text-lg text-ink font-light">Wykonywanie liter przestrzennych, logotypów, szyldów, elementów kasetonów i reklam świetlnych.</p>
+                <h4 className="text-[11px] uppercase tracking-widest font-bold text-ink/40 mb-2">Produkcja meblowa i komercyjna</h4>
+                <p className="text-lg text-ink font-light">Wykonywanie frontów, korpusów, zaawansowanych elementów zabudów, liter przestrzennych, logotypów i ekspozytorów reklamowych.</p>
               </div>
             </Reveal>
             <Reveal delay={200}>
               <div className="py-6 hairline-b">
                 <h4 className="text-[11px] uppercase tracking-widest font-bold text-ink/40 mb-2">Frezowanie precyzyjne</h4>
-                <p className="text-lg text-ink font-light">Wycinanie niestandardowych kształtów, otworów, rowków oraz frezowanie 2D i 3D.</p>
+                <p className="text-lg text-ink font-light">Wycinanie niestandardowych kształtów, otworów, rowków oraz zaawansowane frezowanie 2D i 3D z zachowaniem niezwykłej dokładności.</p>
               </div>
             </Reveal>
           </div>
         </div>
 
-        {/* ZAKTUALIZOWANY BLOK KONTAKTOWY */}
+        {/* BLOK KONTAKTOWY Z PDF */}
         <Reveal delay={300}>
           <div className="bg-graphite text-paper p-8 md:p-16 lg:p-20 relative overflow-hidden rounded-sm shadow-2xl">
             <div className="absolute inset-0 bg-rings opacity-[0.04] pointer-events-none" aria-hidden="true" />
@@ -154,9 +239,6 @@ export const CncPage: React.FC = () => {
               
               {/* Lewa strona - CTA */}
               <div>
-                <span className="text-[10px] uppercase tracking-widest font-bold text-brand mb-4 block">
-                  Wyślij projekt do wyceny w 24h
-                </span>
                 <h2 className="font-serif text-4xl text-paper mb-4">Prześlij pliki do wyceny</h2>
                 <p className="text-ash/70 font-light mb-10 text-lg">
                   Przygotujemy szczegółową wycenę i odpowiemy na wszystkie pytania.
@@ -167,25 +249,21 @@ export const CncPage: React.FC = () => {
                     <h4 className="text-paper font-medium text-sm mb-1 flex items-center gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-brand block"></span> Szybka wycena
                     </h4>
-                    <p className="text-ash/50 text-xs font-light pl-3.5">Odpowiadamy na czas</p>
-                  </div>
-                  <div>
-                    <h4 className="text-paper font-medium text-sm mb-1 flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-brand block"></span> Precyzyjne wykonanie
-                    </h4>
-                    <p className="text-ash/50 text-xs font-light pl-3.5">Nowoczesny nesting CNC</p>
                   </div>
                   <div>
                     <h4 className="text-paper font-medium text-sm mb-1 flex items-center gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-brand block"></span> Wsparcie techniczne
                     </h4>
-                    <p className="text-ash/50 text-xs font-light pl-3.5">Doradzamy na każdym etapie</p>
+                  </div>
+                  <div>
+                    <h4 className="text-paper font-medium text-sm mb-1 flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-brand block"></span> Precyzyjne wykonanie
+                    </h4>
                   </div>
                   <div>
                     <h4 className="text-paper font-medium text-sm mb-1 flex items-center gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-brand block"></span> Lokalny partner
                     </h4>
-                    <p className="text-ash/50 text-xs font-light pl-3.5">Wrocław i Dolny Śląsk</p>
                   </div>
                 </div>
 
@@ -201,23 +279,22 @@ export const CncPage: React.FC = () => {
               <div className="flex flex-col justify-center border-t lg:border-t-0 lg:border-l border-paper/10 pt-10 lg:pt-0 lg:pl-16 space-y-8">
                 <div>
                   <p className="text-xl font-serif text-paper mb-1">Kamilia Piotrowska</p>
-                  <p className="text-[11px] uppercase tracking-widest font-bold text-ash/40">Projektowanie i rozwój realizacji retail / POS</p>
                 </div>
 
                 {/* Telefon */}
-                <a href="tel:660025344" className="group inline-flex items-center gap-4 text-ash hover:text-brand transition-colors outline-none focus-visible:ring-2 focus-visible:ring-brand rounded-sm w-max">
+                <a href={`tel:${companyData.phone.replace(/\s/g, '')}`} className="group inline-flex items-center gap-4 text-ash hover:text-brand transition-colors outline-none focus-visible:ring-2 focus-visible:ring-brand rounded-sm w-max">
                   <span className="w-10 h-10 rounded-full border border-paper/10 flex items-center justify-center group-hover:border-brand/30 transition-colors">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                   </span>
-                  <span className="text-xl font-light tracking-wide">660 025 344</span>
+                  <span className="text-xl font-light tracking-wide">{companyData.phone}</span>
                 </a>
 
                 {/* Email */}
-                <a href="mailto:info@mores.pl" className="group inline-flex items-center gap-4 text-ash hover:text-brand transition-colors outline-none focus-visible:ring-2 focus-visible:ring-brand rounded-sm w-max">
+                <a href={`mailto:${companyData.email}`} className="group inline-flex items-center gap-4 text-ash hover:text-brand transition-colors outline-none focus-visible:ring-2 focus-visible:ring-brand rounded-sm w-max">
                   <span className="w-10 h-10 rounded-full border border-paper/10 flex items-center justify-center group-hover:border-brand/30 transition-colors">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 6-10 7L2 6"/></svg>
                   </span>
-                  <span className="text-xl font-light">info@mores.pl</span>
+                  <span className="text-xl font-light">{companyData.email}</span>
                 </a>
 
                 {/* Mapa Google */}
@@ -226,7 +303,7 @@ export const CncPage: React.FC = () => {
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                   </span>
                   <span className="text-lg font-light leading-snug">
-                    ul. Łąkowa 6<br />55-095 Mirków k. Wrocławia
+                    {companyData.addressLine1}<br />{companyData.addressLine2} k. Wrocławia
                   </span>
                 </a>
               </div>
