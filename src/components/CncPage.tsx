@@ -61,9 +61,9 @@ export const CncPage: React.FC = () => {
   const machines = [
     { name: "Centrum Nestingowe CNC", image: "https://pgcnc.pl/cache/images/public/images/shop/940_940_auto/894545_bananaproai_com-202654132.webp" },
     { name: "Okleiniarka Krawędziowa", image: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=800&auto=format&fit=crop" },
-    { name: "Formatyzacja", image: "https://images.unsplash.com/photo-1611077544775-685cbdf35a4d?q=80&w=800&auto=format&fit=crop" },
+    { name: "Formatyzacja", image: "https://images.unsplash.com/photo-1572981779307-38b8cabb2407?q=80&w=800&auto=format&fit=crop" },
     { name: "Lorem ipsum", image: "https://images.unsplash.com/photo-1530124566582-a618bc2615dc?q=80&w=800&auto=format&fit=crop" },
-    { name: "Lorem ipsum", image: "https://images.unsplash.com/photo-1565514020179-026b92b84bb6?q=80&w=800&auto=format&fit=crop" },
+    { name: "Lorem ipsum", image: "https://images.unsplash.com/photo-1540304453527-62f979730a21?q=80&w=800&auto=format&fit=crop" },
   ];
 
   return (
@@ -114,7 +114,7 @@ export const CncPage: React.FC = () => {
           </Reveal>
         </div>
 
-        {/* DLA KOGO PRACUJEMY - Poprawiony spójny design */}
+        {/* DLA KOGO PRACUJEMY */}
         <div className="mb-24 md:mb-32">
           <Reveal>
             <h2 className="font-serif text-3xl md:text-4xl text-ink mb-12">Dla kogo pracujemy?</h2>
@@ -172,7 +172,7 @@ export const CncPage: React.FC = () => {
           </div>
         </div>
 
-        {/* PARK MASZYNOWY - Zaktualizowane maszyny */}
+        {/* PARK MASZYNOWY */}
         <div className="mb-24 md:mb-32 bg-graphite p-8 md:p-16 rounded-sm text-paper overflow-hidden relative">
           <div className="absolute inset-0 bg-rings opacity-[0.04] pointer-events-none" aria-hidden="true" />
           <Reveal>
