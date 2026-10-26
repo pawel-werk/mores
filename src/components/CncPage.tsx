@@ -61,9 +61,9 @@ export const CncPage: React.FC = () => {
   const machines = [
     { name: "Centrum Nestingowe CNC", image: "https://pgcnc.pl/cache/images/public/images/shop/940_940_auto/894545_bananaproai_com-202654132.webp" },
     { name: "Okleiniarka Krawędziowa", image: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=800&auto=format&fit=crop" },
-    { name: "Formatyzacja", image: "https://images.unsplash.com/photo-1572981779307-38b8cabb2407?q=80&w=800&auto=format&fit=crop" },
+    { name: "Formatyzacja", image: "https://www.auto-tap.pl/images/oferta/thumbs/frezowanie.jpg&fit=crop" },
     { name: "Lorem ipsum", image: "https://images.unsplash.com/photo-1530124566582-a618bc2615dc?q=80&w=800&auto=format&fit=crop" },
-    { name: "Lorem ipsum", image: "https://images.unsplash.com/photo-1540304453527-62f979730a21?q=80&w=800&auto=format&fit=crop" },
+    { name: "Lorem ipsum", image: "https://skladydrzewne.pl/wp-content/uploads/2021/01/plyty-wiorowe.jpg&fit=crop" },
   ];
 
   return (
