@@ -115,16 +115,26 @@ export const CncPage: React.FC = () => {
           </Reveal>
         </div>
 
-        {/* DLA KOGO PRACUJEMY */}
-        <div className="mb-24 md:mb-32 bg-ash/30 p-8 md:p-16 rounded-sm">
+  {/* DLA KOGO PRACUJEMY */}
+        <div className="mb-24 md:mb-32">
           <Reveal>
-            <h2 className="font-serif text-3xl md:text-4xl text-ink mb-10 text-center">Dla kogo pracujemy?</h2>
+            <h2 className="font-serif text-3xl md:text-4xl text-ink mb-12">Dla kogo pracujemy?</h2>
           </Reveal>
-          <div className="flex flex-wrap justify-center gap-4 md:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-2">
             {targetAudiences.map((audience, idx) => (
               <Reveal key={idx} delay={idx * 50}>
-                <div className="bg-paper px-6 py-4 rounded-sm shadow-sm border border-ink/5 text-ink/80 font-medium text-sm md:text-base hover:text-brand hover:border-brand/30 transition-colors">
-                  {audience}
+                <div className="group relative py-8 hairline-t flex items-center hover:bg-ash/20 transition-colors px-4 -mx-4 md:px-6 md:-mx-6 cursor-default">
+                  
+                  {/* Animowana pomarańczowa linia znana z innych sekcji strony */}
+                  <div className="absolute top-[-1px] left-0 right-0 h-[1px] bg-brand scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)]" />
+                  
+                  <span className="text-brand font-serif text-2xl mr-5 opacity-30 group-hover:opacity-100 transition-opacity duration-500">
+                    /
+                  </span>
+                  <h3 className="font-serif text-lg md:text-xl text-ink transition-colors duration-500 group-hover:text-brand">
+                    {audience}
+                  </h3>
+                  
                 </div>
               </Reveal>
             ))}
