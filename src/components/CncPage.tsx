@@ -61,9 +61,9 @@ export const CncPage: React.FC = () => {
   const machines = [
     { name: "Centrum Nestingowe CNC", image: "https://pgcnc.pl/cache/images/public/images/shop/940_940_auto/894545_bananaproai_com-202654132.webp" },
     { name: "Okleiniarka Krawędziowa", image: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=800&auto=format&fit=crop" },
-    { name: "Własna Lakiernia", image: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=800&auto=format&fit=crop" },
-    { name: "Formatyzerka / Piła", image: "https://images.unsplash.com/photo-1532509774739-df0330030c24?q=80&w=800&auto=format&fit=crop" },
-    { name: "Centrum Wiertarskie", image: "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?q=80&w=800&auto=format&fit=crop" },
+    { name: "Formatyzacja", image: "https://images.unsplash.com/photo-1611077544775-685cbdf35a4d?q=80&w=800&auto=format&fit=crop" },
+    { name: "Lorem ipsum", image: "https://images.unsplash.com/photo-1530124566582-a618bc2615dc?q=80&w=800&auto=format&fit=crop" },
+    { name: "Lorem ipsum", image: "https://images.unsplash.com/photo-1565514020179-026b92b84bb6?q=80&w=800&auto=format&fit=crop" },
   ];
 
   return (
@@ -105,7 +105,6 @@ export const CncPage: React.FC = () => {
                 className="w-full h-full object-cover grayscale opacity-90 mix-blend-multiply transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105 group-hover:grayscale-0 group-hover:opacity-100 group-hover:mix-blend-normal" 
               />
             </div>
-            {/* Zaktualizowana plakietka z nowym tekstem o parametrach maszyny */}
             <div className="absolute bottom-8 -left-4 md:-left-12 bg-paper/95 backdrop-blur-sm p-6 shadow-xl border border-ink/5 z-10 max-w-sm transition-transform duration-700 group-hover:-translate-y-2">
               <span className="text-[10px] uppercase tracking-widest font-bold text-brand mb-2 block">PG CNC 2030 ATC</span>
               <p className="text-sm font-medium text-ink/90 leading-relaxed">
@@ -115,7 +114,7 @@ export const CncPage: React.FC = () => {
           </Reveal>
         </div>
 
-  {/* DLA KOGO PRACUJEMY */}
+        {/* DLA KOGO PRACUJEMY - Poprawiony spójny design */}
         <div className="mb-24 md:mb-32">
           <Reveal>
             <h2 className="font-serif text-3xl md:text-4xl text-ink mb-12">Dla kogo pracujemy?</h2>
@@ -124,17 +123,13 @@ export const CncPage: React.FC = () => {
             {targetAudiences.map((audience, idx) => (
               <Reveal key={idx} delay={idx * 50}>
                 <div className="group relative py-8 hairline-t flex items-center hover:bg-ash/20 transition-colors px-4 -mx-4 md:px-6 md:-mx-6 cursor-default">
-                  
-                  {/* Animowana pomarańczowa linia znana z innych sekcji strony */}
                   <div className="absolute top-[-1px] left-0 right-0 h-[1px] bg-brand scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)]" />
-                  
                   <span className="text-brand font-serif text-2xl mr-5 opacity-30 group-hover:opacity-100 transition-opacity duration-500">
                     /
                   </span>
                   <h3 className="font-serif text-lg md:text-xl text-ink transition-colors duration-500 group-hover:text-brand">
                     {audience}
                   </h3>
-                  
                 </div>
               </Reveal>
             ))}
@@ -177,7 +172,7 @@ export const CncPage: React.FC = () => {
           </div>
         </div>
 
-        {/* PARK MASZYNOWY */}
+        {/* PARK MASZYNOWY - Zaktualizowane maszyny */}
         <div className="mb-24 md:mb-32 bg-graphite p-8 md:p-16 rounded-sm text-paper overflow-hidden relative">
           <div className="absolute inset-0 bg-rings opacity-[0.04] pointer-events-none" aria-hidden="true" />
           <Reveal>
@@ -190,7 +185,7 @@ export const CncPage: React.FC = () => {
             {machines.map((machine, idx) => (
               <Reveal key={idx} delay={idx * 100}>
                 <div className="group cursor-pointer">
-                  <div className="w-full aspect-square bg-ink/50 overflow-hidden rounded-sm mb-4">
+                  <div className="w-full aspect-square bg-ink/50 overflow-hidden rounded-sm mb-4 relative">
                     <img 
                       src={machine.image} 
                       alt={machine.name} 
@@ -204,7 +199,7 @@ export const CncPage: React.FC = () => {
           </div>
         </div>
 
-        {/* ZAKTUALIZOWANE: MATERIAŁY I MOŻLIWOŚCI (Szerszy kontekst dla B2B) */}
+        {/* MATERIAŁY I MOŻLIWOŚCI */}
         <div className="grid lg:grid-cols-12 gap-16 mb-24 md:mb-32 items-center">
           <div className="lg:col-span-5">
             <Reveal>
@@ -239,7 +234,7 @@ export const CncPage: React.FC = () => {
           </div>
         </div>
 
-        {/* BLOK KONTAKTOWY Z PDF */}
+        {/* BLOK KONTAKTOWY */}
         <Reveal delay={300}>
           <div className="bg-graphite text-paper p-8 md:p-16 lg:p-20 relative overflow-hidden rounded-sm shadow-2xl">
             <div className="absolute inset-0 bg-rings opacity-[0.04] pointer-events-none" aria-hidden="true" />
@@ -247,7 +242,6 @@ export const CncPage: React.FC = () => {
             
             <div className="relative z-10 grid lg:grid-cols-2 gap-16">
               
-              {/* Lewa strona - CTA */}
               <div>
                 <h2 className="font-serif text-4xl text-paper mb-4">Prześlij pliki do wyceny</h2>
                 <p className="text-ash/70 font-light mb-10 text-lg">
@@ -285,13 +279,11 @@ export const CncPage: React.FC = () => {
                 </a>
               </div>
 
-              {/* Prawa strona - Interaktywne dane kontaktowe */}
               <div className="flex flex-col justify-center border-t lg:border-t-0 lg:border-l border-paper/10 pt-10 lg:pt-0 lg:pl-16 space-y-8">
                 <div>
                   <p className="text-xl font-serif text-paper mb-1">Kamilia Piotrowska</p>
                 </div>
 
-                {/* Telefon */}
                 <a href={`tel:${companyData.phone.replace(/\s/g, '')}`} className="group inline-flex items-center gap-4 text-ash hover:text-brand transition-colors outline-none focus-visible:ring-2 focus-visible:ring-brand rounded-sm w-max">
                   <span className="w-10 h-10 rounded-full border border-paper/10 flex items-center justify-center group-hover:border-brand/30 transition-colors">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
@@ -299,7 +291,6 @@ export const CncPage: React.FC = () => {
                   <span className="text-xl font-light tracking-wide">{companyData.phone}</span>
                 </a>
 
-                {/* Email */}
                 <a href={`mailto:${companyData.email}`} className="group inline-flex items-center gap-4 text-ash hover:text-brand transition-colors outline-none focus-visible:ring-2 focus-visible:ring-brand rounded-sm w-max">
                   <span className="w-10 h-10 rounded-full border border-paper/10 flex items-center justify-center group-hover:border-brand/30 transition-colors">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 6-10 7L2 6"/></svg>
@@ -307,7 +298,6 @@ export const CncPage: React.FC = () => {
                   <span className="text-xl font-light">{companyData.email}</span>
                 </a>
 
-                {/* Mapa Google */}
                 <a href="https://www.google.com/maps/search/?api=1&query=Łąkowa+6,+55-095+Mirków" target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-4 text-ash hover:text-brand transition-colors outline-none focus-visible:ring-2 focus-visible:ring-brand rounded-sm w-max">
                   <span className="w-10 h-10 rounded-full border border-paper/10 flex items-center justify-center group-hover:border-brand/30 transition-colors shrink-0">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
