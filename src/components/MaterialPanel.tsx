@@ -44,20 +44,22 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
   return (
     <div className={`relative overflow-hidden rounded-sm shadow-xl ${getVariantStyle()} ${className}`}>
       
-      {/* Profil 5: Wypukłe półwałki (F-15) - EFEKT LITER "m" (∩∩∩∩) */}
+      {/* Profil 5: Wypukłe półwałki (F-15) - WZMOCNIONY EFEKT 3D */}
       {profile === 'half-round' && (
         <div 
           className="absolute inset-0 pointer-events-none"
           style={{
-            // Maksymalnie zawężony cień w rowkach (0% i 5%), z szerokim, wypukłym światłem na wałku
+            // Bardzo wąski i ostry cień (rowek) na styku (0% - 0.15%)
+            // Silny, skupiony rozbłysk światła udający wypukłość (1.2%)
+            // Łagodne wejście w zacienioną stronę wałka (4.8%)
             background: `repeating-linear-gradient(
               to right,
-              rgba(0,0,0,${Number(shadowOp) * 0.95}) 0%,
-              rgba(0,0,0,${Number(shadowOp) * 0.1}) 0.3%,
-              rgba(255,255,255,${Number(highlightOp) * 0.8}) 1%,
+              rgba(0,0,0,${Number(shadowOp) * 1.3}) 0%,
+              rgba(0,0,0,${Number(shadowOp) * 1.3}) 0.15%,
+              rgba(255,255,255,${Number(highlightOp) * 1.5}) 1.2%,
               rgba(255,255,255,0) 2.5%,
-              rgba(0,0,0,${Number(shadowOp) * 0.3}) 4.7%,
-              rgba(0,0,0,${Number(shadowOp) * 0.95}) 5%
+              rgba(0,0,0,${Number(shadowOp) * 0.6}) 4.8%,
+              rgba(0,0,0,${Number(shadowOp) * 1.3}) 5%
             )`
           }}
         />
