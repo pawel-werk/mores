@@ -1,7 +1,8 @@
 import React from 'react';
 
 export type MaterialVariant = 'bazalt' | 'magma' | 'lithos' | 'tundra' | 'lumina';
-export type ProfileType = 'flat' | 'frame' | 'slatted' | 'grooved' | 'integrated-handle' | 'half-round' | 'integrated-handle-full' | 'integrated-handle-centered';
+// DODANO: 'integrated-handle-hidden' dla ukrytego uchwytu krawędziowego (F-4)
+export type ProfileType = 'flat' | 'frame' | 'slatted' | 'grooved' | 'integrated-handle' | 'half-round' | 'integrated-handle-full' | 'integrated-handle-centered' | 'integrated-handle-hidden';
 
 interface MaterialPanelProps {
   src?: string;
@@ -167,14 +168,25 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
               <stop offset="100%" stopColor={`rgba(0,0,0,${Number(shadowOp) * 0.05})`} />
             </linearGradient>
           </defs>
-          {/* Symetryczny trapez z zachowaniem skosów 1:1 jak w F-2 */}
           <polygon points="0,0 100,0 90,100 10,100" fill="url(#innerShadowSym)" />
-          {/* Dolna linia rozbłysku */}
           <line x1="10" y1="100" x2="90" y2="100" stroke={`rgba(255,255,255,${highlightOp})`} strokeWidth="3" vectorEffect="non-scaling-stroke" />
-          {/* Boczne skosy frezu */}
           <line x1="0" y1="0" x2="10" y2="100" stroke={`rgba(0,0,0,${Number(shadowOp) * 0.3})`} strokeWidth="2" vectorEffect="non-scaling-stroke" />
           <line x1="100" y1="0" x2="90" y2="100" stroke={`rgba(0,0,0,${Number(shadowOp) * 0.3})`} strokeWidth="2" vectorEffect="non-scaling-stroke" />
         </svg>
+      )}
+
+      {/* Profil 8: Ukryty uchwyt krawędziowy widoczny tylko od góry / bez uskoku z przodu (F-4) */}
+      {profile === 'integrated-handle-hidden' && (
+        <div className="absolute top-0 left-0 right-0 h-[4%] pointer-events-none">
+          {/* Cienki, elegancki cień pod samą górną krawędzią (imitujący podcięcie pod spodem) */}
+          <div 
+            className="absolute inset-0"
+            style={{
+              boxShadow: `0px 3px 4px rgba(0,0,0,${Number(shadowOp) * 0.7})`,
+              borderBottom: `1px solid rgba(0,0,0,${Number(shadowOp) * 0.4})`,
+            }}
+          />
+        </div>
       )}
     </div>
   );
