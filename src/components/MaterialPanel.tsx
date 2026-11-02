@@ -75,12 +75,12 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
         </div>
       )}
 
-      {/* Profil 3: Wąski rowek obwiedniowy, zachowujący płaski front (Nowy F-13) */}
+      {/* Profil 3: Wąski rowek obwiedniowy, zachowujący płaski front (Nowy F-13) - powiększona ramka */}
       {profile === 'grooved' && (
-        <div className="absolute inset-[8%] pointer-events-none">
+        <div className="absolute inset-[4%] pointer-events-none">
           {/* Zewnętrzna ściana rowka (cień wchodzący w dół) */}
           <div 
-            className="absolute inset-0 rounded-[1px]"
+            className="absolute inset-0 rounded-[2px]"
             style={{
               borderTop: `1.5px solid rgba(0,0,0,${shadowOp})`,
               borderLeft: `1.5px solid rgba(0,0,0,${shadowOp})`,
@@ -91,7 +91,7 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
           {/* Wewnętrzna ściana rowka (światło wychodzące w górę), 
               plus przywrócenie tła, by wyzerować złudzenie zagłębienia */}
           <div 
-            className={`absolute inset-[1.5px] rounded-[1px] ${getVariantStyle()}`}
+            className={`absolute inset-[1.5px] rounded-[1.5px] ${getVariantStyle()}`}
             style={{
               borderTop: `1px solid rgba(255,255,255,${highlightOp})`,
               borderLeft: `1px solid rgba(255,255,255,${highlightOp})`,
