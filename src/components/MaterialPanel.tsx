@@ -1,7 +1,6 @@
 import React from 'react';
 
 export type MaterialVariant = 'bazalt' | 'magma' | 'lithos' | 'tundra' | 'lumina';
-// DODANO: 'double-stepped-panel' dla frontu F-10 z podwójnym schodkiem w dół
 export type ProfileType = 'flat' | 'frame' | 'slatted' | 'grooved' | 'integrated-handle' | 'half-round' | 'integrated-handle-full' | 'integrated-handle-centered' | 'integrated-handle-hidden' | 'raised-panel' | 'micro-frame' | 'shaker' | 'complex-raised-panel' | 'double-stepped-panel';
 
 interface MaterialPanelProps {
@@ -299,32 +298,30 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
         </>
       )}
 
-      {/* Profil 13: Podwójnie stopniowany w dół (F-10) */}
+      {/* Profil 13: Podwójnie stopniowany w dół (F-10) ZMNIEJSZONA ODLEGŁOŚĆ KASKAD */}
       {profile === 'double-stepped-panel' && (
         <div className="absolute inset-[18%] pointer-events-none">
-          {/* Pierwszy skos w dół (1 jednostka) */}
+          {/* Pierwszy skos w dół */}
           <div className="absolute inset-0" style={{
             borderStyle: 'solid',
-            borderWidth: '5px', // Grubość pierwszego uskoku 45 stopni
+            borderWidth: '6px',
             borderTopColor: `rgba(0,0,0,${Number(shadowOp) * 0.7})`,
             borderLeftColor: `rgba(0,0,0,${Number(shadowOp) * 0.7})`,
             borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.8})`,
             borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.8})`,
           }}>
-            {/* Płaska wąska wewnętrzna ramka (ok. 1cm) - lekko przyciemniona by dać głębię */}
+            {/* Płaska półka między skosami - teraz ma szerokość równą grubości skosów (ok 6px) */}
             <div className="absolute inset-0 bg-black/[0.04]">
-              {/* Odstęp definiujący szerokość tej płaskiej ramki (10px) */}
-              <div className="absolute inset-[10px]">
-                {/* Drugi skos w dół (1 jednostka) oddalający się do głównej płyciny */}
+              <div className="absolute inset-[6px]">
+                {/* Drugi skos w dół */}
                 <div className="absolute inset-0" style={{
                   borderStyle: 'solid',
-                  borderWidth: '5px',
+                  borderWidth: '6px',
                   borderTopColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
                   borderLeftColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
                   borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
                   borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
                 }}>
-                  {/* Płaska, główna płycina środkowa - najciemniejsza, bo najniżej */}
                   <div className="absolute inset-0 bg-black/[0.06] shadow-[inset_1px_1px_4px_rgba(0,0,0,0.2)]" />
                 </div>
               </div>
