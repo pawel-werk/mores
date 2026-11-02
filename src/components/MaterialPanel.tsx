@@ -1,8 +1,8 @@
 import React from 'react';
 
 export type MaterialVariant = 'bazalt' | 'magma' | 'lithos' | 'tundra' | 'lumina';
-// DODANO: 'raised-panel' dla frontu ramowego z wypukłą płyciną (F-6)
-export type ProfileType = 'flat' | 'frame' | 'slatted' | 'grooved' | 'integrated-handle' | 'half-round' | 'integrated-handle-full' | 'integrated-handle-centered' | 'integrated-handle-hidden' | 'raised-panel';
+// DODANO: 'micro-frame' dla frontu z niezwykle cienką ramką na krawędzi (F-7)
+export type ProfileType = 'flat' | 'frame' | 'slatted' | 'grooved' | 'integrated-handle' | 'half-round' | 'integrated-handle-full' | 'integrated-handle-centered' | 'integrated-handle-hidden' | 'raised-panel' | 'micro-frame';
 
 interface MaterialPanelProps {
   src?: string;
@@ -175,7 +175,7 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
         </svg>
       )}
 
-      {/* Profil 8: Ukryty uchwyt krawędziowy całkowicie gładki od przodu (F-4) */}
+      {/* Profil 8: Ukryty uchwyt krawędziowy (F-4) */}
       {profile === 'integrated-handle-hidden' && (
         null
       )}
@@ -183,7 +183,6 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
       {/* Profil 9: Ramowy z wypukłą płyciną (F-6) */}
       {profile === 'raised-panel' && (
         <div className="absolute inset-[17%] pointer-events-none">
-          {/* Faza opadająca (skos w dół) tworzona przez grube obramowanie */}
           <div 
             className="absolute inset-0"
             style={{
@@ -195,9 +194,7 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
               borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.8})`,
             }}
           >
-            {/* Wąskie, lekko przyciemnione dno frezu */}
             <div className="absolute inset-0 bg-black/5 shadow-[inset_1px_1px_3px_rgba(0,0,0,0.15)]">
-              {/* Faza wznosząca (skos w górę) dająca wypukłość płyciny i płaski środek */}
               <div 
                 className={`absolute inset-[2px] ${getVariantStyle()}`}
                 style={{
@@ -213,6 +210,29 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
               </div>
             </div>
           </div>
+        </div>
+      )}
+
+      {/* Profil 10: Mikroramka na skraju frontu (F-7) */}
+      {profile === 'micro-frame' && (
+        <div 
+          className="absolute inset-0 pointer-events-none rounded-sm"
+          style={{
+            borderStyle: 'solid',
+            borderWidth: '4px',
+            borderTopColor: `rgba(255,255,255,${Number(highlightOp) * 0.8})`,
+            borderLeftColor: `rgba(255,255,255,${Number(highlightOp) * 0.8})`,
+            borderBottomColor: `rgba(0,0,0,${Number(shadowOp) * 0.6})`,
+            borderRightColor: `rgba(0,0,0,${Number(shadowOp) * 0.6})`,
+          }}
+        >
+          {/* Cień opadający z ramki na płaską powierzchnię frontu */}
+          <div 
+            className="absolute inset-0"
+            style={{
+              boxShadow: `inset 2px 2px 5px rgba(0,0,0,${Number(shadowOp) * 0.6}), inset -1px -1px 2px rgba(255,255,255,${Number(highlightOp) * 0.4})`
+            }}
+          />
         </div>
       )}
     </div>
