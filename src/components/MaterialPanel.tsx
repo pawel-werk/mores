@@ -1,7 +1,8 @@
 import React from 'react';
 
 export type MaterialVariant = 'bazalt' | 'magma' | 'lithos' | 'tundra' | 'lumina';
-export type ProfileType = 'flat' | 'frame' | 'slatted' | 'grooved' | 'integrated-handle' | 'half-round';
+// DODANO: 'integrated-handle-full' dla uchwytu krawędziowego na całą szerokość
+export type ProfileType = 'flat' | 'frame' | 'slatted' | 'grooved' | 'integrated-handle' | 'half-round' | 'integrated-handle-full';
 
 interface MaterialPanelProps {
   src?: string;
@@ -44,14 +45,11 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
   return (
     <div className={`relative overflow-hidden rounded-sm shadow-xl ${getVariantStyle()} ${className}`}>
       
-      {/* Profil 5: Wypukłe półwałki (F-15) - ZAGĘSZCZONE, WĄSKI ROWEK, SZEROKIE ŚWIATŁO */}
+      {/* Profil 5: Wypukłe półwałki (F-15) */}
       {profile === 'half-round' && (
         <div 
           className="absolute inset-0 pointer-events-none"
           style={{
-            // Zagęszczony krok do 2.5% (ok. 40 ryfli)
-            // Cień rowka zawężony niemal do punktu (0% - 0.05% oraz 2.45% - 2.5%)
-            // Bardzo szeroko rozlana biała poświata (0.6% do 1.5%) nadająca dużą wypukłość
             background: `repeating-linear-gradient(
               to right,
               rgba(0,0,0,${Number(shadowOp) * 1.5}) 0%,
@@ -124,7 +122,7 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
         </div>
       )}
 
-      {/* Profil 4: Zintegrowany uchwyt na lewej krawędzi (F-2) */}
+      {/* Profil 4: Zintegrowany uchwyt na lewej krawędzi (F-2 - asymetryczny) */}
       {profile === 'integrated-handle' && (
         <svg 
           className="absolute top-0 left-0 w-[85%] h-[7%] pointer-events-none" 
@@ -137,26 +135,24 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
               <stop offset="100%" stopColor={`rgba(0,0,0,${Number(shadowOp) * 0.05})`} />
             </linearGradient>
           </defs>
-          
-          <polygon 
-            points="0,0 100,0 90,100 0,100" 
-            fill="url(#innerShadow)" 
-          />
-          
-          <line 
-            x1="0" y1="100" x2="90" y2="100" 
-            stroke={`rgba(255,255,255,${highlightOp})`} 
-            strokeWidth="3" 
-            vectorEffect="non-scaling-stroke" 
-          />
-          
-          <line 
-            x1="100" y1="0" x2="90" y2="100" 
-            stroke={`rgba(0,0,0,${Number(shadowOp) * 0.3})`} 
-            strokeWidth="2" 
-            vectorEffect="non-scaling-stroke" 
-          />
+          <polygon points="0,0 100,0 90,100 0,100" fill="url(#innerShadow)" />
+          <line x1="0" y1="100" x2="90" y2="100" stroke={`rgba(255,255,255,${highlightOp})`} strokeWidth="3" vectorEffect="non-scaling-stroke" />
+          <line x1="100" y1="0" x2="90" y2="100" stroke={`rgba(0,0,0,${Number(shadowOp) * 0.3})`} strokeWidth="2" vectorEffect="non-scaling-stroke" />
         </svg>
+      )}
+
+      {/* Profil 6: Zintegrowany uchwyt na całej szerokości (F-1) */}
+      {profile === 'integrated-handle-full' && (
+        <div className="absolute top-0 left-0 right-0 h-[7%] pointer-events-none">
+          <div 
+            className="absolute inset-0"
+            style={{
+              backgroundColor: `rgba(0,0,0,${Number(shadowOp) * 0.3})`, // Głębia frezu
+              boxShadow: `inset 0px 6px 8px rgba(0,0,0,${Number(shadowOp) * 0.8})`, // Wewnętrzny cień u góry
+              borderBottom: `2.5px solid rgba(255,255,255,${highlightOp})`, // Światło na dolnym rancie pochwytu
+            }}
+          />
+        </div>
       )}
     </div>
   );
