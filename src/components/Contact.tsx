@@ -1,6 +1,5 @@
 import { SITE_DATA } from '../data/content';
 import Reveal from './Reveal';
-import SectionHeader from './SectionHeader';
 import { PhoneIcon, MailIcon } from './Icons';
 
 export default function Contact() {
@@ -14,7 +13,11 @@ export default function Contact() {
     <section id="contact" className="py-24 md:py-32 bg-mist">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         <Reveal>
-          <SectionHeader label="Kontakt" title="Porozmawiajmy o współpracy" />
+          {/* Usunięto brakujący komponent SectionHeader i wstawiono kod bezpośrednio */}
+          <div className="mb-8 md:mb-12">
+            <span className="block text-sm uppercase tracking-widest font-bold text-sage-deep mb-3">Kontakt</span>
+            <h2 className="text-4xl md:text-5xl font-bold text-ink tracking-tight">Porozmawiajmy o współpracy</h2>
+          </div>
         </Reveal>
 
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 mt-12">
@@ -55,7 +58,7 @@ export default function Contact() {
                   allowFullScreen={false} 
                   loading="lazy" 
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Lokalizacja ITAL-GROUP"
+                  title="Lokalizacja firmy"
                 />
               </div>
             </Reveal>
