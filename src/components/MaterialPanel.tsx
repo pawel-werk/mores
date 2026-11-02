@@ -1,7 +1,8 @@
 import React from 'react';
 
 export type MaterialVariant = 'bazalt' | 'magma' | 'lithos' | 'tundra' | 'lumina';
-export type ProfileType = 'flat' | 'frame' | 'slatted' | 'grooved' | 'integrated-handle' | 'half-round' | 'integrated-handle-full' | 'integrated-handle-centered' | 'integrated-handle-hidden' | 'raised-panel' | 'micro-frame' | 'shaker' | 'complex-raised-panel' | 'double-stepped-panel' | 'vertical-stiles-raised';
+// DODANO: 'flat-grooves' dla F-12 (pionowe, płaskie wycięcia)
+export type ProfileType = 'flat' | 'frame' | 'slatted' | 'grooved' | 'integrated-handle' | 'half-round' | 'integrated-handle-full' | 'integrated-handle-centered' | 'integrated-handle-hidden' | 'raised-panel' | 'micro-frame' | 'shaker' | 'complex-raised-panel' | 'double-stepped-panel' | 'vertical-stiles-raised' | 'flat-grooves';
 
 interface MaterialPanelProps {
   src?: string;
@@ -330,32 +331,24 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
       {/* Profil 14: Pionowe ramiaki z obniżeniem i wypukłą płytą środkową (F-11) */}
       {profile === 'vertical-stiles-raised' && (
         <>
-          {/* Fugi pionowe w kształcie V - zlokalizowane TYLKO w obszarze górnej i dolnej ramy */}
-          {/* Lewa górna */}
           <div className="absolute top-0 h-[18%] left-[18%] w-[4px] pointer-events-none z-10" style={{
             borderLeft: `2px solid rgba(0,0,0,${Number(shadowOp) * 0.8})`,
             borderRight: `2px solid rgba(255,255,255,${Number(highlightOp) * 0.9})`,
           }} />
-          {/* Lewa dolna */}
           <div className="absolute bottom-0 h-[18%] left-[18%] w-[4px] pointer-events-none z-10" style={{
             borderLeft: `2px solid rgba(0,0,0,${Number(shadowOp) * 0.8})`,
             borderRight: `2px solid rgba(255,255,255,${Number(highlightOp) * 0.9})`,
           }} />
-          {/* Prawa górna */}
           <div className="absolute top-0 h-[18%] right-[18%] w-[4px] pointer-events-none z-10" style={{
             borderLeft: `2px solid rgba(0,0,0,${Number(shadowOp) * 0.8})`,
             borderRight: `2px solid rgba(255,255,255,${Number(highlightOp) * 0.9})`,
           }} />
-          {/* Prawa dolna */}
           <div className="absolute bottom-0 h-[18%] right-[18%] w-[4px] pointer-events-none z-10" style={{
             borderLeft: `2px solid rgba(0,0,0,${Number(shadowOp) * 0.8})`,
             borderRight: `2px solid rgba(255,255,255,${Number(highlightOp) * 0.9})`,
           }} />
 
-          {/* Wnętrze ramy */}
           <div className="absolute inset-[18%] pointer-events-none">
-            
-            {/* Ostre wcięcie w dół (głębokość zbliżona do fugi, 1 jednostka) */}
             <div className="absolute inset-0" style={{
               borderStyle: 'solid',
               borderWidth: '4px', 
@@ -364,14 +357,8 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
               borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
               borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
             }}>
-              
-              {/* Płaskie wcięcie na dole (recess), celowo przyciemnione by uzyskać głębię */}
               <div className="absolute inset-0 bg-black/[0.08] shadow-[inset_1px_1px_5px_rgba(0,0,0,0.3)]">
-                
-                {/* Szeroki płaski odstęp (ok. 3-4cm) wokół wypukłości */}
                 <div className="absolute inset-[18px]">
-                  
-                  {/* Wznios o 1 jednostkę pod kątem 45 stopni w górę - z powrotem do poziomu ramy */}
                   <div className={`absolute inset-0 ${getVariantStyle()}`} style={{
                     borderStyle: 'solid',
                     borderWidth: '4px',
@@ -381,16 +368,35 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
                     borderRightColor: `rgba(0,0,0,${Number(shadowOp) * 0.7})`,
                     boxShadow: `3px 3px 8px rgba(0,0,0,${Number(shadowOp) * 0.25})`
                   }}>
-                    
-                    {/* Środek wyciągnięty na poziom 0. Używamy podstawowej barwy/faktury z delikatnym oświetleniem wypukłości */}
                     <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/10 pointer-events-none" />
-                    
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </>
+      )}
+
+      {/* Profil 15: Płaskie wycięcia / szeroki ryfel (F-12) */}
+      {profile === 'flat-grooves' && (
+        <div className="absolute inset-0 flex justify-evenly pointer-events-none">
+          {/* Generujemy serię płaskich wgłębień prostokątnych, które symulują frezy */}
+          {Array.from({ length: 9 }).map((_, i) => (
+            <div 
+              key={i} 
+              className="h-full w-[4.5%]" 
+              style={{ 
+                // Lewa krawędź frezu (cień spadku)
+                borderLeft: `1.5px solid rgba(0,0,0,${Number(shadowOp) * 0.8})`,
+                // Prawa krawędź frezu (rozświetlenie wzniosu)
+                borderRight: `1.5px solid rgba(255,255,255,${Number(highlightOp) * 0.9})`,
+                // Płaskie dno - lekko zaciemnione z lekkim cieniem wewnętrznym dla głębi (1 jednostka głębokości)
+                backgroundColor: `rgba(0,0,0,0.06)`,
+                boxShadow: `inset 1px 0 2px rgba(0,0,0,${Number(shadowOp) * 0.3})`
+              }} 
+            />
+          ))}
+        </div>
       )}
     </div>
   );
