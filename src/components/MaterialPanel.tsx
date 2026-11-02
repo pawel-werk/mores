@@ -1,7 +1,8 @@
 import React from 'react';
 
 export type MaterialVariant = 'bazalt' | 'magma' | 'lithos' | 'tundra' | 'lumina';
-export type ProfileType = 'flat' | 'frame' | 'slatted' | 'grooved' | 'integrated-handle';
+// DODANO: 'half-round' dla miękkich, wypukłych półwałków
+export type ProfileType = 'flat' | 'frame' | 'slatted' | 'grooved' | 'integrated-handle' | 'half-round';
 
 interface MaterialPanelProps {
   src?: string;
@@ -38,11 +39,30 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
   };
 
   const isDark = variant === 'bazalt' || variant === 'magma';
-  const shadowOp = isDark ? '0.6' : '0.25'; 
-  const highlightOp = isDark ? '0.1' : '0.8'; 
+  const shadowOp = isDark ? '0.7' : '0.15'; 
+  const highlightOp = isDark ? '0.1' : '0.6'; 
 
   return (
     <div className={`relative overflow-hidden rounded-sm shadow-xl ${getVariantStyle()} ${className}`}>
+      
+      {/* Profil 5: Wypukłe półwałki (F-15) 
+          Gradient renderuje się przed głównym oświetleniem, żeby nie był zakryty */}
+      {profile === 'half-round' && (
+        <div 
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            // Tworzymy powtarzający się wzór (ok. 20 wałków na szerokość frontu)
+            // Zaczynamy od cienia (w dolinie), idziemy do światła (szczyt) i z powrotem do cienia
+            background: `repeating-linear-gradient(
+              to right,
+              rgba(0,0,0,${Number(shadowOp) * 0.8}) 0%,
+              rgba(255,255,255,${highlightOp}) 2.5%,
+              rgba(0,0,0,${Number(shadowOp) * 0.8}) 5%
+            )`
+          }}
+        />
+      )}
+
       {/* Główne oświetlenie frontu */}
       <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/20 pointer-events-none" />
 
@@ -59,7 +79,7 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
         </div>
       )}
 
-      {/* Profil 2: Listwowanie (Lamele) */}
+      {/* Profil 2: Ostre listwowanie (Lamele) */}
       {profile === 'slatted' && (
         <div className="absolute inset-0 flex justify-evenly pointer-events-none">
           {Array.from({ length: 8 }).map((_, i) => (
@@ -101,7 +121,7 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
         </div>
       )}
 
-      {/* Profil 4: Zintegrowany uchwyt na lewej krawędzi (F-2 z drugiego zestawu zdjęć) */}
+      {/* Profil 4: Zintegrowany uchwyt na lewej krawędzi (F-2) */}
       {profile === 'integrated-handle' && (
         <svg 
           className="absolute top-0 left-0 w-[85%] h-[7%] pointer-events-none" 
@@ -115,13 +135,11 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
             </linearGradient>
           </defs>
           
-          {/* Tło wgłębienia z pionowym światłocieniem */}
           <polygon 
             points="0,0 100,0 90,100 0,100" 
             fill="url(#innerShadow)" 
           />
           
-          {/* Rozbłysk światła na poziomej dolnej krawędzi uchwytu */}
           <line 
             x1="0" y1="100" x2="90" y2="100" 
             stroke={`rgba(255,255,255,${highlightOp})`} 
@@ -129,7 +147,6 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
             vectorEffect="non-scaling-stroke" 
           />
           
-          {/* Delikatny cień na skośnym cięciu (lewa krawędź frezu odbija mniej światła z góry) */}
           <line 
             x1="100" y1="0" x2="90" y2="100" 
             stroke={`rgba(0,0,0,${Number(shadowOp) * 0.3})`} 

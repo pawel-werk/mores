@@ -7,11 +7,11 @@ type CatalogItem = {
   title: string;
   desc: string;
   variant: 'bazalt' | 'magma' | 'lithos' | 'tundra' | 'lumina';
-  profile: 'flat' | 'frame' | 'slatted' | 'grooved' | 'integrated-handle';
+  profile: 'flat' | 'frame' | 'slatted' | 'grooved' | 'integrated-handle' | 'half-round';
   longDesc: string;
 };
 
-// Dodano F-2 do listy
+// Dodano F-15 do listy
 const catalogFronts: CatalogItem[] = [
   { title: "Lumina", desc: "Płaski / Gładki mat", variant: "lumina", profile: "flat", longDesc: "Minimalistyczny front o jedwabiście gładkiej powierzchni. Idealnie rozprasza światło, nadając wnętrzu nowoczesny, czysty charakter. Doskonały wybór do bezuchwytowych systemów zabudowy." },
   { title: "Silva", desc: "Ramowy / Klasyczny Shaker", variant: "lumina", profile: "frame", longDesc: "Klasyczny profil ramiakowy inspirowany stylem Shaker. Łączy w sobie tradycyjne rzemiosło z nowoczesną precyzją wykonania. Ponadczasowy design dla eleganckich projektów." },
@@ -38,7 +38,8 @@ const catalogFronts: CatalogItem[] = [
   { title: "Agat", desc: "Fornir / Orzech", variant: "tundra", profile: "flat", longDesc: "Szlachetny fornir orzechowy o bogatej, czekoladowej kolorystyce i eleganckim usłojeniu. Wnosi do wnętrza atmosferę prestiżu i klasycznego piękna. Precyzyjnie pasowany wzór na stykach." },
 
   { title: "F-13", desc: "Płaski / Frez obwiedniowy", variant: "lithos", profile: "grooved", longDesc: "Klasyczny, elegancki front z subtelnym, pojedynczym frezem obwiedniowym. Detal, który dodaje wyrafinowania bez obciążania przestrzeni." },
-  { title: "F-2", desc: "Płaski / Uchwyt krawędziowy", variant: "lithos", profile: "integrated-handle", longDesc: "Minimalistyczny front z precyzyjnie wyfrezowanym, zintegrowanym uchwytem krawędziowym. Łączy w sobie czystość formy z najwyższą ergonomią bezuchwytowego otwierania." }
+  { title: "F-2", desc: "Płaski / Uchwyt krawędziowy", variant: "lithos", profile: "integrated-handle", longDesc: "Minimalistyczny front z precyzyjnie wyfrezowanym, zintegrowanym uchwytem krawędziowym. Łączy w sobie czystość formy z najwyższą ergonomią bezuchwytowego otwierania." },
+  { title: "F-15", desc: "Ryflowany / Półwałek", variant: "lithos", profile: "half-round", longDesc: "Niezwykle modne ryflowanie o miękkim, wypukłym profilu półwałka. Tworzy powtarzalny, organiczny wzór, który doskonale rozprasza światło i nadaje wnętrzu przytulny, a zarazem nowoczesny charakter." }
 ];
 
 export const CatalogPage: React.FC = () => {
