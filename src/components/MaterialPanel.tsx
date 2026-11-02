@@ -47,13 +47,11 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
     </div>
   );
 
-  // Sprawdzamy czy front jest witryną/ażurem i wymaga przezroczystego tła na wylot
   const isSeeThrough = profile === 'glass-frame' || profile === 'mullion-frame' || profile === 'lattice-frame';
 
   return (
     <div className={`relative overflow-hidden rounded-sm shadow-xl ${isSeeThrough ? '' : getVariantStyle()} ${className}`}>
       
-      {/* Ręczne budowanie 4 ścian ramy dla frontów "na wylot", zostawiając środek w 100% przezroczysty */}
       {isSeeThrough && (
         <>
           <div className={`absolute top-0 left-0 right-0 h-[18%] ${getVariantStyle()}`} />
@@ -62,6 +60,9 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
           <div className={`absolute top-[18%] bottom-[18%] right-0 w-[18%] ${getVariantStyle()}`} />
         </>
       )}
+
+      {/* Główne oświetlenie frontu (tylko na ramie dla frontów na wylot) */}
+      <div className={`absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/20 pointer-events-none ${isSeeThrough ? 'opacity-50 mix-blend-overlay' : ''}`} />
 
       {/* Profil 5: Wypukłe półwałki (F-15) */}
       {profile === 'half-round' && (
@@ -81,9 +82,6 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
           }}
         />
       )}
-
-      {/* Główne oświetlenie frontu */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/20 pointer-events-none" />
 
       {/* Profil 1: Klasyczna, szeroka rama (Shaker płaski) */}
       {profile === 'frame' && (
@@ -429,12 +427,9 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
         />
       )}
 
-      {/* --- PONIŻEJ MODELE AŻUROWE I PRZESZKLONE (WYMAGAJĄCE TŁA NA WYLOT) --- */}
-
       {/* Profil 17: Klasyczna witryna ze szprosami i szkłem (F-16) */}
       {profile === 'mullion-frame' && (
         <>
-          {/* Dodatkowe rysowanie samego krzyżaka szprosów (bo tło rodzica jest usunięte) */}
           <div className={`absolute top-[50%] -mt-[3px] h-[6px] left-[18%] right-[18%] ${getVariantStyle()}`} />
           <div className={`absolute left-[50%] -ml-[3px] w-[6px] top-[18%] bottom-[18%] ${getVariantStyle()}`} />
 
@@ -449,7 +444,6 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
             }}>
               {renderGlass()}
             </div>
-            
             <div className="absolute top-0 left-[calc(50%+3px)] right-0 bottom-[calc(50%+3px)]" style={{
               borderStyle: 'solid',
               borderWidth: '6px',
@@ -460,7 +454,6 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
             }}>
               {renderGlass()}
             </div>
-
             <div className="absolute top-[calc(50%+3px)] left-0 right-[calc(50%+3px)] bottom-0" style={{
               borderStyle: 'solid',
               borderWidth: '6px',
@@ -471,7 +464,6 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
             }}>
               {renderGlass()}
             </div>
-
             <div className="absolute top-[calc(50%+3px)] left-[calc(50%+3px)] right-0 bottom-0" style={{
               borderStyle: 'solid',
               borderWidth: '6px',
@@ -502,26 +494,36 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
         </div>
       )}
 
-      {/* Profil 19: Witryna z ażurową kratką na wylot (F-18) */}
+      {/* Profil 19: Witryna z ażurową kratką wyciętą na wylot (F-18) */}
       {profile === 'lattice-frame' && (
         <div className="absolute inset-[18%] pointer-events-none">
           
-          {/* Ścięcie ramy 45 stopni o grubości ok. 2 jednostek (12px) rzucone w dół */}
+          {/* Ścięcie ramy zewnętrznej (45 stopni w dół) - grubości ok 2 jednostek */}
           <div className="absolute inset-0 z-20 pointer-events-none" style={{
             borderStyle: 'solid',
-            borderWidth: '12px',
+            borderWidth: '10px',
             borderTopColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
             borderLeftColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
             borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
             borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
           }} />
 
-          {/* Cień rzucany w głąb przez wewnętrzną krawędź ramy na dno szafki / krawędzie kratki */}
-          <div className="absolute inset-[12px] shadow-[inset_3px_3px_8px_rgba(0,0,0,0.5)] z-30 pointer-events-none" />
+          {/* Gruba "deska" kratki osadzona głębiej */}
+          <div className="absolute inset-[10px] z-10 pointer-events-auto">
+            
+            {/* Ciemna warstwa symulująca głębię frezu na krawędzi otworów */}
+            <div 
+              className="absolute inset-0 bg-black/60"
+              style={{
+                WebkitMaskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cg stroke='black' stroke-width='8' stroke-linecap='square'%3E%3Cline x1='0' y1='0' x2='24' y2='24'/%3E%3Cline x1='24' y1='0' x2='0' y2='24'/%3E%3C/g%3E%3C/svg%3E")`,
+                maskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cg stroke='black' stroke-width='8' stroke-linecap='square'%3E%3Cline x1='0' y1='0' x2='24' y2='24'/%3E%3Cline x1='24' y1='0' x2='0' y2='24'/%3E%3C/g%3E%3C/svg%3E")`,
+                WebkitMaskSize: '24px 24px',
+                maskSize: '24px 24px',
+                transform: 'translate(1.5px, 2.5px)' // Przesunięcie tworzy cień krawędzi (grubość MDF)
+              }}
+            />
 
-          {/* Sama kratka - osadzona na dnie ścięcia (inset 12px) */}
-          <div className="absolute inset-[12px] z-10">
-            {/* Wycięta na wylot z widocznym tłem strony i rzuconym przez siebie cieniem */}
+            {/* Właściwa jasna powierzchnia kratki */}
             <div 
               className={`absolute inset-0 ${getVariantStyle()}`}
               style={{
@@ -529,15 +531,12 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
                 maskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cg stroke='black' stroke-width='8' stroke-linecap='square'%3E%3Cline x1='0' y1='0' x2='24' y2='24'/%3E%3Cline x1='24' y1='0' x2='0' y2='24'/%3E%3C/g%3E%3C/svg%3E")`,
                 WebkitMaskSize: '24px 24px',
                 maskSize: '24px 24px',
-                // Cień dający grubość 3D samej kratce (spada na tło za panelem)
-                filter: 'drop-shadow(2px 3px 3px rgba(0,0,0,0.45)) contrast(105%)'
               }}
             >
-              {/* Oświetlenie i faktura samej powierzchni kratki */}
-              <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-black/20 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-black/10 pointer-events-none" />
             </div>
+            
           </div>
-
         </div>
       )}
     </div>
