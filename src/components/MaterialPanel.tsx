@@ -76,7 +76,7 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
         </div>
       )}
 
-      {/* Profil 3: DELIKATNY FREZ OBWIEDNIOWY (Nowy) */}
+      {/* Profil 3: DELIKATNY FREZ OBWIEDNIOWY (Nowy ze zdjęcia) */}
       {profile === 'grooved' && (
         <div 
           className="absolute inset-[12%] pointer-events-none rounded-[2px]"
