@@ -79,10 +79,13 @@ export const CatalogPage: React.FC = () => {
               <div className="relative w-full max-w-[160px] sm:max-w-[200px] md:max-w-[280px] lg:max-w-[340px] aspect-[3/4] rounded-sm shadow-md mt-4 md:mt-0">
                 <MaterialPanel variant={selectedFront.variant} profile={selectedFront.profile} className="w-full h-full rounded-sm" />
                 
-                {/* Lupa powiększająca - ZOPTYMALIZOWANE POWIĘKSZENIE */}
-                <div className="absolute -top-8 -right-10 sm:-top-10 sm:-right-12 md:-top-24 md:-right-28 lg:-top-[130px] lg:-right-[150px] w-40 h-40 sm:w-48 sm:h-48 md:w-72 md:h-72 lg:w-[340px] lg:h-[340px] rounded-full border-[4px] md:border-[8px] border-paper shadow-2xl overflow-hidden z-20 pointer-events-none bg-paper">
-                  <div className="w-full h-full flex justify-end items-start pt-4 pr-4 md:pt-10 md:pr-10 lg:pt-12 lg:pr-12">
-                    <div className="w-[240%] sm:w-[260%] md:w-[280%] lg:w-[320%] aspect-[3/4] flex-shrink-0 shadow-sm rounded-sm overflow-hidden">
+                {/* Lupa powiększająca - PRAWDZIWE SKALOWANIE CSS (transform: scale) */}
+                <div className="absolute -top-8 -right-10 sm:-top-10 sm:-right-12 md:-top-24 md:-right-28 lg:-top-[130px] lg:-right-[150px] w-40 h-40 sm:w-48 sm:h-48 md:w-72 md:h-72 lg:w-[340px] lg:h-[340px] rounded-full border-[4px] md:border-[8px] border-paper shadow-2xl overflow-hidden z-20 pointer-events-none bg-paper flex items-start justify-end">
+                  
+                  {/* Skalowanie CSS gwarantuje, że grubości frezów w px również urosną! */}
+                  <div className="origin-top-right transform scale-[1.6] sm:scale-[1.8] md:scale-[2.2] lg:scale-[2.5] mt-4 mr-4 md:mt-10 md:mr-10">
+                    {/* Baza w stałym rozmiarze zbliżonym do oryginalnego panelu */}
+                    <div className="w-[120px] sm:w-[140px] md:w-[180px] lg:w-[220px] aspect-[3/4] rounded-sm flex-shrink-0">
                       <MaterialPanel 
                         variant={selectedFront.variant} 
                         profile={selectedFront.profile} 
@@ -90,6 +93,7 @@ export const CatalogPage: React.FC = () => {
                       />
                     </div>
                   </div>
+                  
                 </div>
 
               </div>
@@ -229,28 +233,6 @@ export const CatalogPage: React.FC = () => {
         </section>
 
       </div>
-      
-      {/* 
-        ARCHIWUM POPRZEDNICH NAZW FRONTÓW (DO WYKORZYSTANIA W PRZYSZŁOŚCI):
-        { title: "Lumina", desc: "Płaski / Gładki mat", variant: "lumina", profile: "flat" },
-        { title: "Silva", desc: "Ramowy / Klasyczny Shaker", variant: "lumina", profile: "frame" },
-        { title: "Ignis", desc: "Ryflowany / Drobne lamele", variant: "lumina", profile: "slatted" },
-        { title: "Bazalt", desc: "Płaski / Głęboki ultramat", variant: "bazalt", profile: "flat" },
-        { title: "Granit", desc: "Ramowy / Szeroka rama", variant: "bazalt", profile: "frame" },
-        { title: "Onyks", desc: "Ryflowany / Asymetryczny", variant: "bazalt", profile: "slatted" },
-        { title: "Tundra", desc: "Fornir / Dąb naturalny", variant: "tundra", profile: "flat" },
-        { title: "Taiga", desc: "Fornir / Wąska ramka", variant: "tundra", profile: "frame" },
-        { title: "Borea", desc: "Fornir / Szczotkowany", variant: "tundra", profile: "slatted" },
-        { title: "Lithos", desc: "Płaski / Kamienny beż", variant: "lithos", profile: "flat" },
-        { title: "Petra", desc: "Ramowy / Podwójny frez", variant: "lithos", profile: "frame" },
-        { title: "Terra", desc: "Ryflowany / Szeroka fala", variant: "lithos", profile: "slatted" },
-        { title: "Magma", desc: "Płaski / Akcent satynowy", variant: "magma", profile: "flat" },
-        { title: "Vulcan", desc: "Ramowy / Ukryty uchwyt", variant: "magma", profile: "frame" },
-        { title: "Caldera", desc: "Ryflowany / Wysoki kontrast", variant: "magma", profile: "slatted" },
-        { title: "Opal", desc: "Płaski / Biel perłowa", variant: "lumina", profile: "flat" },
-        { title: "Obsydian", desc: "Płaski / Czarny metalik", variant: "bazalt", profile: "flat" },
-        { title: "Agat", desc: "Fornir / Orzech", variant: "tundra", profile: "flat" }
-      */}
     </div>
   );
 };

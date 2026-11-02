@@ -244,26 +244,26 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
         </div>
       )}
 
-      {/* Profil 12: Rozbudowany front klasyczny (F-9) wg dokładnego opisu z poprawką zew. ramki */}
+      {/* Profil 12: Rozbudowany front klasyczny (F-9) */}
       {profile === 'complex-raised-panel' && (
         <>
-          {/* 1. Płaski pas (ok. 1cm od krawędzi), a następnie delikatny wznios o 1 jednostkę */}
-          <div className="absolute inset-[3.5%] pointer-events-none rounded-[1px]" style={{
+          {/* 1. Odchudzony płaski pas na skraju - ramka zachowuje proporcje 1cm zanim zacznie się frez */}
+          <div className="absolute inset-[2%] pointer-events-none rounded-[1px]" style={{
             borderStyle: 'solid',
-            borderWidth: '2.5px', // Jasne krawędzie u góry/po lewej oznaczają wznios do przodu
+            borderWidth: '1.5px', // Cienki, precyzyjny wznios
             borderTopColor: `rgba(255,255,255,${Number(highlightOp) * 0.7})`,
             borderLeftColor: `rgba(255,255,255,${Number(highlightOp) * 0.7})`,
             borderBottomColor: `rgba(0,0,0,${Number(shadowOp) * 0.5})`,
             borderRightColor: `rgba(0,0,0,${Number(shadowOp) * 0.5})`,
           }} />
           
-          {/* 2. Płaska szeroka rama (odstęp od delikatnego wzniosu aż do wgłębienia płyciny) */}
+          {/* 2. Płaska szeroka rama */}
           <div className="absolute inset-[18%] pointer-events-none">
             
             {/* 3. Wgłębienie o 4 jednostki w dół pod kątem 45 stopni */}
             <div className="absolute inset-0" style={{
               borderStyle: 'solid',
-              borderWidth: '8px', // Ciemne krawędzie u góry/po lewej oznaczają spadek
+              borderWidth: '8px',
               borderTopColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
               borderLeftColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
               borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
@@ -287,7 +287,7 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
                     {/* 6. Płaska ramka (odstęp przed główną wypukłością) */}
                     <div className="absolute inset-[6px]">
                       
-                      {/* 7. Szeroki wznios (ok. 5 jednostek szerokości) pod kątem 30 stopni */}
+                      {/* 7. Szeroki wznios pod kątem 30 stopni */}
                       <div className={`absolute inset-0 ${getVariantStyle()}`} style={{
                         borderStyle: 'solid',
                         borderWidth: '16px',
