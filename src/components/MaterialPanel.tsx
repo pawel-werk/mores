@@ -1,8 +1,8 @@
 import React from 'react';
 
 export type MaterialVariant = 'bazalt' | 'magma' | 'lithos' | 'tundra' | 'lumina';
-// DODANO: 'flat-grooves' dla F-12 (pionowe, płaskie wycięcia)
-export type ProfileType = 'flat' | 'frame' | 'slatted' | 'grooved' | 'integrated-handle' | 'half-round' | 'integrated-handle-full' | 'integrated-handle-centered' | 'integrated-handle-hidden' | 'raised-panel' | 'micro-frame' | 'shaker' | 'complex-raised-panel' | 'double-stepped-panel' | 'vertical-stiles-raised' | 'flat-grooves';
+// DODANO: 'concave-grooves' dla F-14 (wklęsłe frezy z płaskimi przerwami)
+export type ProfileType = 'flat' | 'frame' | 'slatted' | 'grooved' | 'integrated-handle' | 'half-round' | 'integrated-handle-full' | 'integrated-handle-centered' | 'integrated-handle-hidden' | 'raised-panel' | 'micro-frame' | 'shaker' | 'complex-raised-panel' | 'double-stepped-panel' | 'vertical-stiles-raised' | 'flat-grooves' | 'concave-grooves';
 
 interface MaterialPanelProps {
   src?: string;
@@ -380,23 +380,40 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
       {/* Profil 15: Płaskie wycięcia / szeroki ryfel (F-12) */}
       {profile === 'flat-grooves' && (
         <div className="absolute inset-0 flex justify-evenly pointer-events-none">
-          {/* Generujemy serię płaskich wgłębień prostokątnych, które symulują frezy */}
           {Array.from({ length: 9 }).map((_, i) => (
             <div 
               key={i} 
               className="h-full w-[4.5%]" 
               style={{ 
-                // Lewa krawędź frezu (cień spadku)
                 borderLeft: `1.5px solid rgba(0,0,0,${Number(shadowOp) * 0.8})`,
-                // Prawa krawędź frezu (rozświetlenie wzniosu)
                 borderRight: `1.5px solid rgba(255,255,255,${Number(highlightOp) * 0.9})`,
-                // Płaskie dno - lekko zaciemnione z lekkim cieniem wewnętrznym dla głębi (1 jednostka głębokości)
                 backgroundColor: `rgba(0,0,0,0.06)`,
                 boxShadow: `inset 1px 0 2px rgba(0,0,0,${Number(shadowOp) * 0.3})`
               }} 
             />
           ))}
         </div>
+      )}
+
+      {/* Profil 16: Wklęsłe frezy z płaskimi przerwami (F-14) */}
+      {profile === 'concave-grooves' && (
+        <div 
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            // Powtarzalny cykl (ok. 8% szerokości frontu).
+            // 0 - 2.5% to płaska przerwa (1 jednostka)
+            // 2.5% - 8% to szeroki wklęsły frez (ok. 2 jednostki)
+            background: `repeating-linear-gradient(
+              to right,
+              rgba(0,0,0,0) 0%,
+              rgba(0,0,0,0) 2.5%,
+              rgba(0,0,0,${Number(shadowOp) * 1.5}) 2.8%,
+              rgba(0,0,0,0) 5%,
+              rgba(255,255,255,${Number(highlightOp) * 1.2}) 7.6%,
+              rgba(0,0,0,0) 8%
+            )`
+          }}
+        />
       )}
     </div>
   );
