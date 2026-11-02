@@ -1,7 +1,8 @@
 import React from 'react';
 
 export type MaterialVariant = 'bazalt' | 'magma' | 'lithos' | 'tundra' | 'lumina';
-export type ProfileType = 'flat' | 'frame' | 'slatted' | 'grooved' | 'integrated-handle' | 'half-round' | 'integrated-handle-full' | 'integrated-handle-centered' | 'integrated-handle-hidden' | 'raised-panel' | 'micro-frame' | 'shaker';
+// DODANO: 'complex-raised-panel' dla frontu klasycznego z podwójnym skosem i ramką (F-9)
+export type ProfileType = 'flat' | 'frame' | 'slatted' | 'grooved' | 'integrated-handle' | 'half-round' | 'integrated-handle-full' | 'integrated-handle-centered' | 'integrated-handle-hidden' | 'raised-panel' | 'micro-frame' | 'shaker' | 'complex-raised-panel';
 
 interface MaterialPanelProps {
   src?: string;
@@ -241,17 +242,58 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
             className="absolute inset-0"
             style={{
               borderStyle: 'solid',
-              borderWidth: '7px', // Szerokość fazy 45 stopni
+              borderWidth: '7px',
               borderTopColor: `rgba(0,0,0,${Number(shadowOp) * 0.7})`,
               borderLeftColor: `rgba(0,0,0,${Number(shadowOp) * 0.7})`,
               borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.8})`,
               borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.8})`,
             }}
           >
-            {/* Lekkie zacienienie dolnej, płaskiej płyciny aby uzyskać efekt głębi */}
             <div className="absolute inset-0 bg-black/[0.03] shadow-[inset_1px_1px_3px_rgba(0,0,0,0.15)]" />
           </div>
         </div>
+      )}
+
+      {/* Profil 12: Podwójny skos (w dół i w górę) + zewnętrzny frez (F-9) */}
+      {profile === 'complex-raised-panel' && (
+        <>
+          {/* Zewnętrzny, subtelny frez obwiedniowy */}
+          <div className="absolute inset-[3%] pointer-events-none">
+            <div className="absolute inset-0 rounded-[2px]" style={{
+              borderTop: `1px solid rgba(0,0,0,${Number(shadowOp) * 0.4})`,
+              borderLeft: `1px solid rgba(0,0,0,${Number(shadowOp) * 0.4})`,
+              borderBottom: `1px solid rgba(255,255,255,${Number(highlightOp) * 0.5})`,
+              borderRight: `1px solid rgba(255,255,255,${Number(highlightOp) * 0.5})`,
+            }} />
+          </div>
+          {/* Wewnętrzna rama i podwójny skos */}
+          <div className="absolute inset-[18%] pointer-events-none">
+            {/* Skos 45 stopni w dół */}
+            <div className="absolute inset-0" style={{
+              borderStyle: 'solid',
+              borderWidth: '8px',
+              borderTopColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
+              borderLeftColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
+              borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
+              borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
+            }}>
+              {/* Ostre dno (rylec) przed wzniesieniem */}
+              <div className="absolute inset-0 bg-black/10 shadow-[inset_1px_1px_3px_rgba(0,0,0,0.3)]">
+                {/* Skos 45 stopni w górę formujący wypukłą płytę z płaskim środkiem */}
+                <div className={`absolute inset-[1px] ${getVariantStyle()}`} style={{
+                  borderStyle: 'solid',
+                  borderWidth: '10px',
+                  borderTopColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
+                  borderLeftColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
+                  borderBottomColor: `rgba(0,0,0,${Number(shadowOp) * 0.7})`,
+                  borderRightColor: `rgba(0,0,0,${Number(shadowOp) * 0.7})`,
+                }}>
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-black/10 pointer-events-none" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </>
       )}
     </div>
   );
