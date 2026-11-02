@@ -101,25 +101,42 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
         </div>
       )}
 
-      {/* Profil 4: Zintegrowany uchwyt na krawędzi (F-2 z drugiego zestawu zdjęć) */}
+      {/* Profil 4: Zintegrowany uchwyt na lewej krawędzi (F-2 z drugiego zestawu zdjęć) */}
       {profile === 'integrated-handle' && (
-        // Umieszczamy frez na samej górze, zaczynający się w połowie szerokości i idący do prawej krawędzi. 
-        // Wysokość to ok. 6% panelu.
-        <div className="absolute top-0 right-0 left-[35%] h-[6%] pointer-events-none">
-          {/* Symulacja głębi wybranego materiału */}
-          <div 
-            className="absolute inset-0"
-            style={{
-              backgroundColor: `rgba(0,0,0,${Number(shadowOp) * 0.2})`, // Delikatne zacienienie dna
-              // Cień wewnętrzny od góry i z lewej (aby udawał skośne cięcie), rozbłysk od dołu
-              boxShadow: `inset 4px 6px 8px rgba(0,0,0,${shadowOp}), 0px 1px 1px rgba(255,255,255,${highlightOp})`,
-              // Skośna linia zakończenia po lewej stronie symulowana ramką
-              borderLeft: `3px solid rgba(0,0,0,${Number(shadowOp) * 0.4})`,
-              borderBottom: `1.5px solid rgba(255,255,255,${highlightOp})`,
-              borderBottomLeftRadius: '3px'
-            }}
+        <svg 
+          className="absolute top-0 left-0 w-[85%] h-[7%] pointer-events-none" 
+          preserveAspectRatio="none" 
+          viewBox="0 0 100 100"
+        >
+          <defs>
+            <linearGradient id="innerShadow" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor={`rgba(0,0,0,${Number(shadowOp) * 0.5})`} />
+              <stop offset="100%" stopColor={`rgba(0,0,0,${Number(shadowOp) * 0.05})`} />
+            </linearGradient>
+          </defs>
+          
+          {/* Tło wgłębienia z pionowym światłocieniem */}
+          <polygon 
+            points="0,0 100,0 90,100 0,100" 
+            fill="url(#innerShadow)" 
           />
-        </div>
+          
+          {/* Rozbłysk światła na poziomej dolnej krawędzi uchwytu */}
+          <line 
+            x1="0" y1="100" x2="90" y2="100" 
+            stroke={`rgba(255,255,255,${highlightOp})`} 
+            strokeWidth="3" 
+            vectorEffect="non-scaling-stroke" 
+          />
+          
+          {/* Delikatny cień na skośnym cięciu (lewa krawędź frezu odbija mniej światła z góry) */}
+          <line 
+            x1="100" y1="0" x2="90" y2="100" 
+            stroke={`rgba(0,0,0,${Number(shadowOp) * 0.3})`} 
+            strokeWidth="2" 
+            vectorEffect="non-scaling-stroke" 
+          />
+        </svg>
       )}
     </div>
   );
