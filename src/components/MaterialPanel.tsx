@@ -181,9 +181,7 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
       )}
 
       {/* Profil 8: Ukryty uchwyt krawędziowy (F-4) */}
-      {profile === 'integrated-handle-hidden' && (
-        null
-      )}
+      {profile === 'integrated-handle-hidden' && null}
 
       {/* Profil 9: Ramowy z wypukłą płyciną (F-6) */}
       {profile === 'raised-panel' && (
@@ -483,32 +481,36 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
         </div>
       )}
 
-      {/* Profil 19: Witryna z kratką / dziurkowaniem (F-18) */}
+      {/* Profil 19: Witryna z ażurową kratką (F-18) - wycięta na wylot z widocznym tłem i cieniem */}
       {profile === 'lattice-frame' && (
         <div className="absolute inset-[18%] pointer-events-none">
-          <div className="absolute inset-0" style={{
+          {/* Ścięcie ramy 45 stopni w dół */}
+          <div className="absolute inset-0 z-20 pointer-events-none" style={{
             borderStyle: 'solid',
             borderWidth: '6px',
             borderTopColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
             borderLeftColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
             borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
             borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
-          }}>
-            {/* Wnętrze ramy - z usuniętym czarnym tłem - widać spod spodu kolor wariantu */}
-            <div className="absolute inset-0">
-              <div 
-                className={`absolute inset-0 ${getVariantStyle()}`}
-                style={{
-                  WebkitMaskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cg stroke='black' stroke-width='8' stroke-linecap='square'%3E%3Cline x1='0' y1='0' x2='24' y2='24'/%3E%3Cline x1='24' y1='0' x2='0' y2='24'/%3E%3C/g%3E%3C/svg%3E")`,
-                  maskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cg stroke='black' stroke-width='8' stroke-linecap='square'%3E%3Cline x1='0' y1='0' x2='24' y2='24'/%3E%3Cline x1='24' y1='0' x2='0' y2='24'/%3E%3C/g%3E%3C/svg%3E")`,
-                  WebkitMaskSize: '24px 24px',
-                  maskSize: '24px 24px',
-                  filter: 'drop-shadow(2px 2px 2px rgba(0,0,0,0.5))'
-                }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-black/20 pointer-events-none" />
-              </div>
-            </div>
+          }} />
+
+          {/* Cień rzucany w głąb otworów przez wewnętrzną krawędź ramy */}
+          <div className="absolute inset-0 shadow-[inset_3px_3px_6px_rgba(0,0,0,0.45)] z-10 pointer-events-none" />
+
+          {/* Ażurowa kratka wycięta na wylot (odsłania tło za kartą) */}
+          <div 
+            className={`absolute inset-0 ${getVariantStyle()}`}
+            style={{
+              WebkitMaskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cg stroke='black' stroke-width='7' stroke-linecap='square'%3E%3Cline x1='0' y1='0' x2='24' y2='24'/%3E%3Cline x1='24' y1='0' x2='0' y2='24'/%3E%3C/g%3E%3C/svg%3E")`,
+              maskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cg stroke='black' stroke-width='7' stroke-linecap='square'%3E%3Cline x1='0' y1='0' x2='24' y2='24'/%3E%3Cline x1='24' y1='0' x2='0' y2='24'/%3E%3C/g%3E%3C/svg%3E")`,
+              WebkitMaskSize: '24px 24px',
+              maskSize: '24px 24px',
+              // Realistyczny cień rzucany na tło znajdujące się za ażurem
+              filter: 'drop-shadow(2px 3px 3px rgba(0,0,0,0.35)) contrast(102%)'
+            }}
+          >
+            {/* Oświetlenie samych szczebelków kratki */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-black/15 pointer-events-none" />
           </div>
         </div>
       )}
