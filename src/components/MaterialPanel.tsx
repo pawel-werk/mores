@@ -1,7 +1,8 @@
 import React from 'react';
 
 export type MaterialVariant = 'bazalt' | 'magma' | 'lithos' | 'tundra' | 'lumina';
-export type ProfileType = 'flat' | 'frame' | 'slatted' | 'grooved' | 'integrated-handle' | 'half-round' | 'integrated-handle-full' | 'integrated-handle-centered' | 'integrated-handle-hidden' | 'raised-panel' | 'micro-frame' | 'shaker' | 'complex-raised-panel' | 'double-stepped-panel';
+// DODANO: 'vertical-stiles-raised' dla F-11 z pełnymi pionowymi ramiakami i V-fugą
+export type ProfileType = 'flat' | 'frame' | 'slatted' | 'grooved' | 'integrated-handle' | 'half-round' | 'integrated-handle-full' | 'integrated-handle-centered' | 'integrated-handle-hidden' | 'raised-panel' | 'micro-frame' | 'shaker' | 'complex-raised-panel' | 'double-stepped-panel' | 'vertical-stiles-raised';
 
 interface MaterialPanelProps {
   src?: string;
@@ -298,10 +299,9 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
         </>
       )}
 
-      {/* Profil 13: Podwójnie stopniowany w dół (F-10) ZMNIEJSZONA ODLEGŁOŚĆ KASKAD */}
+      {/* Profil 13: Podwójnie stopniowany w dół (F-10) */}
       {profile === 'double-stepped-panel' && (
         <div className="absolute inset-[18%] pointer-events-none">
-          {/* Pierwszy skos w dół */}
           <div className="absolute inset-0" style={{
             borderStyle: 'solid',
             borderWidth: '6px',
@@ -310,10 +310,8 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
             borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.8})`,
             borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.8})`,
           }}>
-            {/* Płaska półka między skosami - teraz ma szerokość równą grubości skosów (ok 6px) */}
             <div className="absolute inset-0 bg-black/[0.04]">
               <div className="absolute inset-[6px]">
-                {/* Drugi skos w dół */}
                 <div className="absolute inset-0" style={{
                   borderStyle: 'solid',
                   borderWidth: '6px',
@@ -328,6 +326,60 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
             </div>
           </div>
         </div>
+      )}
+
+      {/* Profil 14: Pionowe ramiaki z wypukłą płyciną (F-11) */}
+      {profile === 'vertical-stiles-raised' && (
+        <>
+          {/* Pionowa lewa fuga - poprowadzona od góry do samego dołu */}
+          <div className="absolute top-0 bottom-0 left-[18%] w-[2px] pointer-events-none" style={{
+            borderLeft: `1px solid rgba(0,0,0,${Number(shadowOp) * 0.7})`,
+            borderRight: `1px solid rgba(255,255,255,${Number(highlightOp) * 0.9})`,
+            backgroundColor: `rgba(0,0,0,${Number(shadowOp) * 0.2})`
+          }} />
+          
+          {/* Pionowa prawa fuga - poprowadzona od góry do samego dołu */}
+          <div className="absolute top-0 bottom-0 right-[18%] w-[2px] pointer-events-none" style={{
+            borderLeft: `1px solid rgba(0,0,0,${Number(shadowOp) * 0.7})`,
+            borderRight: `1px solid rgba(255,255,255,${Number(highlightOp) * 0.9})`,
+            backgroundColor: `rgba(0,0,0,${Number(shadowOp) * 0.2})`
+          }} />
+          
+          {/* Pozioma górna fuga - zamknięta między pionowymi fugami */}
+          <div className="absolute top-[18%] left-[18%] right-[18%] h-[2px] pointer-events-none" style={{
+            borderTop: `1px solid rgba(0,0,0,${Number(shadowOp) * 0.7})`,
+            borderBottom: `1px solid rgba(255,255,255,${Number(highlightOp) * 0.9})`,
+            backgroundColor: `rgba(0,0,0,${Number(shadowOp) * 0.2})`
+          }} />
+          
+          {/* Pozioma dolna fuga - zamknięta między pionowymi fugami */}
+          <div className="absolute bottom-[18%] left-[18%] right-[18%] h-[2px] pointer-events-none" style={{
+            borderTop: `1px solid rgba(0,0,0,${Number(shadowOp) * 0.7})`,
+            borderBottom: `1px solid rgba(255,255,255,${Number(highlightOp) * 0.9})`,
+            backgroundColor: `rgba(0,0,0,${Number(shadowOp) * 0.2})`
+          }} />
+
+          {/* Wewnętrzny panel */}
+          <div className="absolute inset-[18%] pointer-events-none">
+            {/* Płaski margines wewnętrzny tuż po fugach */}
+            <div className="absolute inset-[14px]">
+              {/* Główny, szeroki wypukły panel z kątami 45 stopni w górę */}
+              <div className={`absolute inset-0 ${getVariantStyle()}`} style={{
+                borderStyle: 'solid',
+                borderWidth: '12px',
+                borderTopColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
+                borderLeftColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
+                borderBottomColor: `rgba(0,0,0,${Number(shadowOp) * 0.7})`,
+                borderRightColor: `rgba(0,0,0,${Number(shadowOp) * 0.7})`,
+                // Delikatny rzut cienia podkreślający wypukłość
+                boxShadow: `2px 2px 8px rgba(0,0,0,${Number(shadowOp) * 0.15})`
+              }}>
+                {/* Płaski, centralny element */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/10 pointer-events-none" />
+              </div>
+            </div>
+          </div>
+        </>
       )}
     </div>
   );

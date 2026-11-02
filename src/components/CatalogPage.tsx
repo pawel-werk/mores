@@ -7,7 +7,7 @@ type CatalogItem = {
   title: string;
   desc: string;
   variant: 'bazalt' | 'magma' | 'lithos' | 'tundra' | 'lumina';
-  profile: 'flat' | 'frame' | 'slatted' | 'grooved' | 'integrated-handle' | 'half-round' | 'integrated-handle-full' | 'integrated-handle-centered' | 'integrated-handle-hidden' | 'raised-panel' | 'micro-frame' | 'shaker' | 'complex-raised-panel' | 'double-stepped-panel';
+  profile: 'flat' | 'frame' | 'slatted' | 'grooved' | 'integrated-handle' | 'half-round' | 'integrated-handle-full' | 'integrated-handle-centered' | 'integrated-handle-hidden' | 'raised-panel' | 'micro-frame' | 'shaker' | 'complex-raised-panel' | 'double-stepped-panel' | 'vertical-stiles-raised';
   longDesc: string;
 };
 
@@ -21,6 +21,7 @@ const catalogFronts: CatalogItem[] = [
   { title: "F-8", desc: "Ramowy / Shaker", variant: "lithos", profile: "shaker", longDesc: "Klasyczny, ponadczasowy front ramiakowy (tzw. Shaker) z głęboko osadzoną, płaską płyciną opadającą pod kątem 45 stopni. Wprowadza architektoniczny rygor i czystość formy." },
   { title: "F-9", desc: "Ramowy / Klasyczny z frezem", variant: "lithos", profile: "complex-raised-panel", longDesc: "Rozbudowany front klasyczny łączący szeroką ramę, podwójne fazy pod kątem 45 stopni (w dół i w górę) oraz dodatkowy, subtelny frez obwiedniowy na zewnętrznej płaszczyźnie." },
   { title: "F-10", desc: "Ramowy / Podwójny schodek", variant: "lithos", profile: "double-stepped-panel", longDesc: "Elegancki front z szeroką ramą, która schodkuje w dół pod kątem 45 stopni, rozdzielona płaską frezą i kolejnym spadkiem, aż do zagłębionej płyciny. Nowoczesna interpretacja tradycyjnego stylu ramiakowego." },
+  { title: "F-11", desc: "Ramowy / Pionowe ramiaki", variant: "lithos", profile: "vertical-stiles-raised", longDesc: "Front inspirowany klasyczną konstrukcją z wyraźnymi, pionowymi fugami przechodzącymi przez całą wysokość. Wewnętrzna płycina jest dodatkowo wyprofilowana i wypukła, wprowadzając rzemieślniczy, tradycyjny detal do zabudowy." },
   { title: "F-13", desc: "Płaski / Frez obwiedniowy", variant: "lithos", profile: "grooved", longDesc: "Klasyczny, elegancki front z subtelnym, pojedynczym frezem obwiedniowym. Detal, który dodaje wyrafinowania bez obciążania przestrzeni." },
   { title: "F-15", desc: "Ryflowany / Półwałek", variant: "lithos", profile: "half-round", longDesc: "Niezwykle modne ryflowanie o miękkim, wypukłym profilu półwałka. Tworzy powtarzalny, organiczny wzór, który doskonale rozprasza światło i nadaje wnętrzu przytulny, a zarazem nowoczesny charakter." }
 ];
@@ -80,7 +81,7 @@ export const CatalogPage: React.FC = () => {
               <div className="relative w-full max-w-[160px] sm:max-w-[200px] md:max-w-[280px] lg:max-w-[340px] aspect-[3/4] rounded-sm shadow-md mt-4 md:mt-0">
                 <MaterialPanel variant={selectedFront.variant} profile={selectedFront.profile} className="w-full h-full rounded-sm" />
                 
-                {/* Lupa powiększająca - PRAWDZIWE SKALOWANIE CSS */}
+                {/* Lupa powiększająca */}
                 <div className="absolute -top-8 -right-10 sm:-top-10 sm:-right-12 md:-top-24 md:-right-28 lg:-top-[130px] lg:-right-[150px] w-40 h-40 sm:w-48 sm:h-48 md:w-72 md:h-72 lg:w-[340px] lg:h-[340px] rounded-full border-[4px] md:border-[8px] border-paper shadow-2xl overflow-hidden z-20 pointer-events-none bg-paper flex items-start justify-end">
                   <div className="origin-top-right transform scale-[1.6] sm:scale-[1.8] md:scale-[2.2] lg:scale-[2.5] mt-4 mr-4 md:mt-10 md:mr-10">
                     <div className="w-[120px] sm:w-[140px] md:w-[180px] lg:w-[220px] aspect-[3/4] rounded-sm flex-shrink-0">
@@ -230,28 +231,6 @@ export const CatalogPage: React.FC = () => {
         </section>
 
       </div>
-      
-      {/* 
-        ARCHIWUM POPRZEDNICH NAZW FRONTÓW (DO WYKORZYSTANIA W PRZYSZŁOŚCI):
-        { title: "Lumina", desc: "Płaski / Gładki mat", variant: "lumina", profile: "flat" },
-        { title: "Silva", desc: "Ramowy / Klasyczny Shaker", variant: "lumina", profile: "frame" },
-        { title: "Ignis", desc: "Ryflowany / Drobne lamele", variant: "lumina", profile: "slatted" },
-        { title: "Bazalt", desc: "Płaski / Głęboki ultramat", variant: "bazalt", profile: "flat" },
-        { title: "Granit", desc: "Ramowy / Szeroka rama", variant: "bazalt", profile: "frame" },
-        { title: "Onyks", desc: "Ryflowany / Asymetryczny", variant: "bazalt", profile: "slatted" },
-        { title: "Tundra", desc: "Fornir / Dąb naturalny", variant: "tundra", profile: "flat" },
-        { title: "Taiga", desc: "Fornir / Wąska ramka", variant: "tundra", profile: "frame" },
-        { title: "Borea", desc: "Fornir / Szczotkowany", variant: "tundra", profile: "slatted" },
-        { title: "Lithos", desc: "Płaski / Kamienny beż", variant: "lithos", profile: "flat" },
-        { title: "Petra", desc: "Ramowy / Podwójny frez", variant: "lithos", profile: "frame" },
-        { title: "Terra", desc: "Ryflowany / Szeroka fala", variant: "lithos", profile: "slatted" },
-        { title: "Magma", desc: "Płaski / Akcent satynowy", variant: "magma", profile: "flat" },
-        { title: "Vulcan", desc: "Ramowy / Ukryty uchwyt", variant: "magma", profile: "frame" },
-        { title: "Caldera", desc: "Ryflowany / Wysoki kontrast", variant: "magma", profile: "slatted" },
-        { title: "Opal", desc: "Płaski / Biel perłowa", variant: "lumina", profile: "flat" },
-        { title: "Obsydian", desc: "Płaski / Czarny metalik", variant: "bazalt", profile: "flat" },
-        { title: "Agat", desc: "Fornir / Orzech", variant: "tundra", profile: "flat" }
-      */}
     </div>
   );
 };
