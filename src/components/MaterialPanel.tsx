@@ -1,7 +1,8 @@
 import React from 'react';
 
 export type MaterialVariant = 'bazalt' | 'magma' | 'lithos' | 'tundra' | 'lumina';
-export type ProfileType = 'flat' | 'frame' | 'slatted' | 'grooved' | 'integrated-handle' | 'half-round' | 'integrated-handle-full' | 'integrated-handle-centered' | 'integrated-handle-hidden' | 'raised-panel' | 'micro-frame' | 'shaker' | 'complex-raised-panel';
+// DODANO: 'double-stepped-panel' dla frontu F-10 z podwójnym schodkiem w dół
+export type ProfileType = 'flat' | 'frame' | 'slatted' | 'grooved' | 'integrated-handle' | 'half-round' | 'integrated-handle-full' | 'integrated-handle-centered' | 'integrated-handle-hidden' | 'raised-panel' | 'micro-frame' | 'shaker' | 'complex-raised-panel' | 'double-stepped-panel';
 
 interface MaterialPanelProps {
   src?: string;
@@ -209,25 +210,22 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
       {/* Profil 10: Mikroramka na skraju frontu z twardym skosem 45 stopni (F-7) */}
       {profile === 'micro-frame' && (
         <div className="absolute inset-0 pointer-events-none">
-          {/* Płaska, cieniutka ramka na samym brzegu (ok. 7mm) */}
           <div className="absolute inset-0 rounded-[1px]" style={{
             borderStyle: 'solid',
-            borderWidth: '2.5px', // Cienka, płaska część ramki
+            borderWidth: '2.5px',
             borderTopColor: `rgba(255,255,255,${Number(highlightOp) * 0.6})`,
             borderLeftColor: `rgba(255,255,255,${Number(highlightOp) * 0.6})`,
             borderBottomColor: `rgba(0,0,0,${Number(shadowOp) * 0.4})`,
             borderRightColor: `rgba(0,0,0,${Number(shadowOp) * 0.4})`,
           }}>
-            {/* Ostre odcięcie i skos 45 stopni opadający w dół do płyciny */}
             <div className="absolute inset-0" style={{
               borderStyle: 'solid',
-              borderWidth: '4px', // Szerokość twardego spadu 45 stopni
+              borderWidth: '4px',
               borderTopColor: `rgba(0,0,0,${Number(shadowOp) * 0.7})`,
               borderLeftColor: `rgba(0,0,0,${Number(shadowOp) * 0.7})`,
               borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.8})`,
               borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.8})`,
             }}>
-               {/* Lekkie przyciemnienie przy samej krawędzi spadu na płaskim panelu dla dodatkowej głębi */}
                <div className="absolute inset-0 bg-black/[0.02] shadow-[inset_1px_1px_2px_rgba(0,0,0,0.1)]" />
             </div>
           </div>
@@ -253,7 +251,6 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
       {/* Profil 12: Rozbudowany front klasyczny (F-9) */}
       {profile === 'complex-raised-panel' && (
         <>
-          {/* 1. Odchudzony płaski pas na skraju - ramka zachowuje proporcje 1cm zanim zacznie się frez */}
           <div className="absolute inset-[2%] pointer-events-none rounded-[1px]" style={{
             borderStyle: 'solid',
             borderWidth: '1.5px',
@@ -263,10 +260,7 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
             borderRightColor: `rgba(0,0,0,${Number(shadowOp) * 0.5})`,
           }} />
           
-          {/* 2. Płaska szeroka rama */}
           <div className="absolute inset-[18%] pointer-events-none">
-            
-            {/* 3. Wgłębienie o 4 jednostki w dół pod kątem 45 stopni */}
             <div className="absolute inset-0" style={{
               borderStyle: 'solid',
               borderWidth: '8px',
@@ -275,12 +269,8 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
               borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
               borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
             }}>
-              
-              {/* 4. Płaska ramka dna (ok. 2cm). Lekko zaciemniona. */}
               <div className="absolute inset-0 bg-black/[0.06] shadow-[inset_1px_1px_3px_rgba(0,0,0,0.1)]">
                 <div className="absolute inset-[12px]">
-                  
-                  {/* 5. Delikatny wznios o 1 jednostkę pod kątem 45 stopni */}
                   <div className="absolute inset-0" style={{
                     borderStyle: 'solid',
                     borderWidth: '2.5px',
@@ -289,11 +279,7 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
                     borderBottomColor: `rgba(0,0,0,${Number(shadowOp) * 0.5})`,
                     borderRightColor: `rgba(0,0,0,${Number(shadowOp) * 0.5})`,
                   }}>
-                    
-                    {/* 6. Płaska ramka (odstęp przed główną wypukłością) */}
                     <div className="absolute inset-[6px]">
-                      
-                      {/* 7. Szeroki wznios pod kątem 30 stopni */}
                       <div className={`absolute inset-0 ${getVariantStyle()}`} style={{
                         borderStyle: 'solid',
                         borderWidth: '16px',
@@ -302,10 +288,7 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
                         borderBottomColor: `rgba(0,0,0,${Number(shadowOp) * 0.7})`,
                         borderRightColor: `rgba(0,0,0,${Number(shadowOp) * 0.7})`,
                       }}>
-                        
-                        {/* 8. Płaski prostokąt na samym środku */}
                         <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/10 pointer-events-none" />
-                        
                       </div>
                     </div>
                   </div>
@@ -314,6 +297,40 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
             </div>
           </div>
         </>
+      )}
+
+      {/* Profil 13: Podwójnie stopniowany w dół (F-10) */}
+      {profile === 'double-stepped-panel' && (
+        <div className="absolute inset-[18%] pointer-events-none">
+          {/* Pierwszy skos w dół (1 jednostka) */}
+          <div className="absolute inset-0" style={{
+            borderStyle: 'solid',
+            borderWidth: '5px', // Grubość pierwszego uskoku 45 stopni
+            borderTopColor: `rgba(0,0,0,${Number(shadowOp) * 0.7})`,
+            borderLeftColor: `rgba(0,0,0,${Number(shadowOp) * 0.7})`,
+            borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.8})`,
+            borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.8})`,
+          }}>
+            {/* Płaska wąska wewnętrzna ramka (ok. 1cm) - lekko przyciemniona by dać głębię */}
+            <div className="absolute inset-0 bg-black/[0.04]">
+              {/* Odstęp definiujący szerokość tej płaskiej ramki (10px) */}
+              <div className="absolute inset-[10px]">
+                {/* Drugi skos w dół (1 jednostka) oddalający się do głównej płyciny */}
+                <div className="absolute inset-0" style={{
+                  borderStyle: 'solid',
+                  borderWidth: '5px',
+                  borderTopColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
+                  borderLeftColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
+                  borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
+                  borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
+                }}>
+                  {/* Płaska, główna płycina środkowa - najciemniejsza, bo najniżej */}
+                  <div className="absolute inset-0 bg-black/[0.06] shadow-[inset_1px_1px_4px_rgba(0,0,0,0.2)]" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
