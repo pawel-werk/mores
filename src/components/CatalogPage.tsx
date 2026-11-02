@@ -78,11 +78,11 @@ export const CatalogPage: React.FC = () => {
               <div className="relative w-full max-w-[160px] sm:max-w-[200px] md:max-w-[280px] lg:max-w-[340px] aspect-[3/4] rounded-sm shadow-md mt-4 md:mt-0">
                 <MaterialPanel variant={selectedFront.variant} profile={selectedFront.profile} className="w-full h-full rounded-sm" />
                 
-                {/* Lupa powiększająca - ZWIĘKSZONE POWIĘKSZENIE (280% do 450%) */}
+                {/* Lupa powiększająca - ZOPTYMALIZOWANE POWIĘKSZENIE */}
                 <div className="absolute -top-8 -right-10 sm:-top-10 sm:-right-12 md:-top-24 md:-right-28 lg:-top-[130px] lg:-right-[150px] w-40 h-40 sm:w-48 sm:h-48 md:w-72 md:h-72 lg:w-[340px] lg:h-[340px] rounded-full border-[4px] md:border-[8px] border-paper shadow-2xl overflow-hidden z-20 pointer-events-none bg-paper">
                   <div className="w-full h-full flex justify-end items-start pt-4 pr-4 md:pt-10 md:pr-10 lg:pt-12 lg:pr-12">
-                    {/* Wcześniej: w-[200%] -> Teraz: w-[280%] do w-[450%] */}
-                    <div className="w-[280%] sm:w-[320%] md:w-[380%] lg:w-[450%] aspect-[3/4] flex-shrink-0 shadow-sm rounded-sm overflow-hidden">
+                    {/* Skala skorygowana z 450% na ok. 320% aby złapać szerszy kontekst detalu */}
+                    <div className="w-[240%] sm:w-[260%] md:w-[280%] lg:w-[320%] aspect-[3/4] flex-shrink-0 shadow-sm rounded-sm overflow-hidden">
                       <MaterialPanel 
                         variant={selectedFront.variant} 
                         profile={selectedFront.profile} 
