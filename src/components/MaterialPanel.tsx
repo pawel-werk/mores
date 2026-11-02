@@ -327,57 +327,67 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
         </div>
       )}
 
-      {/* Profil 14: Pionowe ramiaki z wypłaszczeniem i wypukłą płyciną (F-11) */}
+      {/* Profil 14: Pionowe ramiaki z obniżeniem i wypukłą płytą środkową (F-11) */}
       {profile === 'vertical-stiles-raised' && (
         <>
-          {/* Pionowa lewa fuga - szersza, grubość 1 jednostki (ok. 5px) */}
-          <div className="absolute top-0 bottom-0 left-[18%] w-[5px] pointer-events-none z-10" style={{
-            borderLeft: `2.5px solid rgba(0,0,0,${Number(shadowOp) * 0.7})`,
-            borderRight: `2.5px solid rgba(255,255,255,${Number(highlightOp) * 0.8})`,
-            backgroundColor: `rgba(0,0,0,${Number(shadowOp) * 0.15})`
+          {/* Fugi pionowe w kształcie V - zlokalizowane TYLKO w obszarze górnej i dolnej ramy */}
+          {/* Lewa górna */}
+          <div className="absolute top-0 h-[18%] left-[18%] w-[4px] pointer-events-none z-10" style={{
+            borderLeft: `2px solid rgba(0,0,0,${Number(shadowOp) * 0.8})`,
+            borderRight: `2px solid rgba(255,255,255,${Number(highlightOp) * 0.9})`,
           }} />
-          
-          {/* Pionowa prawa fuga */}
-          <div className="absolute top-0 bottom-0 right-[18%] w-[5px] pointer-events-none z-10" style={{
-            borderLeft: `2.5px solid rgba(0,0,0,${Number(shadowOp) * 0.7})`,
-            borderRight: `2.5px solid rgba(255,255,255,${Number(highlightOp) * 0.8})`,
-            backgroundColor: `rgba(0,0,0,${Number(shadowOp) * 0.15})`
+          {/* Lewa dolna */}
+          <div className="absolute bottom-0 h-[18%] left-[18%] w-[4px] pointer-events-none z-10" style={{
+            borderLeft: `2px solid rgba(0,0,0,${Number(shadowOp) * 0.8})`,
+            borderRight: `2px solid rgba(255,255,255,${Number(highlightOp) * 0.9})`,
           }} />
-          
-          {/* Pozioma górna fuga (pomiędzy pionowymi fugami) */}
-          <div className="absolute top-[18%] left-[calc(18%+5px)] right-[calc(18%+5px)] h-[5px] pointer-events-none z-10" style={{
-            borderTop: `2.5px solid rgba(0,0,0,${Number(shadowOp) * 0.7})`,
-            borderBottom: `2.5px solid rgba(255,255,255,${Number(highlightOp) * 0.8})`,
-            backgroundColor: `rgba(0,0,0,${Number(shadowOp) * 0.15})`
+          {/* Prawa górna */}
+          <div className="absolute top-0 h-[18%] right-[18%] w-[4px] pointer-events-none z-10" style={{
+            borderLeft: `2px solid rgba(0,0,0,${Number(shadowOp) * 0.8})`,
+            borderRight: `2px solid rgba(255,255,255,${Number(highlightOp) * 0.9})`,
           }} />
-          
-          {/* Pozioma dolna fuga */}
-          <div className="absolute bottom-[18%] left-[calc(18%+5px)] right-[calc(18%+5px)] h-[5px] pointer-events-none z-10" style={{
-            borderTop: `2.5px solid rgba(0,0,0,${Number(shadowOp) * 0.7})`,
-            borderBottom: `2.5px solid rgba(255,255,255,${Number(highlightOp) * 0.8})`,
-            backgroundColor: `rgba(0,0,0,${Number(shadowOp) * 0.15})`
+          {/* Prawa dolna */}
+          <div className="absolute bottom-0 h-[18%] right-[18%] w-[4px] pointer-events-none z-10" style={{
+            borderLeft: `2px solid rgba(0,0,0,${Number(shadowOp) * 0.8})`,
+            borderRight: `2px solid rgba(255,255,255,${Number(highlightOp) * 0.9})`,
           }} />
 
-          {/* Wnętrze - płaskie wypłaszczenie ok. 3-4cm a następnie wznios 1 jedn. w górę */}
-          <div className="absolute top-[calc(18%+5px)] bottom-[calc(18%+5px)] left-[calc(18%+5px)] right-[calc(18%+5px)] pointer-events-none">
+          {/* Wnętrze ramy */}
+          <div className="absolute inset-[18%] pointer-events-none">
             
-            {/* Płaski margines (odpowiadający wywiadowi 3-4cm w rzeczywistości) */}
-            <div className="absolute inset-[22px]">
+            {/* Ostre wcięcie w dół (głębokość zbliżona do fugi, 1 jednostka) */}
+            <div className="absolute inset-0" style={{
+              borderStyle: 'solid',
+              borderWidth: '4px', 
+              borderTopColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
+              borderLeftColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
+              borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
+              borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
+            }}>
               
-              {/* Wznios o 1 jednostkę pod kątem 45 stopni w górę */}
-              <div className={`absolute inset-0 ${getVariantStyle()}`} style={{
-                borderStyle: 'solid',
-                borderWidth: '4px',
-                borderTopColor: `rgba(255,255,255,${Number(highlightOp) * 0.8})`,
-                borderLeftColor: `rgba(255,255,255,${Number(highlightOp) * 0.8})`,
-                borderBottomColor: `rgba(0,0,0,${Number(shadowOp) * 0.6})`,
-                borderRightColor: `rgba(0,0,0,${Number(shadowOp) * 0.6})`,
-                boxShadow: `2px 2px 6px rgba(0,0,0,${Number(shadowOp) * 0.2})`
-              }}>
-                {/* Ostateczne wypłaszczenie na samym środku panelu */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-black/10 pointer-events-none" />
+              {/* Płaskie wcięcie na dole (recess), celowo przyciemnione by uzyskać głębię */}
+              <div className="absolute inset-0 bg-black/[0.08] shadow-[inset_1px_1px_5px_rgba(0,0,0,0.3)]">
+                
+                {/* Szeroki płaski odstęp (ok. 3-4cm) wokół wypukłości */}
+                <div className="absolute inset-[18px]">
+                  
+                  {/* Wznios o 1 jednostkę pod kątem 45 stopni w górę - z powrotem do poziomu ramy */}
+                  <div className={`absolute inset-0 ${getVariantStyle()}`} style={{
+                    borderStyle: 'solid',
+                    borderWidth: '4px',
+                    borderTopColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
+                    borderLeftColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
+                    borderBottomColor: `rgba(0,0,0,${Number(shadowOp) * 0.7})`,
+                    borderRightColor: `rgba(0,0,0,${Number(shadowOp) * 0.7})`,
+                    boxShadow: `3px 3px 8px rgba(0,0,0,${Number(shadowOp) * 0.25})`
+                  }}>
+                    
+                    {/* Środek wyciągnięty na poziom 0. Używamy podstawowej barwy/faktury z delikatnym oświetleniem wypukłości */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/10 pointer-events-none" />
+                    
+                  </div>
+                </div>
               </div>
-              
             </div>
           </div>
         </>
