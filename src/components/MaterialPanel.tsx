@@ -206,25 +206,31 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
         </div>
       )}
 
-      {/* Profil 10: Mikroramka na skraju frontu (F-7) */}
+      {/* Profil 10: Mikroramka na skraju frontu z twardym skosem 45 stopni (F-7) */}
       {profile === 'micro-frame' && (
-        <div 
-          className="absolute inset-0 pointer-events-none rounded-sm"
-          style={{
+        <div className="absolute inset-0 pointer-events-none">
+          {/* Płaska, cieniutka ramka na samym brzegu (ok. 7mm) */}
+          <div className="absolute inset-0 rounded-[1px]" style={{
             borderStyle: 'solid',
-            borderWidth: '4px',
-            borderTopColor: `rgba(255,255,255,${Number(highlightOp) * 0.8})`,
-            borderLeftColor: `rgba(255,255,255,${Number(highlightOp) * 0.8})`,
-            borderBottomColor: `rgba(0,0,0,${Number(shadowOp) * 0.6})`,
-            borderRightColor: `rgba(0,0,0,${Number(shadowOp) * 0.6})`,
-          }}
-        >
-          <div 
-            className="absolute inset-0"
-            style={{
-              boxShadow: `inset 2px 2px 5px rgba(0,0,0,${Number(shadowOp) * 0.6}), inset -1px -1px 2px rgba(255,255,255,${Number(highlightOp) * 0.4})`
-            }}
-          />
+            borderWidth: '2.5px', // Cienka, płaska część ramki
+            borderTopColor: `rgba(255,255,255,${Number(highlightOp) * 0.6})`,
+            borderLeftColor: `rgba(255,255,255,${Number(highlightOp) * 0.6})`,
+            borderBottomColor: `rgba(0,0,0,${Number(shadowOp) * 0.4})`,
+            borderRightColor: `rgba(0,0,0,${Number(shadowOp) * 0.4})`,
+          }}>
+            {/* Ostre odcięcie i skos 45 stopni opadający w dół do płyciny */}
+            <div className="absolute inset-0" style={{
+              borderStyle: 'solid',
+              borderWidth: '4px', // Szerokość twardego spadu 45 stopni
+              borderTopColor: `rgba(0,0,0,${Number(shadowOp) * 0.7})`,
+              borderLeftColor: `rgba(0,0,0,${Number(shadowOp) * 0.7})`,
+              borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.8})`,
+              borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.8})`,
+            }}>
+               {/* Lekkie przyciemnienie przy samej krawędzi spadu na płaskim panelu dla dodatkowej głębi */}
+               <div className="absolute inset-0 bg-black/[0.02] shadow-[inset_1px_1px_2px_rgba(0,0,0,0.1)]" />
+            </div>
+          </div>
         </div>
       )}
 
@@ -250,7 +256,7 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
           {/* 1. Odchudzony płaski pas na skraju - ramka zachowuje proporcje 1cm zanim zacznie się frez */}
           <div className="absolute inset-[2%] pointer-events-none rounded-[1px]" style={{
             borderStyle: 'solid',
-            borderWidth: '1.5px', // Cienki, precyzyjny wznios
+            borderWidth: '1.5px',
             borderTopColor: `rgba(255,255,255,${Number(highlightOp) * 0.7})`,
             borderLeftColor: `rgba(255,255,255,${Number(highlightOp) * 0.7})`,
             borderBottomColor: `rgba(0,0,0,${Number(shadowOp) * 0.5})`,
