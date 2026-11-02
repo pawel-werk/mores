@@ -44,18 +44,6 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
   return (
     <div className={`relative overflow-hidden rounded-sm shadow-xl ${getVariantStyle()} ${className}`}>
       
-      {/* 1. Delikatny wznios na zewnętrznej krawędzi (1 jednostka) */}
-      {(profile === 'complex-raised-panel' || profile === 'micro-frame') && (
-        <div className="absolute inset-0 pointer-events-none" style={{
-          borderStyle: 'solid',
-          borderWidth: profile === 'complex-raised-panel' ? '2px' : '4px',
-          borderTopColor: `rgba(255,255,255,${Number(highlightOp) * 0.7})`,
-          borderLeftColor: `rgba(255,255,255,${Number(highlightOp) * 0.7})`,
-          borderBottomColor: `rgba(0,0,0,${Number(shadowOp) * 0.5})`,
-          borderRightColor: `rgba(0,0,0,${Number(shadowOp) * 0.5})`,
-        }} />
-      )}
-
       {/* Profil 5: Wypukłe półwałki (F-15) */}
       {profile === 'half-round' && (
         <div 
@@ -218,6 +206,28 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
         </div>
       )}
 
+      {/* Profil 10: Mikroramka na skraju frontu (F-7) */}
+      {profile === 'micro-frame' && (
+        <div 
+          className="absolute inset-0 pointer-events-none rounded-sm"
+          style={{
+            borderStyle: 'solid',
+            borderWidth: '4px',
+            borderTopColor: `rgba(255,255,255,${Number(highlightOp) * 0.8})`,
+            borderLeftColor: `rgba(255,255,255,${Number(highlightOp) * 0.8})`,
+            borderBottomColor: `rgba(0,0,0,${Number(shadowOp) * 0.6})`,
+            borderRightColor: `rgba(0,0,0,${Number(shadowOp) * 0.6})`,
+          }}
+        >
+          <div 
+            className="absolute inset-0"
+            style={{
+              boxShadow: `inset 2px 2px 5px rgba(0,0,0,${Number(shadowOp) * 0.6}), inset -1px -1px 2px rgba(255,255,255,${Number(highlightOp) * 0.4})`
+            }}
+          />
+        </div>
+      )}
+
       {/* Profil 11: Ramowy Shaker z obniżeniem pod kątem 45 stopni (F-8) */}
       {profile === 'shaker' && (
         <div className="absolute inset-[18%] pointer-events-none">
@@ -234,58 +244,70 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
         </div>
       )}
 
-      {/* Profil 12: Rozbudowany front klasyczny (F-9) wg dokładnego opisu */}
+      {/* Profil 12: Rozbudowany front klasyczny (F-9) wg dokładnego opisu z poprawką zew. ramki */}
       {profile === 'complex-raised-panel' && (
-        // 2. Płaska szeroka rama (odstęp od zewnętrznej krawędzi)
-        <div className="absolute inset-[16%] pointer-events-none">
-          
-          {/* 3. Wgłębienie o 4 jednostki w dół pod kątem 45 stopni */}
-          <div className="absolute inset-0" style={{
+        <>
+          {/* 1. Płaski pas (ok. 1cm od krawędzi), a następnie delikatny wznios o 1 jednostkę */}
+          <div className="absolute inset-[3.5%] pointer-events-none rounded-[1px]" style={{
             borderStyle: 'solid',
-            borderWidth: '8px', // Ciemne na górze/lewo oznacza spadek
-            borderTopColor: `rgba(0,0,0,${Number(shadowOp) * 0.7})`,
-            borderLeftColor: `rgba(0,0,0,${Number(shadowOp) * 0.7})`,
-            borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.8})`,
-            borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.8})`,
-          }}>
+            borderWidth: '2.5px', // Jasne krawędzie u góry/po lewej oznaczają wznios do przodu
+            borderTopColor: `rgba(255,255,255,${Number(highlightOp) * 0.7})`,
+            borderLeftColor: `rgba(255,255,255,${Number(highlightOp) * 0.7})`,
+            borderBottomColor: `rgba(0,0,0,${Number(shadowOp) * 0.5})`,
+            borderRightColor: `rgba(0,0,0,${Number(shadowOp) * 0.5})`,
+          }} />
+          
+          {/* 2. Płaska szeroka rama (odstęp od delikatnego wzniosu aż do wgłębienia płyciny) */}
+          <div className="absolute inset-[18%] pointer-events-none">
             
-            {/* 4. Płaska ramka dna (ok. 2cm). Bg lekko zaciemnia dno */}
-            <div className="absolute inset-0 bg-black/[0.05]">
-              <div className="absolute inset-[10px]">
-                
-                {/* 5. Delikatny wznios o 1 jednostkę pod kątem 45 stopni */}
-                <div className="absolute inset-0" style={{
-                  borderStyle: 'solid',
-                  borderWidth: '2px', // Jasne na górze/lewo oznacza wznios
-                  borderTopColor: `rgba(255,255,255,${Number(highlightOp) * 0.8})`,
-                  borderLeftColor: `rgba(255,255,255,${Number(highlightOp) * 0.8})`,
-                  borderBottomColor: `rgba(0,0,0,${Number(shadowOp) * 0.5})`,
-                  borderRightColor: `rgba(0,0,0,${Number(shadowOp) * 0.5})`,
-                }}>
+            {/* 3. Wgłębienie o 4 jednostki w dół pod kątem 45 stopni */}
+            <div className="absolute inset-0" style={{
+              borderStyle: 'solid',
+              borderWidth: '8px', // Ciemne krawędzie u góry/po lewej oznaczają spadek
+              borderTopColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
+              borderLeftColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
+              borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
+              borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
+            }}>
+              
+              {/* 4. Płaska ramka dna (ok. 2cm). Lekko zaciemniona. */}
+              <div className="absolute inset-0 bg-black/[0.06] shadow-[inset_1px_1px_3px_rgba(0,0,0,0.1)]">
+                <div className="absolute inset-[12px]">
                   
-                  {/* 6. Płaska ramka (wewnętrzny odstęp przed główną wypukłością) */}
-                  <div className="absolute inset-[6px]">
+                  {/* 5. Delikatny wznios o 1 jednostkę pod kątem 45 stopni */}
+                  <div className="absolute inset-0" style={{
+                    borderStyle: 'solid',
+                    borderWidth: '2.5px',
+                    borderTopColor: `rgba(255,255,255,${Number(highlightOp) * 0.8})`,
+                    borderLeftColor: `rgba(255,255,255,${Number(highlightOp) * 0.8})`,
+                    borderBottomColor: `rgba(0,0,0,${Number(shadowOp) * 0.5})`,
+                    borderRightColor: `rgba(0,0,0,${Number(shadowOp) * 0.5})`,
+                  }}>
                     
-                    {/* 7. Szeroki wznios (ok. 5 jednostek szerokości) pod kątem 30 stopni */}
-                    <div className={`absolute inset-0 ${getVariantStyle()}`} style={{
-                      borderStyle: 'solid',
-                      borderWidth: '14px',
-                      borderTopColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
-                      borderLeftColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
-                      borderBottomColor: `rgba(0,0,0,${Number(shadowOp) * 0.7})`,
-                      borderRightColor: `rgba(0,0,0,${Number(shadowOp) * 0.7})`,
-                    }}>
+                    {/* 6. Płaska ramka (odstęp przed główną wypukłością) */}
+                    <div className="absolute inset-[6px]">
                       
-                      {/* 8. Płaski prostokąt na samym środku */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/10 pointer-events-none" />
-                      
+                      {/* 7. Szeroki wznios (ok. 5 jednostek szerokości) pod kątem 30 stopni */}
+                      <div className={`absolute inset-0 ${getVariantStyle()}`} style={{
+                        borderStyle: 'solid',
+                        borderWidth: '16px',
+                        borderTopColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
+                        borderLeftColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
+                        borderBottomColor: `rgba(0,0,0,${Number(shadowOp) * 0.7})`,
+                        borderRightColor: `rgba(0,0,0,${Number(shadowOp) * 0.7})`,
+                      }}>
+                        
+                        {/* 8. Płaski prostokąt na samym środku */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/10 pointer-events-none" />
+                        
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </>
       )}
     </div>
   );
