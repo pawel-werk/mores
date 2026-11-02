@@ -1,7 +1,6 @@
 import React from 'react';
 
 export type MaterialVariant = 'bazalt' | 'magma' | 'lithos' | 'tundra' | 'lumina';
-// DODANO: 'integrated-handle' dla frezowanego uchwytu na krawędzi
 export type ProfileType = 'flat' | 'frame' | 'slatted' | 'grooved' | 'integrated-handle';
 
 interface MaterialPanelProps {
@@ -102,17 +101,22 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
         </div>
       )}
 
-      {/* Profil 4: Zintegrowany uchwyt krawędziowy (F-2) */}
+      {/* Profil 4: Zintegrowany uchwyt na krawędzi (F-2 z drugiego zestawu zdjęć) */}
       {profile === 'integrated-handle' && (
-        <div className="absolute top-0 left-[15%] right-[15%] h-[6%] pointer-events-none">
+        // Umieszczamy frez na samej górze, zaczynający się w połowie szerokości i idący do prawej krawędzi. 
+        // Wysokość to ok. 6% panelu.
+        <div className="absolute top-0 right-0 left-[35%] h-[6%] pointer-events-none">
+          {/* Symulacja głębi wybranego materiału */}
           <div 
-            className="absolute inset-0 rounded-b-md"
+            className="absolute inset-0"
             style={{
-              backgroundColor: `rgba(0,0,0,${Number(shadowOp) * 0.4})`, // Przyciemnienie wewnątrz frezu
-              boxShadow: `inset 0px 4px 6px rgba(0,0,0,${shadowOp}), 0px 1px 1px rgba(255,255,255,${highlightOp})`,
+              backgroundColor: `rgba(0,0,0,${Number(shadowOp) * 0.2})`, // Delikatne zacienienie dna
+              // Cień wewnętrzny od góry i z lewej (aby udawał skośne cięcie), rozbłysk od dołu
+              boxShadow: `inset 4px 6px 8px rgba(0,0,0,${shadowOp}), 0px 1px 1px rgba(255,255,255,${highlightOp})`,
+              // Skośna linia zakończenia po lewej stronie symulowana ramką
+              borderLeft: `3px solid rgba(0,0,0,${Number(shadowOp) * 0.4})`,
               borderBottom: `1.5px solid rgba(255,255,255,${highlightOp})`,
-              borderLeft: `1px solid rgba(0,0,0,${Number(shadowOp) * 0.3})`,
-              borderRight: `1px solid rgba(0,0,0,${Number(shadowOp) * 0.3})`,
+              borderBottomLeftRadius: '3px'
             }}
           />
         </div>
