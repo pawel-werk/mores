@@ -38,15 +38,15 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
   };
 
   const isDark = variant === 'bazalt' || variant === 'magma';
-  const shadowOp = isDark ? '0.5' : '0.2'; // Zwiększony cień dla lepszego kontrastu rowka
-  const highlightOp = isDark ? '0.1' : '0.7'; // Zwiększone światło
+  const shadowOp = isDark ? '0.5' : '0.25'; 
+  const highlightOp = isDark ? '0.1' : '0.7'; 
 
   return (
     <div className={`relative overflow-hidden rounded-sm shadow-xl ${getVariantStyle()} ${className}`}>
-      {/* Miękkie światło z boku */}
+      {/* Główne oświetlenie frontu */}
       <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/20 pointer-events-none" />
 
-      {/* Profil 1: Klasyczna, szeroka rama (Shaker) - środek obniżony */}
+      {/* Profil 1: Klasyczna, szeroka rama (Shaker) */}
       {profile === 'frame' && (
         <div 
           className="absolute inset-[18%] border-t border-l"
@@ -75,20 +75,34 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
         </div>
       )}
 
-      {/* Profil 3: Wąski rowek w płaszczyźnie, bliżej krawędzi (F-13) */}
+      {/* Profil 3: Wąski rowek obwiedniowy, zachowujący płaski front (Nowy F-13) */}
       {profile === 'grooved' && (
-        <div 
-          className="absolute inset-[6%] pointer-events-none rounded-[2px]"
-          style={{
-            // Góra i lewo rowka - zacienione
-            borderTop: `2px solid rgba(0,0,0,${shadowOp})`,
-            borderLeft: `2px solid rgba(0,0,0,${shadowOp})`,
-            // Dół i prawo rowka - rozświetlone
-            borderBottom: `2px solid rgba(255,255,255,${highlightOp})`,
-            borderRight: `2px solid rgba(255,255,255,${highlightOp})`,
-            // Brak box-shadow sprawia, że środek wydaje się być na tym samym poziomie co ramka zewnętrzna
-          }}
-        />
+        <div className="absolute inset-[8%] pointer-events-none">
+          {/* Zewnętrzna ściana rowka (cień wchodzący w dół) */}
+          <div 
+            className="absolute inset-0 rounded-[1px]"
+            style={{
+              borderTop: `1.5px solid rgba(0,0,0,${shadowOp})`,
+              borderLeft: `1.5px solid rgba(0,0,0,${shadowOp})`,
+              borderBottom: `1.5px solid rgba(255,255,255,${highlightOp})`,
+              borderRight: `1.5px solid rgba(255,255,255,${highlightOp})`,
+            }}
+          />
+          {/* Wewnętrzna ściana rowka (światło wychodzące w górę), 
+              plus przywrócenie tła, by wyzerować złudzenie zagłębienia */}
+          <div 
+            className={`absolute inset-[1.5px] rounded-[1px] ${getVariantStyle()}`}
+            style={{
+              borderTop: `1px solid rgba(255,255,255,${highlightOp})`,
+              borderLeft: `1px solid rgba(255,255,255,${highlightOp})`,
+              borderBottom: `1px solid rgba(0,0,0,${shadowOp})`,
+              borderRight: `1px solid rgba(0,0,0,${shadowOp})`,
+            }}
+          >
+            {/* Odtworzenie delikatnego gradientu wewnątrz ramki, żeby zlał się z otoczeniem */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-black/10 pointer-events-none" />
+          </div>
+        </div>
       )}
     </div>
   );
