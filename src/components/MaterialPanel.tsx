@@ -1,7 +1,8 @@
 import React from 'react';
 
 export type MaterialVariant = 'bazalt' | 'magma' | 'lithos' | 'tundra' | 'lumina';
-export type ProfileType = 'flat' | 'frame' | 'slatted' | 'grooved';
+// DODANO: 'integrated-handle' dla frezowanego uchwytu na krawędzi
+export type ProfileType = 'flat' | 'frame' | 'slatted' | 'grooved' | 'integrated-handle';
 
 interface MaterialPanelProps {
   src?: string;
@@ -38,8 +39,8 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
   };
 
   const isDark = variant === 'bazalt' || variant === 'magma';
-  const shadowOp = isDark ? '0.5' : '0.25'; 
-  const highlightOp = isDark ? '0.1' : '0.7'; 
+  const shadowOp = isDark ? '0.6' : '0.25'; 
+  const highlightOp = isDark ? '0.1' : '0.8'; 
 
   return (
     <div className={`relative overflow-hidden rounded-sm shadow-xl ${getVariantStyle()} ${className}`}>
@@ -75,10 +76,9 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
         </div>
       )}
 
-      {/* Profil 3: Wąski rowek obwiedniowy, zachowujący płaski front (Nowy F-13) - powiększona ramka */}
+      {/* Profil 3: Wąski rowek obwiedniowy (F-13) */}
       {profile === 'grooved' && (
         <div className="absolute inset-[4%] pointer-events-none">
-          {/* Zewnętrzna ściana rowka (cień wchodzący w dół) */}
           <div 
             className="absolute inset-0 rounded-[2px]"
             style={{
@@ -88,8 +88,6 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
               borderRight: `1.5px solid rgba(255,255,255,${highlightOp})`,
             }}
           />
-          {/* Wewnętrzna ściana rowka (światło wychodzące w górę), 
-              plus przywrócenie tła, by wyzerować złudzenie zagłębienia */}
           <div 
             className={`absolute inset-[1.5px] rounded-[1.5px] ${getVariantStyle()}`}
             style={{
@@ -99,9 +97,24 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
               borderRight: `1px solid rgba(0,0,0,${shadowOp})`,
             }}
           >
-            {/* Odtworzenie delikatnego gradientu wewnątrz ramki, żeby zlał się z otoczeniem */}
             <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-black/10 pointer-events-none" />
           </div>
+        </div>
+      )}
+
+      {/* Profil 4: Zintegrowany uchwyt krawędziowy (F-2) */}
+      {profile === 'integrated-handle' && (
+        <div className="absolute top-0 left-[15%] right-[15%] h-[6%] pointer-events-none">
+          <div 
+            className="absolute inset-0 rounded-b-md"
+            style={{
+              backgroundColor: `rgba(0,0,0,${Number(shadowOp) * 0.4})`, // Przyciemnienie wewnątrz frezu
+              boxShadow: `inset 0px 4px 6px rgba(0,0,0,${shadowOp}), 0px 1px 1px rgba(255,255,255,${highlightOp})`,
+              borderBottom: `1.5px solid rgba(255,255,255,${highlightOp})`,
+              borderLeft: `1px solid rgba(0,0,0,${Number(shadowOp) * 0.3})`,
+              borderRight: `1px solid rgba(0,0,0,${Number(shadowOp) * 0.3})`,
+            }}
+          />
         </div>
       )}
     </div>
