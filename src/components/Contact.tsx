@@ -1,185 +1,100 @@
-import React from 'react';
-import { Reveal } from './Reveal';
-import { ArrowRight } from './Icons';
-import { companyData } from '../data/content';
+import { SITE_DATA } from '../data/content';
+import Reveal from './Reveal';
+import SectionHeader from './SectionHeader';
+import { PhoneIcon, MailIcon } from './Icons';
 
-export const Contact: React.FC = () => {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const fd = new FormData(e.currentTarget);
-    const name = fd.get('name') as string;
-    const phone = fd.get('phone') as string;
-    const msg = fd.get('message') as string;
-    
-    const subject = encodeURIComponent('Zapytanie ze strony internetowej');
-    const body = encodeURIComponent(`Imię/Firma: ${name}\nTelefon: ${phone}\n\n${msg}`);
-    
-    window.location.href = `mailto:${companyData.email}?subject=${subject}&body=${body}`;
-  };
+export default function Contact() {
+  const groupedTeam = SITE_DATA.team.reduce((acc, person) => {
+    if (!acc[person.role]) acc[person.role] = [];
+    acc[person.role].push(person);
+    return acc;
+  }, {} as Record<string, typeof SITE_DATA.team>);
 
   return (
-    <section id="kontakt" className="py-12 md:py-16 bg-oak relative overflow-hidden" aria-labelledby="contact-title">
-      
-      <div className="absolute inset-0 bg-rings text-ink opacity-[0.03] pointer-events-none" aria-hidden="true" />
-      <div className="absolute inset-0 bg-grain mix-blend-overlay opacity-10 pointer-events-none" aria-hidden="true" />
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-stretch">
+    <section id="contact" className="py-24 md:py-32 bg-mist">
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
+        <Reveal>
+          <SectionHeader label="Kontakt" title="Porozmawiajmy o współpracy" />
+        </Reveal>
+
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 mt-12">
           
-          {/* Lewa kolumna */}
-          <div className="flex flex-col h-full text-ink pt-4">
+          {/* Lewa strona: Karta firmy + Mapa */}
+          <div className="lg:col-span-5 flex flex-col gap-6">
             <Reveal>
-              <h2 id="contact-title" className="font-serif text-4xl md:text-5xl text-ink mb-16 leading-tight">
-                Skontaktuj się z nami
-              </h2>
-            </Reveal>
-            
-            <div className="flex-1 flex flex-col justify-between">
-              <div className="space-y-0">
-                <Reveal delay={100}>
-                  <div className="py-8 border-t border-ink/10">
-                    <span className="block text-[10px] uppercase tracking-widest font-bold text-ink/40 mb-3">Telefon</span>
-                    <a href={`tel:${companyData.phone.replace(/\s/g, '')}`} className="font-serif text-3xl md:text-4xl text-ink hover:text-brand transition-colors inline-block">
-                      {companyData.phone}
-                    </a>
-                  </div>
-                </Reveal>
+              <div className="bg-sage-soft rounded-3xl p-8 md:p-10 flex flex-col shadow-sm shadow-black/5">
+                <h3 className="text-2xl font-bold text-ink mb-6">{SITE_DATA.company.name}</h3>
+                <p className="text-sage-deep font-medium text-lg mb-10">{SITE_DATA.company.address}</p>
                 
-                <Reveal delay={200}>
-                  <div className="py-8 border-t border-ink/10">
-                    <span className="block text-[10px] uppercase tracking-widest font-bold text-ink/40 mb-3">E-mail</span>
-                    <a href={`mailto:${companyData.email}`} className="font-serif text-3xl md:text-4xl text-ink hover:text-brand transition-colors inline-block break-all">
-                      {companyData.email}
-                    </a>
-                  </div>
-                </Reveal>
-                
-                <Reveal delay={300}>
-                  <div className="py-8 border-t border-b border-ink/10 grid grid-cols-2 gap-8">
-                    <div>
-                      <span className="block text-[10px] uppercase tracking-widest font-bold text-ink/40 mb-3">Adres produkcji</span>
-                      <a 
-                        href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(companyData.addressLine1 + ', ' + companyData.addressLine2)}`}
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="group inline-flex items-start gap-2 text-ink font-light hover:text-brand transition-colors outline-none focus-visible:ring-2 focus-visible:ring-brand rounded-sm leading-relaxed text-lg"
-                      >
-                        <span>
-                          {companyData.addressLine1}<br/>{companyData.addressLine2}
-                        </span>
-                        <ArrowRight 
-                          className="w-4 h-4 mt-1.5 opacity-40 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" 
-                          aria-hidden="true" 
-                        />
-                      </a>
-                    </div>
-                    <div>
-                      <span className="block text-[10px] uppercase tracking-widest font-bold text-ink/40 mb-3">Godziny otwarcia</span>
-                      <span className="font-light text-lg text-ink block">
-                        {companyData.workingHours}
-                      </span>
-                    </div>
-                  </div>
-                </Reveal>
-              </div>
-              
-              <Reveal delay={400} className="mt-12 h-64 md:h-[22rem] w-full relative">
-                <div className="absolute inset-0 bg-oak flex items-center justify-center">
-                  <span className="text-[10px] uppercase tracking-widest text-ink/30 font-bold">Ładowanie mapy...</span>
+                <div className="space-y-6 mb-10">
+                  <a href={`tel:${SITE_DATA.company.phone.replace(/\s+/g, '')}`} className="flex items-center gap-4 text-xl font-bold text-ink hover:text-sage-deep transition-colors">
+                    <span className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-sage-deep shrink-0"><PhoneIcon /></span>
+                    {SITE_DATA.company.phone}
+                  </a>
+                  <a href={`mailto:${SITE_DATA.company.email}`} className="flex items-center gap-4 text-xl font-bold text-ink hover:text-sage-deep transition-colors">
+                    <span className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-sage-deep shrink-0"><MailIcon /></span>
+                    {SITE_DATA.company.email}
+                  </a>
                 </div>
-                {/* Usunięto blend-multiply, podniesiono opacity dla lepszej czytelności */}
+
+                <div className="pt-8 border-t border-sage/20 flex flex-wrap gap-x-6 gap-y-2 text-sm font-semibold text-sage-deep">
+                  <span>NIP: {SITE_DATA.company.nip}</span>
+                  <span>KRS: {SITE_DATA.company.krs}</span>
+                </div>
+              </div>
+            </Reveal>
+
+            {/* Mapa dociągająca do dołu */}
+            <Reveal delay={150} className="flex-1 flex flex-col">
+              <div className="w-full flex-1 min-h-[320px] rounded-3xl overflow-hidden border border-line shadow-sm shadow-black/5 bg-white">
                 <iframe 
-                  title="Mapa dojazdu"
-                  className="absolute inset-0 w-full h-full z-10 filter grayscale opacity-72 hover:opacity-100 transition-opacity duration-1000"
+                  src="https://maps.google.com/maps?q=ul.+%C5%81%C4%85kowa+6%2C+55-095+Mirk%C3%B3w&t=&z=13&ie=UTF8&iwloc=&output=embed" 
+                  width="100%" 
+                  height="100%" 
                   style={{ border: 0 }} 
+                  allowFullScreen={false} 
                   loading="lazy" 
                   referrerPolicy="no-referrer-when-downgrade"
-                  src="https://maps.google.com/maps?q=%C5%81%C4%85kowa%206,%2055-095%20Mirk%C3%B3w&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                  title="Lokalizacja ITAL-GROUP"
                 />
-              </Reveal>
-            </div>
+              </div>
+            </Reveal>
           </div>
 
-          <Reveal delay={500} className="h-full">
-            <div className="flex flex-col h-full bg-paper p-8 md:p-12 lg:p-16 shadow-2xl">
-              <div className="mb-12 hairline-b pb-8">
-                <h3 className="font-serif text-3xl text-ink mb-4">
-                  Zapytaj o wycenę
-                </h3>
-                <p className="text-ink/70 font-light leading-relaxed">
-                  Podaj wymiary, wykończenie oraz szacowaną ilość sztuk.
-                </p>
-              </div>
-              
-              <form onSubmit={handleSubmit} className="flex flex-col flex-1">
-                <div className="space-y-8 flex-1">
-                  
-                  <div className="flex flex-col">
-                    <label htmlFor="name" className="text-[10px] text-ink/50 uppercase tracking-widest font-bold mb-2 cursor-pointer">
-                      Imię i nazwisko / Firma *
-                    </label>
-                    <input 
-                      required 
-                      id="name" 
-                      name="name" 
-                      type="text" 
-                      className="w-full bg-transparent border-0 border-b border-ink/20 px-0 py-2 text-ink focus:ring-0 focus:outline-none focus:border-brand transition-colors font-light" 
-                    />
+          {/* Prawa strona: Karty zespołu */}
+          <div className="lg:col-span-7 flex flex-col gap-6">
+            {Object.entries(groupedTeam).map(([role, members], groupIdx) => (
+              <Reveal key={role} delay={groupIdx * 100}>
+                <div className="bg-white rounded-2xl p-6 md:p-8 border border-line shadow-sm shadow-black/5">
+                  <div className="mb-6">
+                    <span className="inline-block px-3 py-1 bg-mist text-ink rounded-full text-xs font-bold uppercase tracking-wide">
+                      {role}
+                    </span>
                   </div>
-                  
-                  <div className="flex flex-col">
-                    <label htmlFor="phone" className="text-[10px] text-ink/50 uppercase tracking-widest font-bold mb-2 cursor-pointer">
-                      Telefon kontaktowy *
-                    </label>
-                    <input 
-                      required 
-                      id="phone" 
-                      name="phone" 
-                      type="tel" 
-                      className="w-full bg-transparent border-0 border-b border-ink/20 px-0 py-2 text-ink focus:ring-0 focus:outline-none focus:border-brand transition-colors font-light" 
-                    />
+                  <div className="flex flex-col gap-8">
+                    {members.map((person, idx) => (
+                      <div key={idx} className="flex flex-col gap-3">
+                        <h4 className="text-lg font-bold text-ink">{person.name}</h4>
+                        <div className="flex flex-col gap-2">
+                          {person.phone.length > 0 && (
+                            <a href={`tel:${person.phone[0].replace(/\s+/g, '')}`} className="flex items-center gap-2 text-grey font-medium hover:text-sage-deep transition-colors">
+                              <PhoneIcon className="w-4 h-4 shrink-0" /> {person.phone[0]}
+                            </a>
+                          )}
+                          <a href={`mailto:${person.email}`} className="flex items-center gap-2 text-grey font-medium hover:text-sage-deep transition-colors truncate">
+                            <MailIcon className="w-4 h-4 shrink-0" /> {person.email}
+                          </a>
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                  
-                  <div className="flex flex-col">
-                    <label htmlFor="message" className="text-[10px] text-ink/50 uppercase tracking-widest font-bold mb-2 cursor-pointer">
-                      Szczegóły zlecenia *
-                    </label>
-                    <textarea 
-                      required 
-                      id="message" 
-                      name="message" 
-                      rows={5} 
-                      className="w-full bg-transparent border-0 border-b border-ink/20 px-0 py-2 text-ink focus:ring-0 focus:outline-none focus:border-brand transition-colors font-light resize-none"
-                    ></textarea>
-                  </div>
-                  
                 </div>
-                
-                <div className="mt-10 mb-12 flex items-start gap-4">
-                  <input 
-                    required 
-                    id="rodo" 
-                    type="checkbox" 
-                    className="mt-1 w-4 h-4 text-brand bg-transparent border-ink/20 rounded-sm focus:ring-brand focus:ring-offset-paper cursor-pointer outline-none" 
-                  />
-                  <label htmlFor="rodo" className="text-xs text-ink/60 font-light leading-relaxed cursor-pointer">
-                    Wyrażam zgodę na przetwarzanie danych w celu obsługi zapytania. *
-                  </label>
-                </div>
-                
-                <button 
-                  type="submit" 
-                  className="w-full bg-ink text-paper text-[15px] font-medium py-4 hover:bg-graphite transition-colors mt-auto rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand focus-visible:ring-offset-paper"
-                >
-                  Wyślij wiadomość
-                </button>
-              </form>
-            </div>
-          </Reveal>
+              </Reveal>
+            ))}
+          </div>
           
         </div>
       </div>
     </section>
   );
-};
+}

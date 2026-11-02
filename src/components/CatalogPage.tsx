@@ -7,10 +7,11 @@ type CatalogItem = {
   title: string;
   desc: string;
   variant: 'bazalt' | 'magma' | 'lithos' | 'tundra' | 'lumina';
-  profile: 'flat' | 'frame' | 'slatted';
+  profile: 'flat' | 'frame' | 'slatted' | 'grooved';
   longDesc: string;
 };
 
+// Dodano F-13 z profilem grooved
 const catalogFronts: CatalogItem[] = [
   { title: "Lumina", desc: "Płaski / Gładki mat", variant: "lumina", profile: "flat", longDesc: "Minimalistyczny front o jedwabiście gładkiej powierzchni. Idealnie rozprasza światło, nadając wnętrzu nowoczesny, czysty charakter. Doskonały wybór do bezuchwytowych systemów zabudowy." },
   { title: "Silva", desc: "Ramowy / Klasyczny Shaker", variant: "lumina", profile: "frame", longDesc: "Klasyczny profil ramiakowy inspirowany stylem Shaker. Łączy w sobie tradycyjne rzemiosło z nowoczesną precyzją wykonania. Ponadczasowy design dla eleganckich projektów." },
@@ -34,7 +35,10 @@ const catalogFronts: CatalogItem[] = [
   
   { title: "Opal", desc: "Płaski / Biel perłowa", variant: "lumina", profile: "flat", longDesc: "Chłodna, perłowa biel o niezwykłej głębi. Rozświetla mniejsze pomieszczenia i optycznie powiększa przestrzeń. Ponadczasowa klasyka w absolutnie najwyższym standardzie lakierowania." },
   { title: "Obsydian", desc: "Płaski / Czarny metalik", variant: "bazalt", profile: "flat", longDesc: "Czarny, głęboki lakier z delikatną, metaliczną poświatą widoczną w mocnym słońcu. Kwintesencja luksusu i tajemniczości. Front zaprojektowany dla najbardziej wymagających inwestorów." },
-  { title: "Agat", desc: "Fornir / Orzech", variant: "tundra", profile: "flat", longDesc: "Szlachetny fornir orzechowy o bogatej, czekoladowej kolorystyce i eleganckim usłojeniu. Wnosi do wnętrza atmosferę prestiżu i klasycznego piękna. Precyzyjnie pasowany wzór na stykach." }
+  { title: "Agat", desc: "Fornir / Orzech", variant: "tundra", profile: "flat", longDesc: "Szlachetny fornir orzechowy o bogatej, czekoladowej kolorystyce i eleganckim usłojeniu. Wnosi do wnętrza atmosferę prestiżu i klasycznego piękna. Precyzyjnie pasowany wzór na stykach." },
+
+  // DODANO NOWY WZÓR:
+  { title: "F-13", desc: "Płaski / Frez obwiedniowy", variant: "lithos", profile: "grooved", longDesc: "Klasyczny, elegancki front z subtelnym, pojedynczym frezem obwiedniowym. Detal, który dodaje wyrafinowania bez obciążania przestrzeni." }
 ];
 
 export const CatalogPage: React.FC = () => {
@@ -167,7 +171,7 @@ export const CatalogPage: React.FC = () => {
             </div>
           </Reveal>
           
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-4 gap-y-10 lg:gap-x-6 lg:gap-y-12">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-x-4 gap-y-10 lg:gap-x-6 lg:gap-y-12">
             {catalogFronts.map((item, idx) => (
               <Reveal key={idx} delay={(idx % 6) * 50} variant="clip">
                 <div className="group cursor-pointer" onClick={() => setSelectedFront(item)}>
