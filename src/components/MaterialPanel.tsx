@@ -1,7 +1,6 @@
 import React from 'react';
 
 export type MaterialVariant = 'bazalt' | 'magma' | 'lithos' | 'tundra' | 'lumina';
-// DODANO: 'integrated-handle-hidden' dla ukrytego uchwytu krawędziowego (F-4)
 export type ProfileType = 'flat' | 'frame' | 'slatted' | 'grooved' | 'integrated-handle' | 'half-round' | 'integrated-handle-full' | 'integrated-handle-centered' | 'integrated-handle-hidden';
 
 interface MaterialPanelProps {
@@ -175,18 +174,10 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
         </svg>
       )}
 
-      {/* Profil 8: Ukryty uchwyt krawędziowy widoczny tylko od góry / bez uskoku z przodu (F-4) */}
+      {/* Profil 8: Ukryty uchwyt krawędziowy całkowicie gładki od przodu (F-4) */}
       {profile === 'integrated-handle-hidden' && (
-        <div className="absolute top-0 left-0 right-0 h-[4%] pointer-events-none">
-          {/* Cienki, elegancki cień pod samą górną krawędzią (imitujący podcięcie pod spodem) */}
-          <div 
-            className="absolute inset-0"
-            style={{
-              boxShadow: `0px 3px 4px rgba(0,0,0,${Number(shadowOp) * 0.7})`,
-              borderBottom: `1px solid rgba(0,0,0,${Number(shadowOp) * 0.4})`,
-            }}
-          />
-        </div>
+        /* Brak dodatkowych cieni – front jest w pełni gładki i jednolity od przodu */
+        null
       )}
     </div>
   );
