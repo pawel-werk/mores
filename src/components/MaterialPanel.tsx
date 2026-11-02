@@ -1,7 +1,6 @@
 import React from 'react';
 
 export type MaterialVariant = 'bazalt' | 'magma' | 'lithos' | 'tundra' | 'lumina';
-// DODANO: 'half-round' dla miękkich, wypukłych półwałków
 export type ProfileType = 'flat' | 'frame' | 'slatted' | 'grooved' | 'integrated-handle' | 'half-round';
 
 interface MaterialPanelProps {
@@ -45,19 +44,19 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
   return (
     <div className={`relative overflow-hidden rounded-sm shadow-xl ${getVariantStyle()} ${className}`}>
       
-      {/* Profil 5: Wypukłe półwałki (F-15) 
-          Gradient renderuje się przed głównym oświetleniem, żeby nie był zakryty */}
+      {/* Profil 5: Wypukłe półwałki (F-15) - POPRAWIONY KSZTAŁT */}
       {profile === 'half-round' && (
         <div 
           className="absolute inset-0 pointer-events-none"
           style={{
-            // Tworzymy powtarzający się wzór (ok. 20 wałków na szerokość frontu)
-            // Zaczynamy od cienia (w dolinie), idziemy do światła (szczyt) i z powrotem do cienia
+            // Wąski cień w rowku (0% - 0.5%), szerokie łagodne światło na wałku (1% - 4.5%), powrót do cienia
             background: `repeating-linear-gradient(
               to right,
-              rgba(0,0,0,${Number(shadowOp) * 0.8}) 0%,
+              rgba(0,0,0,${Number(shadowOp) * 0.9}) 0%,
+              rgba(0,0,0,${Number(shadowOp) * 0.9}) 0.5%,
               rgba(255,255,255,${highlightOp}) 2.5%,
-              rgba(0,0,0,${Number(shadowOp) * 0.8}) 5%
+              rgba(0,0,0,${Number(shadowOp) * 0.2}) 4.5%,
+              rgba(0,0,0,${Number(shadowOp) * 0.9}) 5%
             )`
           }}
         />
