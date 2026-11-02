@@ -1,7 +1,6 @@
 import React from 'react';
 
 export type MaterialVariant = 'bazalt' | 'magma' | 'lithos' | 'tundra' | 'lumina';
-// DODANO: 'shaker' dla klasycznego frontu ramiakowego (F-8)
 export type ProfileType = 'flat' | 'frame' | 'slatted' | 'grooved' | 'integrated-handle' | 'half-round' | 'integrated-handle-full' | 'integrated-handle-centered' | 'integrated-handle-hidden' | 'raised-panel' | 'micro-frame' | 'shaker';
 
 interface MaterialPanelProps {
@@ -67,7 +66,7 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
       {/* Główne oświetlenie frontu */}
       <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/20 pointer-events-none" />
 
-      {/* Profil 1: Klasyczna, szeroka rama */}
+      {/* Profil 1: Klasyczna, szeroka rama (Shaker płaski) */}
       {profile === 'frame' && (
         <div 
           className="absolute inset-[18%] border-t border-l"
@@ -235,19 +234,24 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
         </div>
       )}
 
-      {/* Profil 11: Klasyczny Shaker z prostopadłym uskokiem (F-8) */}
+      {/* Profil 11: Ramowy Shaker z obniżeniem pod kątem 45 stopni (F-8) */}
       {profile === 'shaker' && (
-        <div 
-          className="absolute inset-[20%] pointer-events-none"
-          style={{
-            // Ostry, wewnętrzny cień od góry/lewej i rozbłysk od dołu/prawej, dające efekt obniżenia
-            boxShadow: `inset 4px 4px 8px rgba(0,0,0,${Number(shadowOp) * 0.8}), inset -2px -2px 4px rgba(255,255,255,${Number(highlightOp) * 0.5})`,
-            borderTop: `1px solid rgba(0,0,0,${Number(shadowOp) * 0.7})`,
-            borderLeft: `1px solid rgba(0,0,0,${Number(shadowOp) * 0.7})`,
-            borderBottom: `1px solid rgba(255,255,255,${Number(highlightOp) * 0.8})`,
-            borderRight: `1px solid rgba(255,255,255,${Number(highlightOp) * 0.8})`,
-          }}
-        />
+        <div className="absolute inset-[18%] pointer-events-none">
+          <div 
+            className="absolute inset-0"
+            style={{
+              borderStyle: 'solid',
+              borderWidth: '7px', // Szerokość fazy 45 stopni
+              borderTopColor: `rgba(0,0,0,${Number(shadowOp) * 0.7})`,
+              borderLeftColor: `rgba(0,0,0,${Number(shadowOp) * 0.7})`,
+              borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.8})`,
+              borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.8})`,
+            }}
+          >
+            {/* Lekkie zacienienie dolnej, płaskiej płyciny aby uzyskać efekt głębi */}
+            <div className="absolute inset-0 bg-black/[0.03] shadow-[inset_1px_1px_3px_rgba(0,0,0,0.15)]" />
+          </div>
+        </div>
       )}
     </div>
   );
