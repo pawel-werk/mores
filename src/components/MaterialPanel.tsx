@@ -1,7 +1,8 @@
 import React from 'react';
 
 export type MaterialVariant = 'bazalt' | 'magma' | 'lithos' | 'tundra' | 'lumina';
-export type ProfileType = 'flat' | 'frame' | 'slatted' | 'grooved' | 'integrated-handle' | 'half-round' | 'integrated-handle-full' | 'integrated-handle-centered' | 'integrated-handle-hidden';
+// DODANO: 'raised-panel' dla frontu ramowego z wypukłą płyciną (F-6)
+export type ProfileType = 'flat' | 'frame' | 'slatted' | 'grooved' | 'integrated-handle' | 'half-round' | 'integrated-handle-full' | 'integrated-handle-centered' | 'integrated-handle-hidden' | 'raised-panel';
 
 interface MaterialPanelProps {
   src?: string;
@@ -176,8 +177,43 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
 
       {/* Profil 8: Ukryty uchwyt krawędziowy całkowicie gładki od przodu (F-4) */}
       {profile === 'integrated-handle-hidden' && (
-        /* Brak dodatkowych cieni – front jest w pełni gładki i jednolity od przodu */
         null
+      )}
+
+      {/* Profil 9: Ramowy z wypukłą płyciną (F-6) */}
+      {profile === 'raised-panel' && (
+        <div className="absolute inset-[17%] pointer-events-none">
+          {/* Faza opadająca (skos w dół) tworzona przez grube obramowanie */}
+          <div 
+            className="absolute inset-0"
+            style={{
+              borderStyle: 'solid',
+              borderWidth: '5px',
+              borderTopColor: `rgba(0,0,0,${Number(shadowOp) * 0.7})`,
+              borderLeftColor: `rgba(0,0,0,${Number(shadowOp) * 0.7})`,
+              borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.8})`,
+              borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.8})`,
+            }}
+          >
+            {/* Wąskie, lekko przyciemnione dno frezu */}
+            <div className="absolute inset-0 bg-black/5 shadow-[inset_1px_1px_3px_rgba(0,0,0,0.15)]">
+              {/* Faza wznosząca (skos w górę) dająca wypukłość płyciny i płaski środek */}
+              <div 
+                className={`absolute inset-[2px] ${getVariantStyle()}`}
+                style={{
+                  borderStyle: 'solid',
+                  borderWidth: '6px',
+                  borderTopColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
+                  borderLeftColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
+                  borderBottomColor: `rgba(0,0,0,${Number(shadowOp) * 0.6})`,
+                  borderRightColor: `rgba(0,0,0,${Number(shadowOp) * 0.6})`,
+                }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-black/5 pointer-events-none" />
+              </div>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
