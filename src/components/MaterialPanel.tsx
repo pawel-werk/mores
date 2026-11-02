@@ -1,7 +1,6 @@
 import React from 'react';
 
 export type MaterialVariant = 'bazalt' | 'magma' | 'lithos' | 'tundra' | 'lumina';
-// DODANO: 'complex-raised-panel' dla frontu klasycznego z podwójnym skosem i ramką (F-9)
 export type ProfileType = 'flat' | 'frame' | 'slatted' | 'grooved' | 'integrated-handle' | 'half-round' | 'integrated-handle-full' | 'integrated-handle-centered' | 'integrated-handle-hidden' | 'raised-panel' | 'micro-frame' | 'shaker' | 'complex-raised-panel';
 
 interface MaterialPanelProps {
@@ -254,41 +253,44 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
         </div>
       )}
 
-      {/* Profil 12: Podwójny skos (w dół i w górę) + zewnętrzny frez (F-9) */}
+      {/* Profil 12: Rozbudowany front klasyczny (F-9) - WERSJA POPRAWIONA (MASYWNA) */}
       {profile === 'complex-raised-panel' && (
         <>
-          {/* Zewnętrzny, subtelny frez obwiedniowy */}
-          <div className="absolute inset-[3%] pointer-events-none">
-            <div className="absolute inset-0 rounded-[2px]" style={{
-              borderTop: `1px solid rgba(0,0,0,${Number(shadowOp) * 0.4})`,
-              borderLeft: `1px solid rgba(0,0,0,${Number(shadowOp) * 0.4})`,
-              borderBottom: `1px solid rgba(255,255,255,${Number(highlightOp) * 0.5})`,
-              borderRight: `1px solid rgba(255,255,255,${Number(highlightOp) * 0.5})`,
-            }} />
-          </div>
-          {/* Wewnętrzna rama i podwójny skos */}
+          {/* Zewnętrzny frez obwiedniowy - grubszy, bardziej wyrazisty rowek */}
+          <div className="absolute inset-[3.5%] pointer-events-none rounded-[1px]" style={{
+            borderStyle: 'solid',
+            borderWidth: '3px',
+            borderTopColor: `rgba(0,0,0,${Number(shadowOp) * 0.7})`,
+            borderLeftColor: `rgba(0,0,0,${Number(shadowOp) * 0.7})`,
+            borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.8})`,
+            borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.8})`,
+          }} />
+          
+          {/* Wewnętrzny rozbudowany profil płyciny */}
           <div className="absolute inset-[18%] pointer-events-none">
-            {/* Skos 45 stopni w dół */}
+            {/* Szeroki skos 45 stopni w dół (głęboka faza opadająca od ramki do płyciny) */}
             <div className="absolute inset-0" style={{
               borderStyle: 'solid',
-              borderWidth: '8px',
+              borderWidth: '18px', // Zwiększono szerokość, aby faza była wyrazista i dominująca
               borderTopColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
               borderLeftColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
               borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
               borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
             }}>
-              {/* Ostre dno (rylec) przed wzniesieniem */}
-              <div className="absolute inset-0 bg-black/10 shadow-[inset_1px_1px_3px_rgba(0,0,0,0.3)]">
-                {/* Skos 45 stopni w górę formujący wypukłą płytę z płaskim środkiem */}
-                <div className={`absolute inset-[1px] ${getVariantStyle()}`} style={{
+              {/* Wyraźne, płaskie dno frezu (dolina między opadającą ramą a wznoszącą się płyciną) */}
+              <div className="absolute inset-0 bg-black/[0.08] shadow-[inset_1px_1px_5px_rgba(0,0,0,0.3)]">
+                {/* Skos 45 stopni w górę (masywna faza wznosząca wypukłej płyciny) */}
+                <div className={`absolute inset-[8px] ${getVariantStyle()}`} style={{ 
                   borderStyle: 'solid',
-                  borderWidth: '10px',
+                  borderWidth: '15px', // Wyraźne podniesienie środkowego profilu
                   borderTopColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
                   borderLeftColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
                   borderBottomColor: `rgba(0,0,0,${Number(shadowOp) * 0.7})`,
                   borderRightColor: `rgba(0,0,0,${Number(shadowOp) * 0.7})`,
+                  boxShadow: `2px 2px 6px rgba(0,0,0,${Number(shadowOp) * 0.3})`
                 }}>
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-black/10 pointer-events-none" />
+                  {/* Płaski środek płyciny z delikatnym oświetleniem wypukłości */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/10 pointer-events-none" />
                 </div>
               </div>
             </div>
