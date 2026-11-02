@@ -1,8 +1,8 @@
 import React from 'react';
 
 export type MaterialVariant = 'bazalt' | 'magma' | 'lithos' | 'tundra' | 'lumina';
-// DODANO: 'glass-frame' dla F-17 (witryna z 1 szybą)
-export type ProfileType = 'flat' | 'frame' | 'slatted' | 'grooved' | 'integrated-handle' | 'half-round' | 'integrated-handle-full' | 'integrated-handle-centered' | 'integrated-handle-hidden' | 'raised-panel' | 'micro-frame' | 'shaker' | 'complex-raised-panel' | 'double-stepped-panel' | 'vertical-stiles-raised' | 'flat-grooves' | 'concave-grooves' | 'mullion-frame' | 'glass-frame';
+// DODANO: 'lattice-frame' dla F-18 (front z ażurową kratką)
+export type ProfileType = 'flat' | 'frame' | 'slatted' | 'grooved' | 'integrated-handle' | 'half-round' | 'integrated-handle-full' | 'integrated-handle-centered' | 'integrated-handle-hidden' | 'raised-panel' | 'micro-frame' | 'shaker' | 'complex-raised-panel' | 'double-stepped-panel' | 'vertical-stiles-raised' | 'flat-grooves' | 'concave-grooves' | 'mullion-frame' | 'glass-frame' | 'lattice-frame';
 
 interface MaterialPanelProps {
   src?: string;
@@ -42,7 +42,6 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
   const shadowOp = isDark ? '0.7' : '0.15'; 
   const highlightOp = isDark ? '0.1' : '0.7'; 
 
-  // Komponent tekstury szkła z ukośnym refleksem i delikatnym rozmyciem tła
   const renderGlass = () => (
     <div className="absolute inset-0 bg-slate-500/10 backdrop-blur-sm shadow-[inset_1px_1px_6px_rgba(0,0,0,0.3)] overflow-hidden pointer-events-none">
       <div className="absolute -inset-[100%] bg-gradient-to-tr from-transparent via-white/20 to-transparent transform rotate-[35deg] translate-x-[15%] pointer-events-none" />
@@ -423,7 +422,6 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
       {/* Profil 17: Klasyczna witryna ze szprosami i szkłem (F-16) */}
       {profile === 'mullion-frame' && (
         <div className="absolute inset-[18%] pointer-events-none">
-          {/* Lewe górne okienko */}
           <div className="absolute top-0 left-0 right-[calc(50%+3px)] bottom-[calc(50%+3px)]" style={{
             borderStyle: 'solid',
             borderWidth: '6px', 
@@ -435,7 +433,6 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
             {renderGlass()}
           </div>
           
-          {/* Prawe górne okienko */}
           <div className="absolute top-0 left-[calc(50%+3px)] right-0 bottom-[calc(50%+3px)]" style={{
             borderStyle: 'solid',
             borderWidth: '6px',
@@ -447,7 +444,6 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
             {renderGlass()}
           </div>
 
-          {/* Lewe dolne okienko */}
           <div className="absolute top-[calc(50%+3px)] left-0 right-[calc(50%+3px)] bottom-0" style={{
             borderStyle: 'solid',
             borderWidth: '6px',
@@ -459,7 +455,6 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
             {renderGlass()}
           </div>
 
-          {/* Prawe dolne okienko */}
           <div className="absolute top-[calc(50%+3px)] left-[calc(50%+3px)] right-0 bottom-0" style={{
             borderStyle: 'solid',
             borderWidth: '6px',
@@ -478,14 +473,46 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
         <div className="absolute inset-[18%] pointer-events-none">
           <div className="absolute inset-0" style={{
             borderStyle: 'solid',
-            borderWidth: '6px', // ścięcie ramy w dół (kąt 45 stopni, 1 jednostka szerokości)
+            borderWidth: '6px',
             borderTopColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
             borderLeftColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
             borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
             borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
           }}>
-            {/* Jedna tafla szkła na całym środku */}
             {renderGlass()}
+          </div>
+        </div>
+      )}
+
+      {/* Profil 19: Witryna z kratką / dziurkowaniem (F-18) */}
+      {profile === 'lattice-frame' && (
+        <div className="absolute inset-[18%] pointer-events-none">
+          <div className="absolute inset-0" style={{
+            borderStyle: 'solid',
+            borderWidth: '6px', // ścięcie ramy w dół (kąt 45 stopni, 1 jednostka)
+            borderTopColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
+            borderLeftColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
+            borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
+            borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
+          }}>
+            {/* Ciemne wnętrze (dziury) - czarne tło szafki w głębi */}
+            <div className="absolute inset-0 bg-black/80 shadow-[inset_2px_2px_10px_rgba(0,0,0,1)]">
+              {/* Zintegrowana kratka nałożona na ciemne tło (odwzorowana przy pomocy maski SVG wycinającej diamenty) */}
+              <div 
+                className={`absolute inset-0 ${getVariantStyle()}`}
+                style={{
+                  WebkitMaskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cg stroke='black' stroke-width='8' stroke-linecap='square'%3E%3Cline x1='0' y1='0' x2='24' y2='24'/%3E%3Cline x1='24' y1='0' x2='0' y2='24'/%3E%3C/g%3E%3C/svg%3E")`,
+                  maskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cg stroke='black' stroke-width='8' stroke-linecap='square'%3E%3Cline x1='0' y1='0' x2='24' y2='24'/%3E%3Cline x1='24' y1='0' x2='0' y2='24'/%3E%3C/g%3E%3C/svg%3E")`,
+                  WebkitMaskSize: '24px 24px',
+                  maskSize: '24px 24px',
+                  // Drop shadow sprawi, że wycięte "okienka" kratki rzucą cień na czarne tło szafki
+                  filter: 'drop-shadow(2px 2px 2px rgba(0,0,0,0.5))'
+                }}
+              >
+                {/* Lekkie cieniowanie całej płaszczyzny kratki, zachowujące jej fizyczny kolor materiału */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-black/20 pointer-events-none" />
+              </div>
+            </div>
           </div>
         </div>
       )}
