@@ -1,14 +1,6 @@
-To niezwykle precyzyjny i klasyczny model frontu witrynowego (tzw. szprosowego). Twoja dekonstrukcja jest bezbłędna – mamy tu do czynienia z zewnętrzną ramą i wewnętrznym „krzyżakiem” (szprosem), gdzie każdy profil składa się ze spadku (1 jednostka), wypłaszczenia (1 jednostka) i kolejnego spadku (1 jednostka).
-
-Do uzyskania tego efektu w CSS użyłem siatki 4 absolutnie pozycjonowanych okienek, z których każde posiada twarde obramowanie (skos 45 stopni opadający w dół do wycięcia) oraz odstęp równy grubości skosu (płaski środek szprosu). Środek okienek wypełniłem głębokim, ciemnym tłem imitującym wnętrze szafki/szkło, co świetnie nada bryle trójwymiarowości.
-
-Zgodnie z prośbą, podsyłam **tylko** zaktualizowany kod pliku `MaterialPanel.tsx` (dodałem profil `'mullion-frame'`):
-
-```tsx
 import React from 'react';
 
 export type MaterialVariant = 'bazalt' | 'magma' | 'lithos' | 'tundra' | 'lumina';
-// DODANO: 'mullion-frame' dla F-16 (front witrynowy ze szprosami)
 export type ProfileType = 'flat' | 'frame' | 'slatted' | 'grooved' | 'integrated-handle' | 'half-round' | 'integrated-handle-full' | 'integrated-handle-centered' | 'integrated-handle-hidden' | 'raised-panel' | 'micro-frame' | 'shaker' | 'complex-raised-panel' | 'double-stepped-panel' | 'vertical-stiles-raised' | 'flat-grooves' | 'concave-grooves' | 'mullion-frame';
 
 interface MaterialPanelProps {
@@ -423,24 +415,19 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
       {/* Profil 17: Klasyczna witryna ze szprosami (F-16) */}
       {profile === 'mullion-frame' && (
         <div className="absolute inset-[18%] pointer-events-none">
-          {/* Grubość 6px w CSS odpowiada proporcji: skos ramy ok. 1 jedn, odstęp ok. 1 jedn, skos szprosu ok. 1 jedn. */}
-          
-          {/* Lewe górne okienko */}
           <div className="absolute top-0 left-0 right-[calc(50%+3px)] bottom-[calc(50%+3px)]" style={{
             borderStyle: 'solid',
-            borderWidth: '6px', // Kąt 45 stopni i opad w dół - rzuca cień z góry i lewej
+            borderWidth: '6px',
             borderTopColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
             borderLeftColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
             borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
             borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
           }}>
-            {/* Wypełnienie okienka - głęboka, ciemna przestrzeń imitująca pustkę/szybę za frontem */}
             <div className="absolute inset-0 bg-black/80 shadow-[inset_2px_2px_10px_rgba(0,0,0,0.8)] backdrop-blur-sm">
                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
             </div>
           </div>
           
-          {/* Prawe górne okienko */}
           <div className="absolute top-0 left-[calc(50%+3px)] right-0 bottom-[calc(50%+3px)]" style={{
             borderStyle: 'solid',
             borderWidth: '6px',
@@ -454,7 +441,6 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
             </div>
           </div>
 
-          {/* Lewe dolne okienko */}
           <div className="absolute top-[calc(50%+3px)] left-0 right-[calc(50%+3px)] bottom-0" style={{
             borderStyle: 'solid',
             borderWidth: '6px',
@@ -468,7 +454,6 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
             </div>
           </div>
 
-          {/* Prawe dolne okienko */}
           <div className="absolute top-[calc(50%+3px)] left-[calc(50%+3px)] right-0 bottom-0" style={{
             borderStyle: 'solid',
             borderWidth: '6px',
@@ -481,11 +466,8 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
             </div>
           </div>
-          
         </div>
       )}
     </div>
   );
 };
-
-```
