@@ -154,10 +154,10 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
         </div>
       )}
 
-      {/* Profil 7: Symetryczny uchwyt z zachowaniem skosów jak w F-2 (F-3) */}
+      {/* Profil 7: Symetryczny uchwyt odsunięty od krawędzi (F-3) */}
       {profile === 'integrated-handle-centered' && (
         <svg 
-          className="absolute top-0 left-[7.5%] w-[85%] h-[7%] pointer-events-none" 
+          className="absolute top-0 left-[15%] w-[70%] h-[7%] pointer-events-none" 
           preserveAspectRatio="none" 
           viewBox="0 0 100 100"
         >
@@ -167,11 +167,11 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
               <stop offset="100%" stopColor={`rgba(0,0,0,${Number(shadowOp) * 0.05})`} />
             </linearGradient>
           </defs>
-          {/* Dopasowane punkty: pełna wysokość po bokach, schodzące lustrzanie do środka pod kątem */}
+          {/* Symetryczny trapez z zachowaniem skosów 1:1 jak w F-2 */}
           <polygon points="0,0 100,0 90,100 10,100" fill="url(#innerShadowSym)" />
-          {/* Dolna linia rozbłysku światła w środkowej części */}
+          {/* Dolna linia rozbłysku */}
           <line x1="10" y1="100" x2="90" y2="100" stroke={`rgba(255,255,255,${highlightOp})`} strokeWidth="3" vectorEffect="non-scaling-stroke" />
-          {/* Skośne krawędzie boczne frezu (odzwierciedlające styl F-2) */}
+          {/* Boczne skosy frezu */}
           <line x1="0" y1="0" x2="10" y2="100" stroke={`rgba(0,0,0,${Number(shadowOp) * 0.3})`} strokeWidth="2" vectorEffect="non-scaling-stroke" />
           <line x1="100" y1="0" x2="90" y2="100" stroke={`rgba(0,0,0,${Number(shadowOp) * 0.3})`} strokeWidth="2" vectorEffect="non-scaling-stroke" />
         </svg>
