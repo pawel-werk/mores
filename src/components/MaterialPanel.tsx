@@ -52,6 +52,7 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
   return (
     <div className={`relative overflow-hidden rounded-sm shadow-xl ${isSeeThrough ? '' : getVariantStyle()} ${className}`}>
       
+      {/* Ręczne budowanie 4 ścian ramy dla frontów "na wylot", zostawiając środek w 100% przezroczysty */}
       {isSeeThrough && (
         <>
           <div className={`absolute top-0 left-0 right-0 h-[18%] ${getVariantStyle()}`} />
@@ -508,8 +509,8 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
             borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
           }} />
 
-          {/* Gruba "deska" kratki osadzona głębiej */}
-          <div className="absolute inset-[10px] z-10 pointer-events-auto">
+          {/* DODANO overflow-hidden: Gruba "deska" kratki osadzona głębiej */}
+          <div className="absolute inset-[10px] z-10 overflow-hidden pointer-events-auto">
             
             {/* Ciemna warstwa symulująca głębię frezu na krawędzi otworów */}
             <div 
