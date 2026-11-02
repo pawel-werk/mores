@@ -1,7 +1,6 @@
 import React from 'react';
 
 export type MaterialVariant = 'bazalt' | 'magma' | 'lithos' | 'tundra' | 'lumina';
-// DODANO: 'grooved' dla pojedynczego, delikatnego frezu obwiedniowego
 export type ProfileType = 'flat' | 'frame' | 'slatted' | 'grooved';
 
 interface MaterialPanelProps {
@@ -39,15 +38,15 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
   };
 
   const isDark = variant === 'bazalt' || variant === 'magma';
-  const shadowOp = isDark ? '0.5' : '0.15';
-  const highlightOp = isDark ? '0.1' : '0.6';
+  const shadowOp = isDark ? '0.5' : '0.2'; // Zwiększony cień dla lepszego kontrastu rowka
+  const highlightOp = isDark ? '0.1' : '0.7'; // Zwiększone światło
 
   return (
     <div className={`relative overflow-hidden rounded-sm shadow-xl ${getVariantStyle()} ${className}`}>
       {/* Miękkie światło z boku */}
       <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/20 pointer-events-none" />
 
-      {/* Profil 1: Klasyczna, szeroka rama (Shaker) */}
+      {/* Profil 1: Klasyczna, szeroka rama (Shaker) - środek obniżony */}
       {profile === 'frame' && (
         <div 
           className="absolute inset-[18%] border-t border-l"
@@ -76,15 +75,18 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
         </div>
       )}
 
-      {/* Profil 3: DELIKATNY FREZ OBWIEDNIOWY (Nowy ze zdjęcia) */}
+      {/* Profil 3: Wąski rowek w płaszczyźnie, bliżej krawędzi (F-13) */}
       {profile === 'grooved' && (
         <div 
-          className="absolute inset-[12%] pointer-events-none rounded-[2px]"
+          className="absolute inset-[6%] pointer-events-none rounded-[2px]"
           style={{
-            borderTop: `1.5px solid rgba(0,0,0,${shadowOp})`,
-            borderLeft: `1.5px solid rgba(0,0,0,${shadowOp})`,
-            borderBottom: `1.5px solid rgba(255,255,255,${highlightOp})`,
-            borderRight: `1.5px solid rgba(255,255,255,${highlightOp})`,
+            // Góra i lewo rowka - zacienione
+            borderTop: `2px solid rgba(0,0,0,${shadowOp})`,
+            borderLeft: `2px solid rgba(0,0,0,${shadowOp})`,
+            // Dół i prawo rowka - rozświetlone
+            borderBottom: `2px solid rgba(255,255,255,${highlightOp})`,
+            borderRight: `2px solid rgba(255,255,255,${highlightOp})`,
+            // Brak box-shadow sprawia, że środek wydaje się być na tym samym poziomie co ramka zewnętrzna
           }}
         />
       )}
