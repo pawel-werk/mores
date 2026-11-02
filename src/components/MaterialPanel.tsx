@@ -1,7 +1,6 @@
 import React from 'react';
 
 export type MaterialVariant = 'bazalt' | 'magma' | 'lithos' | 'tundra' | 'lumina';
-// DODANO: 'lattice-frame' dla F-18 (front z ażurową kratką)
 export type ProfileType = 'flat' | 'frame' | 'slatted' | 'grooved' | 'integrated-handle' | 'half-round' | 'integrated-handle-full' | 'integrated-handle-centered' | 'integrated-handle-hidden' | 'raised-panel' | 'micro-frame' | 'shaker' | 'complex-raised-panel' | 'double-stepped-panel' | 'vertical-stiles-raised' | 'flat-grooves' | 'concave-grooves' | 'mullion-frame' | 'glass-frame' | 'lattice-frame';
 
 interface MaterialPanelProps {
@@ -473,7 +472,7 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
         <div className="absolute inset-[18%] pointer-events-none">
           <div className="absolute inset-0" style={{
             borderStyle: 'solid',
-            borderWidth: '6px',
+            borderWidth: '6px', 
             borderTopColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
             borderLeftColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
             borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
@@ -489,15 +488,14 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
         <div className="absolute inset-[18%] pointer-events-none">
           <div className="absolute inset-0" style={{
             borderStyle: 'solid',
-            borderWidth: '6px', // ścięcie ramy w dół (kąt 45 stopni, 1 jednostka)
+            borderWidth: '6px',
             borderTopColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
             borderLeftColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
             borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
             borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
           }}>
-            {/* Ciemne wnętrze (dziury) - czarne tło szafki w głębi */}
-            <div className="absolute inset-0 bg-black/80 shadow-[inset_2px_2px_10px_rgba(0,0,0,1)]">
-              {/* Zintegrowana kratka nałożona na ciemne tło (odwzorowana przy pomocy maski SVG wycinającej diamenty) */}
+            {/* Wnętrze ramy - z usuniętym czarnym tłem - widać spod spodu kolor wariantu */}
+            <div className="absolute inset-0">
               <div 
                 className={`absolute inset-0 ${getVariantStyle()}`}
                 style={{
@@ -505,11 +503,9 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
                   maskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cg stroke='black' stroke-width='8' stroke-linecap='square'%3E%3Cline x1='0' y1='0' x2='24' y2='24'/%3E%3Cline x1='24' y1='0' x2='0' y2='24'/%3E%3C/g%3E%3C/svg%3E")`,
                   WebkitMaskSize: '24px 24px',
                   maskSize: '24px 24px',
-                  // Drop shadow sprawi, że wycięte "okienka" kratki rzucą cień na czarne tło szafki
                   filter: 'drop-shadow(2px 2px 2px rgba(0,0,0,0.5))'
                 }}
               >
-                {/* Lekkie cieniowanie całej płaszczyzny kratki, zachowujące jej fizyczny kolor materiału */}
                 <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-black/20 pointer-events-none" />
               </div>
             </div>
