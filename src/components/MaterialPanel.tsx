@@ -1,8 +1,8 @@
 import React from 'react';
 
 export type MaterialVariant = 'bazalt' | 'magma' | 'lithos' | 'tundra' | 'lumina';
-// DODANO: 'integrated-handle-full' dla uchwytu krawędziowego na całą szerokość
-export type ProfileType = 'flat' | 'frame' | 'slatted' | 'grooved' | 'integrated-handle' | 'half-round' | 'integrated-handle-full';
+// DODANO: 'integrated-handle-centered' dla symetrycznego uchwytu na środku (F-3)
+export type ProfileType = 'flat' | 'frame' | 'slatted' | 'grooved' | 'integrated-handle' | 'half-round' | 'integrated-handle-full' | 'integrated-handle-centered';
 
 interface MaterialPanelProps {
   src?: string;
@@ -122,7 +122,7 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
         </div>
       )}
 
-      {/* Profil 4: Zintegrowany uchwyt na lewej krawędzi (F-2 - asymetryczny) */}
+      {/* Profil 4: Zintegrowany uchwyt asymetryczny (F-2) */}
       {profile === 'integrated-handle' && (
         <svg 
           className="absolute top-0 left-0 w-[85%] h-[7%] pointer-events-none" 
@@ -147,12 +147,35 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
           <div 
             className="absolute inset-0"
             style={{
-              backgroundColor: `rgba(0,0,0,${Number(shadowOp) * 0.3})`, // Głębia frezu
-              boxShadow: `inset 0px 6px 8px rgba(0,0,0,${Number(shadowOp) * 0.8})`, // Wewnętrzny cień u góry
-              borderBottom: `2.5px solid rgba(255,255,255,${highlightOp})`, // Światło na dolnym rancie pochwytu
+              backgroundColor: `rgba(0,0,0,${Number(shadowOp) * 0.3})`,
+              boxShadow: `inset 0px 6px 8px rgba(0,0,0,${Number(shadowOp) * 0.8})`,
+              borderBottom: `2.5px solid rgba(255,255,255,${highlightOp})`,
             }}
           />
         </div>
+      )}
+
+      {/* Profil 7: Symetryczny uchwyt na środku (F-3) */}
+      {profile === 'integrated-handle-centered' && (
+        <svg 
+          className="absolute top-0 left-[7.5%] w-[85%] h-[7%] pointer-events-none" 
+          preserveAspectRatio="none" 
+          viewBox="0 0 100 100"
+        >
+          <defs>
+            <linearGradient id="innerShadowSym" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor={`rgba(0,0,0,${Number(shadowOp) * 0.5})`} />
+              <stop offset="100%" stopColor={`rgba(0,0,0,${Number(shadowOp) * 0.05})`} />
+            </linearGradient>
+          </defs>
+          {/* Wielokąt symetryczny: z lewej skos w dół, potem płasko, z prawej skos w górę */}
+          <polygon points="0,100 10,0 90,0 100,100" fill="url(#innerShadowSym)" />
+          {/* Dolna linia rozbłysku światła */}
+          <line x1="10" y1="100" x2="90" y2="100" stroke={`rgba(255,255,255,${highlightOp})`} strokeWidth="3" vectorEffect="non-scaling-stroke" />
+          {/* Skośne krawędzie boczne frezu */}
+          <line x1="0" y1="100" x2="10" y2="0" stroke={`rgba(0,0,0,${Number(shadowOp) * 0.3})`} strokeWidth="2" vectorEffect="non-scaling-stroke" />
+          <line x1="90" y1="0" x2="100" y2="100" stroke={`rgba(0,0,0,${Number(shadowOp) * 0.3})`} strokeWidth="2" vectorEffect="non-scaling-stroke" />
+        </svg>
       )}
     </div>
   );
