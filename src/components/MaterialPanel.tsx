@@ -1,7 +1,6 @@
 import React from 'react';
 
 export type MaterialVariant = 'bazalt' | 'magma' | 'lithos' | 'tundra' | 'lumina';
-// DODANO: 'vertical-stiles-raised' dla F-11 z pełnymi pionowymi ramiakami i V-fugą
 export type ProfileType = 'flat' | 'frame' | 'slatted' | 'grooved' | 'integrated-handle' | 'half-round' | 'integrated-handle-full' | 'integrated-handle-centered' | 'integrated-handle-hidden' | 'raised-panel' | 'micro-frame' | 'shaker' | 'complex-raised-panel' | 'double-stepped-panel' | 'vertical-stiles-raised';
 
 interface MaterialPanelProps {
@@ -328,55 +327,57 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
         </div>
       )}
 
-      {/* Profil 14: Pionowe ramiaki z wypukłą płyciną (F-11) */}
+      {/* Profil 14: Pionowe ramiaki z wypłaszczeniem i wypukłą płyciną (F-11) */}
       {profile === 'vertical-stiles-raised' && (
         <>
-          {/* Pionowa lewa fuga - poprowadzona od góry do samego dołu */}
-          <div className="absolute top-0 bottom-0 left-[18%] w-[2px] pointer-events-none" style={{
-            borderLeft: `1px solid rgba(0,0,0,${Number(shadowOp) * 0.7})`,
-            borderRight: `1px solid rgba(255,255,255,${Number(highlightOp) * 0.9})`,
-            backgroundColor: `rgba(0,0,0,${Number(shadowOp) * 0.2})`
+          {/* Pionowa lewa fuga - szersza, grubość 1 jednostki (ok. 5px) */}
+          <div className="absolute top-0 bottom-0 left-[18%] w-[5px] pointer-events-none z-10" style={{
+            borderLeft: `2.5px solid rgba(0,0,0,${Number(shadowOp) * 0.7})`,
+            borderRight: `2.5px solid rgba(255,255,255,${Number(highlightOp) * 0.8})`,
+            backgroundColor: `rgba(0,0,0,${Number(shadowOp) * 0.15})`
           }} />
           
-          {/* Pionowa prawa fuga - poprowadzona od góry do samego dołu */}
-          <div className="absolute top-0 bottom-0 right-[18%] w-[2px] pointer-events-none" style={{
-            borderLeft: `1px solid rgba(0,0,0,${Number(shadowOp) * 0.7})`,
-            borderRight: `1px solid rgba(255,255,255,${Number(highlightOp) * 0.9})`,
-            backgroundColor: `rgba(0,0,0,${Number(shadowOp) * 0.2})`
+          {/* Pionowa prawa fuga */}
+          <div className="absolute top-0 bottom-0 right-[18%] w-[5px] pointer-events-none z-10" style={{
+            borderLeft: `2.5px solid rgba(0,0,0,${Number(shadowOp) * 0.7})`,
+            borderRight: `2.5px solid rgba(255,255,255,${Number(highlightOp) * 0.8})`,
+            backgroundColor: `rgba(0,0,0,${Number(shadowOp) * 0.15})`
           }} />
           
-          {/* Pozioma górna fuga - zamknięta między pionowymi fugami */}
-          <div className="absolute top-[18%] left-[18%] right-[18%] h-[2px] pointer-events-none" style={{
-            borderTop: `1px solid rgba(0,0,0,${Number(shadowOp) * 0.7})`,
-            borderBottom: `1px solid rgba(255,255,255,${Number(highlightOp) * 0.9})`,
-            backgroundColor: `rgba(0,0,0,${Number(shadowOp) * 0.2})`
+          {/* Pozioma górna fuga (pomiędzy pionowymi fugami) */}
+          <div className="absolute top-[18%] left-[calc(18%+5px)] right-[calc(18%+5px)] h-[5px] pointer-events-none z-10" style={{
+            borderTop: `2.5px solid rgba(0,0,0,${Number(shadowOp) * 0.7})`,
+            borderBottom: `2.5px solid rgba(255,255,255,${Number(highlightOp) * 0.8})`,
+            backgroundColor: `rgba(0,0,0,${Number(shadowOp) * 0.15})`
           }} />
           
-          {/* Pozioma dolna fuga - zamknięta między pionowymi fugami */}
-          <div className="absolute bottom-[18%] left-[18%] right-[18%] h-[2px] pointer-events-none" style={{
-            borderTop: `1px solid rgba(0,0,0,${Number(shadowOp) * 0.7})`,
-            borderBottom: `1px solid rgba(255,255,255,${Number(highlightOp) * 0.9})`,
-            backgroundColor: `rgba(0,0,0,${Number(shadowOp) * 0.2})`
+          {/* Pozioma dolna fuga */}
+          <div className="absolute bottom-[18%] left-[calc(18%+5px)] right-[calc(18%+5px)] h-[5px] pointer-events-none z-10" style={{
+            borderTop: `2.5px solid rgba(0,0,0,${Number(shadowOp) * 0.7})`,
+            borderBottom: `2.5px solid rgba(255,255,255,${Number(highlightOp) * 0.8})`,
+            backgroundColor: `rgba(0,0,0,${Number(shadowOp) * 0.15})`
           }} />
 
-          {/* Wewnętrzny panel */}
-          <div className="absolute inset-[18%] pointer-events-none">
-            {/* Płaski margines wewnętrzny tuż po fugach */}
-            <div className="absolute inset-[14px]">
-              {/* Główny, szeroki wypukły panel z kątami 45 stopni w górę */}
+          {/* Wnętrze - płaskie wypłaszczenie ok. 3-4cm a następnie wznios 1 jedn. w górę */}
+          <div className="absolute top-[calc(18%+5px)] bottom-[calc(18%+5px)] left-[calc(18%+5px)] right-[calc(18%+5px)] pointer-events-none">
+            
+            {/* Płaski margines (odpowiadający wywiadowi 3-4cm w rzeczywistości) */}
+            <div className="absolute inset-[22px]">
+              
+              {/* Wznios o 1 jednostkę pod kątem 45 stopni w górę */}
               <div className={`absolute inset-0 ${getVariantStyle()}`} style={{
                 borderStyle: 'solid',
-                borderWidth: '12px',
-                borderTopColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
-                borderLeftColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
-                borderBottomColor: `rgba(0,0,0,${Number(shadowOp) * 0.7})`,
-                borderRightColor: `rgba(0,0,0,${Number(shadowOp) * 0.7})`,
-                // Delikatny rzut cienia podkreślający wypukłość
-                boxShadow: `2px 2px 8px rgba(0,0,0,${Number(shadowOp) * 0.15})`
+                borderWidth: '4px',
+                borderTopColor: `rgba(255,255,255,${Number(highlightOp) * 0.8})`,
+                borderLeftColor: `rgba(255,255,255,${Number(highlightOp) * 0.8})`,
+                borderBottomColor: `rgba(0,0,0,${Number(shadowOp) * 0.6})`,
+                borderRightColor: `rgba(0,0,0,${Number(shadowOp) * 0.6})`,
+                boxShadow: `2px 2px 6px rgba(0,0,0,${Number(shadowOp) * 0.2})`
               }}>
-                {/* Płaski, centralny element */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/10 pointer-events-none" />
+                {/* Ostateczne wypłaszczenie na samym środku panelu */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-black/10 pointer-events-none" />
               </div>
+              
             </div>
           </div>
         </>
