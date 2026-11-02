@@ -1,7 +1,6 @@
 import React from 'react';
 
 export type MaterialVariant = 'bazalt' | 'magma' | 'lithos' | 'tundra' | 'lumina';
-// DODANO: 'integrated-handle-centered' dla symetrycznego uchwytu na środku (F-3)
 export type ProfileType = 'flat' | 'frame' | 'slatted' | 'grooved' | 'integrated-handle' | 'half-round' | 'integrated-handle-full' | 'integrated-handle-centered';
 
 interface MaterialPanelProps {
@@ -155,7 +154,7 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
         </div>
       )}
 
-      {/* Profil 7: Symetryczny uchwyt na środku (F-3) */}
+      {/* Profil 7: Symetryczny uchwyt z zachowaniem skosów jak w F-2 (F-3) */}
       {profile === 'integrated-handle-centered' && (
         <svg 
           className="absolute top-0 left-[7.5%] w-[85%] h-[7%] pointer-events-none" 
@@ -168,13 +167,13 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
               <stop offset="100%" stopColor={`rgba(0,0,0,${Number(shadowOp) * 0.05})`} />
             </linearGradient>
           </defs>
-          {/* Wielokąt symetryczny: z lewej skos w dół, potem płasko, z prawej skos w górę */}
-          <polygon points="0,100 10,0 90,0 100,100" fill="url(#innerShadowSym)" />
-          {/* Dolna linia rozbłysku światła */}
+          {/* Dopasowane punkty: pełna wysokość po bokach, schodzące lustrzanie do środka pod kątem */}
+          <polygon points="0,0 100,0 90,100 10,100" fill="url(#innerShadowSym)" />
+          {/* Dolna linia rozbłysku światła w środkowej części */}
           <line x1="10" y1="100" x2="90" y2="100" stroke={`rgba(255,255,255,${highlightOp})`} strokeWidth="3" vectorEffect="non-scaling-stroke" />
-          {/* Skośne krawędzie boczne frezu */}
-          <line x1="0" y1="100" x2="10" y2="0" stroke={`rgba(0,0,0,${Number(shadowOp) * 0.3})`} strokeWidth="2" vectorEffect="non-scaling-stroke" />
-          <line x1="90" y1="0" x2="100" y2="100" stroke={`rgba(0,0,0,${Number(shadowOp) * 0.3})`} strokeWidth="2" vectorEffect="non-scaling-stroke" />
+          {/* Skośne krawędzie boczne frezu (odzwierciedlające styl F-2) */}
+          <line x1="0" y1="0" x2="10" y2="100" stroke={`rgba(0,0,0,${Number(shadowOp) * 0.3})`} strokeWidth="2" vectorEffect="non-scaling-stroke" />
+          <line x1="100" y1="0" x2="90" y2="100" stroke={`rgba(0,0,0,${Number(shadowOp) * 0.3})`} strokeWidth="2" vectorEffect="non-scaling-stroke" />
         </svg>
       )}
     </div>
