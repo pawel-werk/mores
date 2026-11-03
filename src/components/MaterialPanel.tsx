@@ -151,7 +151,7 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
         </div>
       )}
 
-      {/* Profil 4: Zintegrowany uchwyt asymetryczny (F-2) */}
+      {/* Profil 4: Zintegrowany uchwyt asymetryczny (F-2) - WERSJA Z ZAOKRĄGLONYMI SKOSAMI */}
       {profile === 'integrated-handle' && (
         <svg 
           className="absolute top-0 left-0 w-[85%] h-[7%] pointer-events-none" 
@@ -164,9 +164,24 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
               <stop offset="100%" stopColor={`rgba(0,0,0,${Number(shadowOp) * 0.05})`} />
             </linearGradient>
           </defs>
-          <polygon points="0,0 100,0 90,100 0,100" fill="url(#innerShadow)" />
-          <line x1="0" y1="100" x2="90" y2="100" stroke={`rgba(255,255,255,${highlightOp})`} strokeWidth="3" vectorEffect="non-scaling-stroke" />
-          <line x1="100" y1="0" x2="90" y2="100" stroke={`rgba(0,0,0,${Number(shadowOp) * 0.3})`} strokeWidth="2" vectorEffect="non-scaling-stroke" />
+          <path 
+            d="M 0,0 L 96,0 Q 100,0 99,10 L 91,90 Q 90,100 86,100 L 0,100 Z" 
+            fill="url(#innerShadow)" 
+          />
+          <path 
+            d="M 0,100 L 86,100 Q 90,100 91,90" 
+            fill="none" 
+            stroke={`rgba(255,255,255,${highlightOp})`} 
+            strokeWidth="3" 
+            vectorEffect="non-scaling-stroke" 
+          />
+          <path 
+            d="M 96,0 Q 100,0 99,10 L 91,90" 
+            fill="none" 
+            stroke={`rgba(0,0,0,${Number(shadowOp) * 0.3})`} 
+            strokeWidth="2" 
+            vectorEffect="non-scaling-stroke" 
+          />
         </svg>
       )}
 
@@ -184,7 +199,7 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
         </div>
       )}
 
-      {/* Profil 7: Symetryczny uchwyt odsunięty od krawędzi (F-3) */}
+      {/* Profil 7: Symetryczny uchwyt odsunięty od krawędzi (F-3) - WERSJA Z ZAOKRĄGLONYMI SKOSAMI */}
       {profile === 'integrated-handle-centered' && (
         <svg 
           className="absolute top-0 left-[15%] w-[70%] h-[7%] pointer-events-none" 
@@ -197,10 +212,31 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
               <stop offset="100%" stopColor={`rgba(0,0,0,${Number(shadowOp) * 0.05})`} />
             </linearGradient>
           </defs>
-          <polygon points="0,0 100,0 90,100 10,100" fill="url(#innerShadowSym)" />
-          <line x1="10" y1="100" x2="90" y2="100" stroke={`rgba(255,255,255,${highlightOp})`} strokeWidth="3" vectorEffect="non-scaling-stroke" />
-          <line x1="0" y1="0" x2="10" y2="100" stroke={`rgba(0,0,0,${Number(shadowOp) * 0.3})`} strokeWidth="2" vectorEffect="non-scaling-stroke" />
-          <line x1="100" y1="0" x2="90" y2="100" stroke={`rgba(0,0,0,${Number(shadowOp) * 0.3})`} strokeWidth="2" vectorEffect="non-scaling-stroke" />
+          <path 
+            d="M 4,0 L 96,0 Q 100,0 99,10 L 91,90 Q 90,100 86,100 L 14,100 Q 10,100 9,90 L 1,10 Q 0,0 4,0 Z" 
+            fill="url(#innerShadowSym)" 
+          />
+          <path 
+            d="M 9,90 Q 10,100 14,100 L 86,100 Q 90,100 91,90" 
+            fill="none" 
+            stroke={`rgba(255,255,255,${highlightOp})`} 
+            strokeWidth="3" 
+            vectorEffect="non-scaling-stroke" 
+          />
+          <path 
+            d="M 4,0 Q 0,0 1,10 L 9,90" 
+            fill="none" 
+            stroke={`rgba(0,0,0,${Number(shadowOp) * 0.3})`} 
+            strokeWidth="2" 
+            vectorEffect="non-scaling-stroke" 
+          />
+          <path 
+            d="M 96,0 Q 100,0 99,10 L 91,90" 
+            fill="none" 
+            stroke={`rgba(0,0,0,${Number(shadowOp) * 0.3})`} 
+            strokeWidth="2" 
+            vectorEffect="non-scaling-stroke" 
+          />
         </svg>
       )}
 
@@ -326,10 +362,9 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
         </>
       )}
 
-      {/* Profil 13: Podwójnie stopniowany w dół (F-10) - POPRAWIONY */}
+      {/* Profil 13: Podwójnie stopniowany w dół (F-10) */}
       {profile === 'double-stepped-panel' && (
         <div className="absolute inset-[18%] pointer-events-none">
-          {/* Pierwszy spadek w dół */}
           <div className="absolute inset-0" style={{
             borderStyle: 'solid',
             borderWidth: '6px',
@@ -338,13 +373,11 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
             borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.8})`,
             borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.8})`,
           }}>
-            {/* Płaska freza/półka zachowująca ciągłość geometryczną przezroczystym obramowaniem */}
             <div className="absolute inset-0 bg-black/[0.03]" style={{
               borderStyle: 'solid',
               borderWidth: '8px', 
               borderColor: 'transparent'
             }}>
-              {/* Drugi spadek do dna płyciny */}
               <div className="absolute inset-0" style={{
                 borderStyle: 'solid',
                 borderWidth: '6px',
