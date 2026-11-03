@@ -47,22 +47,40 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
     </div>
   );
 
-  const isSeeThrough = profile === 'glass-frame' || profile === 'mullion-frame' || profile === 'lattice-frame';
+  // Ustalenie, czy front wymaga przezroczystego środka (witryny, ażury)
+  // Definiujemy grubość skosu ramy, aby tekstura sięgała dokładnie pod niego
+  let seeThroughBevel = '0px';
+  if (profile === 'glass-frame' || profile === 'mullion-frame') seeThroughBevel = '6px';
+  if (profile === 'lattice-frame') seeThroughBevel = '10px';
+  const isSeeThrough = seeThroughBevel !== '0px';
 
   return (
     <div className={`relative overflow-hidden rounded-sm shadow-xl ${isSeeThrough ? '' : getVariantStyle()} ${className}`}>
       
+      {/* 
+        Budowanie podbudowy ramy dla frontów "na wylot".
+        Tekstura musi sięgać dokładnie pod skosy (bevel), aby skos nie był pusty w środku,
+        a centrum frontu pozostawało całkowicie przezroczyste na tło strony.
+      */}
       {isSeeThrough && (
         <>
-          <div className={`absolute top-0 left-0 right-0 h-[18%] ${getVariantStyle()}`} />
-          <div className={`absolute bottom-0 left-0 right-0 h-[18%] ${getVariantStyle()}`} />
-          <div className={`absolute top-[18%] bottom-[18%] left-0 w-[18%] ${getVariantStyle()}`} />
-          <div className={`absolute top-[18%] bottom-[18%] right-0 w-[18%] ${getVariantStyle()}`} />
+          <div className={`absolute top-0 left-0 right-0 ${getVariantStyle()}`} style={{ height: `calc(18% + ${seeThroughBevel})` }} />
+          <div className={`absolute bottom-0 left-0 right-0 ${getVariantStyle()}`} style={{ height: `calc(18% + ${seeThroughBevel})` }} />
+          <div className={`absolute top-[18%] bottom-[18%] left-0 ${getVariantStyle()}`} style={{ width: `calc(18% + ${seeThroughBevel})` }} />
+          <div className={`absolute top-[18%] bottom-[18%] right-0 ${getVariantStyle()}`} style={{ width: `calc(18% + ${seeThroughBevel})` }} />
         </>
       )}
 
-      {/* Główne oświetlenie frontu (tylko na ramie dla frontów na wylot) */}
-      <div className={`absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/20 pointer-events-none ${isSeeThrough ? 'opacity-50 mix-blend-overlay' : ''}`} />
+      {/* Podbudowa dla szprosów witryny (krzyżak w środku też musi mieć teksturę bazy) */}
+      {profile === 'mullion-frame' && (
+        <>
+          <div className={`absolute top-[50%] -mt-[9px] h-[18px] left-[18%] right-[18%] ${getVariantStyle()}`} />
+          <div className={`absolute left-[50%] -ml-[9px] w-[18px] top-[18%] bottom-[18%] ${getVariantStyle()}`} />
+        </>
+      )}
+
+      {/* Główne oświetlenie frontu */}
+      <div className={`absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/20 pointer-events-none ${isSeeThrough ? 'opacity-60 mix-blend-overlay' : ''}`} />
 
       {/* Profil 5: Wypukłe półwałki (F-15) */}
       {profile === 'half-round' && (
@@ -373,7 +391,6 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
             }}>
               <div className="absolute inset-0 bg-black/[0.08] shadow-[inset_1px_1px_5px_rgba(0,0,0,0.3)]">
                 <div className="absolute inset-[18px]">
-                  {/* USUNIĘTO BOX SHADOW - teraz wypukły środek wygląda jak jedna, lita bryła po frezowaniu */}
                   <div className={`absolute inset-0 ${getVariantStyle()}`} style={{
                     borderStyle: 'solid',
                     borderWidth: '4px',
@@ -429,53 +446,51 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
 
       {/* Profil 17: Klasyczna witryna ze szprosami i szkłem (F-16) */}
       {profile === 'mullion-frame' && (
-        <>
-          <div className={`absolute top-[50%] -mt-[3px] h-[6px] left-[18%] right-[18%] ${getVariantStyle()}`} />
-          <div className={`absolute left-[50%] -ml-[3px] w-[6px] top-[18%] bottom-[18%] ${getVariantStyle()}`} />
-
-          <div className="absolute inset-[18%] pointer-events-none">
-            <div className="absolute top-0 left-0 right-[calc(50%+3px)] bottom-[calc(50%+3px)]" style={{
-              borderStyle: 'solid',
-              borderWidth: '6px', 
-              borderTopColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
-              borderLeftColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
-              borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
-              borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
-            }}>
-              {renderGlass()}
-            </div>
-            <div className="absolute top-0 left-[calc(50%+3px)] right-0 bottom-[calc(50%+3px)]" style={{
-              borderStyle: 'solid',
-              borderWidth: '6px',
-              borderTopColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
-              borderLeftColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
-              borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
-              borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
-            }}>
-              {renderGlass()}
-            </div>
-            <div className="absolute top-[calc(50%+3px)] left-0 right-[calc(50%+3px)] bottom-0" style={{
-              borderStyle: 'solid',
-              borderWidth: '6px',
-              borderTopColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
-              borderLeftColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
-              borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
-              borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
-            }}>
-              {renderGlass()}
-            </div>
-            <div className="absolute top-[calc(50%+3px)] left-[calc(50%+3px)] right-0 bottom-0" style={{
-              borderStyle: 'solid',
-              borderWidth: '6px',
-              borderTopColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
-              borderLeftColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
-              borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
-              borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
-            }}>
-              {renderGlass()}
-            </div>
+        <div className="absolute inset-[18%] pointer-events-none">
+          <div className="absolute top-0 left-0 right-[calc(50%+3px)] bottom-[calc(50%+3px)]" style={{
+            borderStyle: 'solid',
+            borderWidth: '6px', 
+            borderTopColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
+            borderLeftColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
+            borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
+            borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
+          }}>
+            {renderGlass()}
           </div>
-        </>
+          
+          <div className="absolute top-0 left-[calc(50%+3px)] right-0 bottom-[calc(50%+3px)]" style={{
+            borderStyle: 'solid',
+            borderWidth: '6px',
+            borderTopColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
+            borderLeftColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
+            borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
+            borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
+          }}>
+            {renderGlass()}
+          </div>
+
+          <div className="absolute top-[calc(50%+3px)] left-0 right-[calc(50%+3px)] bottom-0" style={{
+            borderStyle: 'solid',
+            borderWidth: '6px',
+            borderTopColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
+            borderLeftColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
+            borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
+            borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
+          }}>
+            {renderGlass()}
+          </div>
+
+          <div className="absolute top-[calc(50%+3px)] left-[calc(50%+3px)] right-0 bottom-0" style={{
+            borderStyle: 'solid',
+            borderWidth: '6px',
+            borderTopColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
+            borderLeftColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
+            borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
+            borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
+          }}>
+            {renderGlass()}
+          </div>
+        </div>
       )}
 
       {/* Profil 18: Witryna z pojedynczą szybą (F-17) */}
@@ -498,7 +513,8 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
       {profile === 'lattice-frame' && (
         <div className="absolute inset-[18%] pointer-events-none">
           
-          {/* Ścięcie ramy zewnętrznej (45 stopni w dół) - grubości ok 2 jednostek */}
+          {/* Ścięcie ramy zewnętrznej (45 stopni w dół) 
+              Dzięki renderWalls textura znajduje się idealnie POD tym borderem! */}
           <div className="absolute inset-0 z-20 pointer-events-none" style={{
             borderStyle: 'solid',
             borderWidth: '10px',
@@ -508,22 +524,9 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
             borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
           }} />
 
-          {/* Gruba "deska" kratki osadzona głębiej */}
-          <div className="absolute inset-[10px] z-10 overflow-hidden pointer-events-auto">
-            
-            {/* Ciemna warstwa symulująca głębię frezu na krawędzi otworów */}
-            <div 
-              className="absolute inset-0 bg-black/60"
-              style={{
-                WebkitMaskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cg stroke='black' stroke-width='8' stroke-linecap='square'%3E%3Cline x1='0' y1='0' x2='24' y2='24'/%3E%3Cline x1='24' y1='0' x2='0' y2='24'/%3E%3C/g%3E%3C/svg%3E")`,
-                maskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cg stroke='black' stroke-width='8' stroke-linecap='square'%3E%3Cline x1='0' y1='0' x2='24' y2='24'/%3E%3Cline x1='24' y1='0' x2='0' y2='24'/%3E%3C/g%3E%3C/svg%3E")`,
-                WebkitMaskSize: '24px 24px',
-                maskSize: '24px 24px',
-                transform: 'translate(1.5px, 2.5px)' // Przesunięcie tworzy cień krawędzi (grubość MDF)
-              }}
-            />
-
-            {/* Właściwa jasna powierzchnia kratki */}
+          {/* Gruba "deska" kratki. Zaczyna się DOKŁADNIE tam, gdzie kończy skos (inset 10px).
+              Zastosowanie samej struktury i cienia drop-shadow na masce tworzy realistyczną, zwartą całość. */}
+          <div className="absolute inset-[10px] z-10 pointer-events-auto">
             <div 
               className={`absolute inset-0 ${getVariantStyle()}`}
               style={{
@@ -531,11 +534,12 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
                 maskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cg stroke='black' stroke-width='8' stroke-linecap='square'%3E%3Cline x1='0' y1='0' x2='24' y2='24'/%3E%3Cline x1='24' y1='0' x2='0' y2='24'/%3E%3C/g%3E%3C/svg%3E")`,
                 WebkitMaskSize: '24px 24px',
                 maskSize: '24px 24px',
+                // Cień z krawędzi wycięć pada do wewnątrz otworów (na tło szafki)
+                filter: 'drop-shadow(2px 3px 3px rgba(0,0,0,0.4)) contrast(102%)'
               }}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-black/10 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-black/15 pointer-events-none" />
             </div>
-            
           </div>
         </div>
       )}
