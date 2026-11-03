@@ -52,7 +52,6 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
   return (
     <div className={`relative overflow-hidden rounded-sm shadow-xl ${isSeeThrough ? '' : getVariantStyle()} ${className}`}>
       
-      {/* Ręczne budowanie 4 ścian ramy dla frontów "na wylot", zostawiając środek w 100% przezroczysty */}
       {isSeeThrough && (
         <>
           <div className={`absolute top-0 left-0 right-0 h-[18%] ${getVariantStyle()}`} />
@@ -374,6 +373,7 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
             }}>
               <div className="absolute inset-0 bg-black/[0.08] shadow-[inset_1px_1px_5px_rgba(0,0,0,0.3)]">
                 <div className="absolute inset-[18px]">
+                  {/* USUNIĘTO BOX SHADOW - teraz wypukły środek wygląda jak jedna, lita bryła po frezowaniu */}
                   <div className={`absolute inset-0 ${getVariantStyle()}`} style={{
                     borderStyle: 'solid',
                     borderWidth: '4px',
@@ -381,7 +381,6 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
                     borderLeftColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
                     borderBottomColor: `rgba(0,0,0,${Number(shadowOp) * 0.7})`,
                     borderRightColor: `rgba(0,0,0,${Number(shadowOp) * 0.7})`,
-                    boxShadow: `3px 3px 8px rgba(0,0,0,${Number(shadowOp) * 0.25})`
                   }}>
                     <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/10 pointer-events-none" />
                   </div>
@@ -509,7 +508,7 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
             borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
           }} />
 
-          {/* DODANO overflow-hidden: Gruba "deska" kratki osadzona głębiej */}
+          {/* Gruba "deska" kratki osadzona głębiej */}
           <div className="absolute inset-[10px] z-10 overflow-hidden pointer-events-auto">
             
             {/* Ciemna warstwa symulująca głębię frezu na krawędzi otworów */}
