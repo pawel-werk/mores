@@ -47,22 +47,35 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
     </div>
   );
 
-  const isSeeThrough = profile === 'glass-frame' || profile === 'mullion-frame' || profile === 'lattice-frame';
+  // Ustalenie, czy front wymaga przezroczystego środka (witryny, ażury)
+  let seeThroughBevel = '0px';
+  if (profile === 'glass-frame' || profile === 'mullion-frame') seeThroughBevel = '6px';
+  if (profile === 'lattice-frame') seeThroughBevel = '10px';
+  const isSeeThrough = seeThroughBevel !== '0px';
 
   return (
     <div className={`relative overflow-hidden rounded-sm shadow-xl ${isSeeThrough ? '' : getVariantStyle()} ${className}`}>
       
+      {/* Podbudowa ramy dla frontów "na wylot" */}
       {isSeeThrough && (
         <>
-          <div className={`absolute top-0 left-0 right-0 h-[18%] ${getVariantStyle()}`} />
-          <div className={`absolute bottom-0 left-0 right-0 h-[18%] ${getVariantStyle()}`} />
-          <div className={`absolute top-[18%] bottom-[18%] left-0 w-[18%] ${getVariantStyle()}`} />
-          <div className={`absolute top-[18%] bottom-[18%] right-0 w-[18%] ${getVariantStyle()}`} />
+          <div className={`absolute top-0 left-0 right-0 ${getVariantStyle()}`} style={{ height: `calc(18% + ${seeThroughBevel})` }} />
+          <div className={`absolute bottom-0 left-0 right-0 ${getVariantStyle()}`} style={{ height: `calc(18% + ${seeThroughBevel})` }} />
+          <div className={`absolute top-[18%] bottom-[18%] left-0 ${getVariantStyle()}`} style={{ width: `calc(18% + ${seeThroughBevel})` }} />
+          <div className={`absolute top-[18%] bottom-[18%] right-0 ${getVariantStyle()}`} style={{ width: `calc(18% + ${seeThroughBevel})` }} />
+        </>
+      )}
+
+      {/* Podbudowa dla szprosów witryny */}
+      {profile === 'mullion-frame' && (
+        <>
+          <div className={`absolute top-[50%] -mt-[9px] h-[18px] left-[18%] right-[18%] ${getVariantStyle()}`} />
+          <div className={`absolute left-[50%] -ml-[9px] w-[18px] top-[18%] bottom-[18%] ${getVariantStyle()}`} />
         </>
       )}
 
       {/* Główne oświetlenie frontu */}
-      <div className={`absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/20 pointer-events-none ${isSeeThrough ? 'opacity-50 mix-blend-overlay' : ''}`} />
+      <div className={`absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/20 pointer-events-none ${isSeeThrough ? 'opacity-60 mix-blend-overlay' : ''}`} />
 
       {/* Profil 5: Wypukłe półwałki (F-15) */}
       {profile === 'half-round' && (
@@ -313,9 +326,10 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
         </>
       )}
 
-      {/* Profil 13: Podwójnie stopniowany w dół (F-10) */}
+      {/* Profil 13: Podwójnie stopniowany w dół (F-10) - POPRAWIONY */}
       {profile === 'double-stepped-panel' && (
         <div className="absolute inset-[18%] pointer-events-none">
+          {/* Pierwszy spadek w dół */}
           <div className="absolute inset-0" style={{
             borderStyle: 'solid',
             borderWidth: '6px',
@@ -324,18 +338,22 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
             borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.8})`,
             borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.8})`,
           }}>
-            <div className="absolute inset-0 bg-black/[0.04]">
-              <div className="absolute inset-[6px]">
-                <div className="absolute inset-0" style={{
-                  borderStyle: 'solid',
-                  borderWidth: '6px',
-                  borderTopColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
-                  borderLeftColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
-                  borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
-                  borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
-                }}>
-                  <div className="absolute inset-0 bg-black/[0.06] shadow-[inset_1px_1px_4px_rgba(0,0,0,0.2)]" />
-                </div>
+            {/* Płaska freza/półka zachowująca ciągłość geometryczną przezroczystym obramowaniem */}
+            <div className="absolute inset-0 bg-black/[0.03]" style={{
+              borderStyle: 'solid',
+              borderWidth: '8px', 
+              borderColor: 'transparent'
+            }}>
+              {/* Drugi spadek do dna płyciny */}
+              <div className="absolute inset-0" style={{
+                borderStyle: 'solid',
+                borderWidth: '6px',
+                borderTopColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
+                borderLeftColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
+                borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
+                borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
+              }}>
+                <div className="absolute inset-0 bg-black/[0.06]" />
               </div>
             </div>
           </div>
@@ -362,7 +380,6 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
             borderRight: `2px solid rgba(255,255,255,${Number(highlightOp) * 0.9})`,
           }} />
 
-          {/* Ramka zewnętrzna obniżająca poziom */}
           <div className="absolute inset-[18%] pointer-events-none">
             <div className="absolute inset-0" style={{
               borderStyle: 'solid',
@@ -372,11 +389,9 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
               borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
               borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
             }}>
-              
-              {/* Budowa solidnego wypukłego środka za pomocą przezroczystych obramowań zamiast pustych marginesów */}
               <div className="absolute inset-0 bg-black/[0.08]" style={{
                 borderStyle: 'solid',
-                borderWidth: '18px', // To tworzy tę "płaską, szerszą przestrzeń", ale fizycznie!
+                borderWidth: '18px',
                 borderColor: 'transparent'
               }}>
                 <div className={`absolute inset-0 ${getVariantStyle()}`} style={{
@@ -433,53 +448,51 @@ export const MaterialPanel: React.FC<MaterialPanelProps> = ({
 
       {/* Profil 17: Klasyczna witryna ze szprosami i szkłem (F-16) */}
       {profile === 'mullion-frame' && (
-        <>
-          <div className="absolute inset-[18%] pointer-events-none">
-            <div className="absolute top-0 left-0 right-[calc(50%+3px)] bottom-[calc(50%+3px)]" style={{
-              borderStyle: 'solid',
-              borderWidth: '6px', 
-              borderTopColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
-              borderLeftColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
-              borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
-              borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
-            }}>
-              {renderGlass()}
-            </div>
-            
-            <div className="absolute top-0 left-[calc(50%+3px)] right-0 bottom-[calc(50%+3px)]" style={{
-              borderStyle: 'solid',
-              borderWidth: '6px',
-              borderTopColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
-              borderLeftColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
-              borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
-              borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
-            }}>
-              {renderGlass()}
-            </div>
-
-            <div className="absolute top-[calc(50%+3px)] left-0 right-[calc(50%+3px)] bottom-0" style={{
-              borderStyle: 'solid',
-              borderWidth: '6px',
-              borderTopColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
-              borderLeftColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
-              borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
-              borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
-            }}>
-              {renderGlass()}
-            </div>
-
-            <div className="absolute top-[calc(50%+3px)] left-[calc(50%+3px)] right-0 bottom-0" style={{
-              borderStyle: 'solid',
-              borderWidth: '6px',
-              borderTopColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
-              borderLeftColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
-              borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
-              borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
-            }}>
-              {renderGlass()}
-            </div>
+        <div className="absolute inset-[18%] pointer-events-none">
+          <div className="absolute top-0 left-0 right-[calc(50%+3px)] bottom-[calc(50%+3px)]" style={{
+            borderStyle: 'solid',
+            borderWidth: '6px', 
+            borderTopColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
+            borderLeftColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
+            borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
+            borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
+          }}>
+            {renderGlass()}
           </div>
-        </>
+          
+          <div className="absolute top-0 left-[calc(50%+3px)] right-0 bottom-[calc(50%+3px)]" style={{
+            borderStyle: 'solid',
+            borderWidth: '6px',
+            borderTopColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
+            borderLeftColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
+            borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
+            borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
+          }}>
+            {renderGlass()}
+          </div>
+
+          <div className="absolute top-[calc(50%+3px)] left-0 right-[calc(50%+3px)] bottom-0" style={{
+            borderStyle: 'solid',
+            borderWidth: '6px',
+            borderTopColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
+            borderLeftColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
+            borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
+            borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
+          }}>
+            {renderGlass()}
+          </div>
+
+          <div className="absolute top-[calc(50%+3px)] left-[calc(50%+3px)] right-0 bottom-0" style={{
+            borderStyle: 'solid',
+            borderWidth: '6px',
+            borderTopColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
+            borderLeftColor: `rgba(0,0,0,${Number(shadowOp) * 0.8})`,
+            borderBottomColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
+            borderRightColor: `rgba(255,255,255,${Number(highlightOp) * 0.9})`,
+          }}>
+            {renderGlass()}
+          </div>
+        </div>
       )}
 
       {/* Profil 18: Witryna z pojedynczą szybą (F-17) */}
